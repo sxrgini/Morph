@@ -29,7 +29,7 @@ public final class MorphRenderer
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static boolean render(PlayerRenderer vanilla, AbstractClientPlayer player, float yaw, float partial, PoseStack ps, MultiBufferSource buffers, int light)
     {
-        if(reentry)
+        if(reentry || com.iiampanda.morph.client.PalCompat.isFirstPersonPass(null))
         {
             return false;
         }

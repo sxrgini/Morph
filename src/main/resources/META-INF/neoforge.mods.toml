@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "LGPL-3.0-only"
+
+[[mods]]
+modId = "morph"
+version = "${version}"
+displayName = "Morph: Revived"
+logoFile = "icon.png"
+authors = "iiAmPanda"
+credits = "Original Morph mod by iChun (LGPL-3.0). Port by iiAmPanda."
+description = '''Morph: Revived is a partial rewrite/fork for iChun's Morph Mod for new versions! If your like me an played iChun's Morph mod back in 1.12.2 and haven't found anything to scratch that itch since, here's the solution!'''
+
+[[mixins]]
+config = "morph.mixins.json"
+
+[[mixins]]
+config = "morph.client.mixins.json"
+
+[[dependencies.morph]]
+modId = "neoforge"
+type = "required"
+versionRange = "[26.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.morph]]
+modId = "minecraft"
+type = "required"
+versionRange = "[26.2,26.3)"
+ordering = "NONE"
+side = "BOTH"

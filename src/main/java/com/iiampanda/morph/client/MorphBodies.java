@@ -153,7 +153,7 @@ public final class MorphBodies
         {
             // the golem's arms only move for its chest interactions, so those play when the player swings
             long now = p.tickCount;
-            if(p.isSwinging() && !GOLEM_SWING.containsKey(golem))
+            if((p.isSwinging() || PalCompat.betterCombatAttacking(p)) && !GOLEM_SWING.containsKey(golem))
             {
                 GOLEM_SWING.put(golem, now);
             }
@@ -219,7 +219,8 @@ public final class MorphBodies
         // models that animate while moving (dolphin tail, bats, ...) read the stand-in's velocity, taken from where the player actually moved
         e.setDeltaMovement(p.getX() - p.xo, p.getY() - p.yo, p.getZ() - p.zo);
         // mobs with a dedicated attack animation (golems, ravagers, wardens, hoglins...) play it from entity event 4
-        boolean swingingNow = p.isSwinging();
+        boolean bcSwing = PalCompat.betterCombatAttacking(p);
+        boolean swingingNow = p.isSwinging() || bcSwing;
         boolean was = WAS_SWINGING.getOrDefault(e, false);
         if(swingingNow && !was)
         {
@@ -233,6 +234,10 @@ public final class MorphBodies
             {
                 e.swing(sw.hand(), sw.animation(), false);
             }
+            else if(bcSwing)
+            {
+                e.swing(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.component.SwingAnimation.DEFAULT, false);
+            }
         }
         if (WAS_SWINGING.size() > 32) WAS_SWINGING.clear();
         WAS_SWINGING.put(e, swingingNow);
@@ -245,7 +250,7 @@ public final class MorphBodies
         }
         if(e instanceof Mob mob)
         {
-            mob.setAggressive(p.isSwinging() || p.isUsingItem());
+            mob.setAggressive(swingingNow || p.isUsingItem());
         }
     }
 }

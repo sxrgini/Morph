@@ -12,6 +12,13 @@ public final class ServerPackets
 
     public static void handle(CustomPacketPayload packet, ServerPlayer player)
     {
+        if(packet instanceof Packets.ReportEmissive payload)
+        {
+            if(player.level().getServer().isSingleplayer() || player.createCommandSourceStack().hasPermission(2))
+            {
+                com.iiampanda.morph.common.mob.MobProfileManager.markEmissive(payload.entities());
+            }
+        }
         if(packet instanceof Packets.RequestMorph payload)
         {
             if(payload.variant().isPresent())

@@ -195,9 +195,9 @@ public final class MobProfileManager
             {
                 save(id, existing);
             }
-            if((existing.defaultsVersion == null || existing.defaultsVersion < 8))
+            if((existing.defaultsVersion == null || existing.defaultsVersion < 9))
             {
-                existing.defaultsVersion = 8;
+                existing.defaultsVersion = 9;
                 MobProfiler.migrate(existing, sample);
                 save(id, existing);
             }

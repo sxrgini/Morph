@@ -12,6 +12,13 @@ public final class ServerPackets
 
     public static void handle(CustomPacketPayload packet, ServerPlayer player)
     {
+        if(packet instanceof Packets.ReportEmissive payload)
+        {
+            if(player.level().getServer().isSingleplayer() || net.minecraft.commands.Commands.hasPermission(net.minecraft.commands.Commands.LEVEL_GAMEMASTERS).test(player.createCommandSourceStack()))
+            {
+                com.iiampanda.morph.common.mob.MobProfileManager.markEmissive(payload.entities());
+            }
+        }
         if(packet instanceof Packets.RequestMorph payload)
         {
             if(payload.variant().isPresent())

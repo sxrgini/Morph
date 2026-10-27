@@ -42,8 +42,67 @@ public final class MobProfileManager
         return dir;
     }
 
+    /** Modded mobs whose client side textures include glow / emissive layers (reported by an operator's client), saved in config/morph/emissive_mobs.txt */
+    private static final java.util.Set<String> EMISSIVE = new java.util.TreeSet<>();
+
+    private static Path emissiveFile()
+    {
+        return Platform.configDir().resolve("morph").resolve("emissive_mobs.txt");
+    }
+
+    public static synchronized boolean hasEmissiveTextures(Identifier id)
+    {
+        return EMISSIVE.contains(id.toString());
+    }
+
+    /** Remembers the mobs and gives the Emissive trait to their profiles (files Morph generated itself; hand written ones are left alone). */
+    public static synchronized void markEmissive(java.util.List<String> ids)
+    {
+        boolean changed = false;
+        for(String s : ids)
+        {
+            Identifier id = Identifier.tryParse(s);
+            if(id == null || id.getNamespace().equals("minecraft") || !BuiltInRegistries.ENTITY_TYPE.containsKey(id))
+            {
+                continue;
+            }
+            if(EMISSIVE.add(id.toString()))
+            {
+                changed = true;
+            }
+            MobProfile p = PROFILES.get(id);
+            if(p != null && p.autoDetected != null && p.autoDetected && p.traits.stream().noneMatch(t -> t instanceof com.iiampanda.morph.api.mob.trait.EmissiveTrait))
+            {
+                com.iiampanda.morph.api.mob.trait.EmissiveTrait glow = new com.iiampanda.morph.api.mob.trait.EmissiveTrait();
+                glow.lightLevel = 7;
+                p.traits.add(glow);
+                save(id, p);
+            }
+        }
+        if(changed)
+        {
+            try
+            {
+                Files.createDirectories(emissiveFile().getParent());
+                Files.write(emissiveFile(), EMISSIVE, StandardCharsets.UTF_8);
+            }
+            catch(IOException e)
+            {
+                Morph.LOGGER.warn("Could not save the emissive mob list", e);
+            }
+        }
+    }
+
     public static synchronized void init()
     {
+        try
+        {
+            if(Files.exists(emissiveFile()))
+            {
+                EMISSIVE.addAll(Files.readAllLines(emissiveFile(), StandardCharsets.UTF_8));
+            }
+        }
+        catch(IOException ignored) {}
         try
         {
             Files.createDirectories(dir());

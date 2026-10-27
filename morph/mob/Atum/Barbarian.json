@@ -1,8 +1,0 @@
-{
-  "forEntity": "atum:barbarian",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

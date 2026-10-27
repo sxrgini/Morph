@@ -1,0 +1,26 @@
+{
+  "forEntity": "minecraft:dolphin",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitSwimmer",
+      "swimMultiplier": 4.0,
+      "landMultiplier": 0.025
+    },
+    {
+      "type": "traitWaterBreather",
+      "suffocatesOnLand": true,
+      "nightVisionInWater": true
+    },
+    {
+      "type": "traitDolphinLeap"
+    },
+    {
+      "type": "traitDolphinsGrace",
+      "radius": 10.0,
+      "duration": 600,
+      "cooldown": 12000
+    }
+  ]
+}

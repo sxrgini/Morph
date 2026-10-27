@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.monster.EndermanEntity",
-  "modifiers": [
-    {
-      "key": "carriedBlockState",
-      "keep": true
-    }
-  ]
-}

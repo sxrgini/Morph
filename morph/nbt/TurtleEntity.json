@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.TurtleEntity",
-  "modifiers": [
-    {
-      "key": "HasEgg",
-      "keep": true
-    }
-  ]
-}

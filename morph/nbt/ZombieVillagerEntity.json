@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.monster.ZombieVillagerEntity",
-  "modifiers": [
-    {
-      "key": "VillagerData",
-      "keep": true
-    }
-  ]
-}

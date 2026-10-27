@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.monster.ZombieEntity",
-  "modifiers": [
-    {
-      "key": "IsBaby",
-      "keep": true
-    }
-  ]
-}

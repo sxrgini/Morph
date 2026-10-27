@@ -1,8 +1,0 @@
-{
-  "forEntity": "chaosawakens:crimson_ent",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

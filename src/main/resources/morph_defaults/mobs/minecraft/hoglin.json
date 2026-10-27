@@ -1,0 +1,10 @@
+{
+  "forEntity": "minecraft:hoglin",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

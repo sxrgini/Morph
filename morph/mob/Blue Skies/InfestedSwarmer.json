@@ -1,9 +1,0 @@
-{
-  "author": "WenXin2",
-  "forEntity": "blue_skies:infested_swarmer",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

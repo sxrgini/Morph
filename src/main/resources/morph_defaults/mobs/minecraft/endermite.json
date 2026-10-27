@@ -1,0 +1,10 @@
+{
+  "forEntity": "minecraft:endermite",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "forEntity": "minecraft:spider",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "abilityClimb"
+    }
+  ]
+}

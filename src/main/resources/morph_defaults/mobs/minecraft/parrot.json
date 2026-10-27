@@ -1,0 +1,18 @@
+{
+  "forEntity": "minecraft:parrot",
+  "autoDetected": false,
+  "variantKeys": [
+    "Variant"
+  ],
+  "traits": [
+    {
+      "type": "abilityFlightFlap",
+      "slowdownInWater": true
+    },
+    {
+      "type": "abilityFlight",
+      "upgradeFor": "abilityFlightFlap",
+      "slowdownInWater": true
+    }
+  ]
+}

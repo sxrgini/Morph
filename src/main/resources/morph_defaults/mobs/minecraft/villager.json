@@ -1,0 +1,8 @@
+{
+  "forEntity": "minecraft:villager",
+  "autoDetected": false,
+  "variantKeys": [
+    "VillagerData"
+  ],
+  "traits": []
+}

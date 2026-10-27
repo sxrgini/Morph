@@ -1,0 +1,11 @@
+{
+  "forEntity": "minecraft:donkey",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitStepHeight",
+      "amount": 1.0
+    }
+  ]
+}

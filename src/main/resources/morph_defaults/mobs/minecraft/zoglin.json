@@ -1,0 +1,26 @@
+{
+  "forEntity": "minecraft:zoglin",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitImmunityFire"
+    },
+    {
+      "type": "traitIntimidate",
+      "distance": 10.0,
+      "farRunSpeed": 0.5,
+      "nearRunSpeed": 0.5,
+      "entitiesToIntimidate": [
+        "minecraft:villager",
+        "minecraft:wandering_trader"
+      ]
+    },
+    {
+      "type": "traitUndead"
+    }
+  ]
+}

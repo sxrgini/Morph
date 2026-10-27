@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:horse",
+  "autoDetected": false,
+  "variantKeys": [
+    "Variant"
+  ],
+  "traits": [
+    {
+      "type": "traitStepHeight",
+      "amount": 1.0
+    },
+    {
+      "type": "abilityRideable"
+    }
+  ]
+}

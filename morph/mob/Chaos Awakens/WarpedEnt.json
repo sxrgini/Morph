@@ -1,8 +1,0 @@
-{
-  "forEntity": "chaosawakens:warped_ent",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

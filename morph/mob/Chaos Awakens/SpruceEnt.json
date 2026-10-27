@@ -1,8 +1,0 @@
-{
-  "forEntity": "chaosawakens:spruce_ent",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

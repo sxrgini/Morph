@@ -1,0 +1,12 @@
+{
+  "forEntity": "minecraft:snow_golem",
+  "autoDetected": false,
+  "variantKeys": [
+    "Pumpkin"
+  ],
+  "traits": [
+    {
+      "type": "traitWaterSensitivity"
+    }
+  ]
+}

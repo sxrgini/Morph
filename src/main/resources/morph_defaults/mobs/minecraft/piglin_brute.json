@@ -1,0 +1,10 @@
+{
+  "forEntity": "minecraft:piglin_brute",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

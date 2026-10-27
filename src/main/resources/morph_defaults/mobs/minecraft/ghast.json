@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:ghast",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitImmunityFire"
+    },
+    {
+      "type": "abilityFlight"
+    }
+  ]
+}

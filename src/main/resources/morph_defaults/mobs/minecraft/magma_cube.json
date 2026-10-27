@@ -1,0 +1,21 @@
+{
+  "forEntity": "minecraft:magma_cube",
+  "autoDetected": false,
+  "variantKeys": [
+    "Size"
+  ],
+  "traits": [
+    {
+      "type": "traitFloat"
+    },
+    {
+      "type": "traitFallNegate"
+    },
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitImmunityFire"
+    }
+  ]
+}

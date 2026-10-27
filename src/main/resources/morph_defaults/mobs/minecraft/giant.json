@@ -1,0 +1,10 @@
+{
+  "forEntity": "minecraft:giant",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

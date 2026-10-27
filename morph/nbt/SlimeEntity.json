@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.monster.SlimeEntity",
-  "modifiers": [
-    {
-      "key": "Size",
-      "keep": true
-    }
-  ]
-}

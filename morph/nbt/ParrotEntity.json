@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.ParrotEntity",
-  "modifiers": [
-    {
-      "key": "Variant",
-      "keep": true
-    }
-  ]
-}

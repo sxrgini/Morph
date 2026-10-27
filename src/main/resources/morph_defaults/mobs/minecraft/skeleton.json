@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:skeleton",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitSunburn"
+    },
+    {
+      "type": "traitUndead"
+    }
+  ]
+}

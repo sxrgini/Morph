@@ -1,0 +1,15 @@
+{
+  "forEntity": "minecraft:slime",
+  "autoDetected": false,
+  "variantKeys": [
+    "Size"
+  ],
+  "traits": [
+    {
+      "type": "traitFloat"
+    },
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

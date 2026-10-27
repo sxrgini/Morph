@@ -1,2 +1,1 @@
-@echo off
-start gradlew clean build
+gradlew build

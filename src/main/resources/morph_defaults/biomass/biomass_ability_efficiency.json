@@ -1,0 +1,19 @@
+{
+  "id": "biomass_ability_efficiency",
+  "parentId": "biomass_abilities",
+  "maxLevel": 10,
+  "freeLevels": 0,
+  "value": {
+    "baseValue": 0,
+    "incValue": 0.05,
+    "multiplier": 1,
+    "equation": 1
+  },
+  "cost": {
+    "baseValue": 120,
+    "incValue": 60,
+    "multiplier": 1,
+    "equation": 1
+  },
+  "schema": 2
+}

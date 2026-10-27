@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.fish.TropicalFishEntity",
-  "modifiers": [
-    {
-      "key": "Variant",
-      "keep": true
-    }
-  ]
-}

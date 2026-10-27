@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:bat",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "abilityFlightFlap",
+      "slowdownInWater": true
+    },
+    {
+      "type": "abilityFlight",
+      "upgradeFor": "abilityFlightFlap",
+      "slowdownInWater": true
+    }
+  ]
+}

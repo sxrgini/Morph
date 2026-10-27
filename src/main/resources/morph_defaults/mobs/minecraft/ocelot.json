@@ -1,0 +1,19 @@
+{
+  "forEntity": "minecraft:ocelot",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitFallNegate"
+    },
+    {
+      "type": "traitIntimidate",
+      "distance": 6.0,
+      "farRunSpeed": 1.0,
+      "nearRunSpeed": 1.2,
+      "entitiesToIntimidate": [
+        "minecraft:creeper"
+      ]
+    }
+  ]
+}

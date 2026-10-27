@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:zombified_piglin",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitImmunityFire"
+    },
+    {
+      "type": "traitUndead"
+    }
+  ]
+}

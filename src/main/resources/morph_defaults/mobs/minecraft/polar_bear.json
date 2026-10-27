@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:polar_bear",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitIntimidate",
+      "distance": 8.0,
+      "farRunSpeed": 1.6,
+      "nearRunSpeed": 1.4,
+      "entitiesToIntimidate": [
+        "minecraft:fox"
+      ]
+    }
+  ]
+}

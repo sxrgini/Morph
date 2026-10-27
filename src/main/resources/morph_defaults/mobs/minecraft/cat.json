@@ -1,0 +1,22 @@
+{
+  "forEntity": "minecraft:cat",
+  "autoDetected": false,
+  "variantKeys": [
+    "variant",
+    "CollarColor"
+  ],
+  "traits": [
+    {
+      "type": "traitFallNegate"
+    },
+    {
+      "type": "traitIntimidate",
+      "distance": 6.0,
+      "farRunSpeed": 1.0,
+      "nearRunSpeed": 1.2,
+      "entitiesToIntimidate": [
+        "minecraft:creeper"
+      ]
+    }
+  ]
+}

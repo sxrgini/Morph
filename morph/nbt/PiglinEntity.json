@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.monster.piglin.PiglinEntity",
-  "modifiers": [
-    {
-      "key": "IsBaby",
-      "keep": true
-    }
-  ]
-}

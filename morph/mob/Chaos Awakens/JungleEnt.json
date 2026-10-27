@@ -1,8 +1,0 @@
-{
-  "forEntity": "chaosawakens:jungle_ent",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

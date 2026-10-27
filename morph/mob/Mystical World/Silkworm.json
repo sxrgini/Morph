@@ -1,9 +1,0 @@
-{
-  "author": "WenXin2",
-  "forEntity": "mysticalworld:silkworm",
-  "traits": [
-    {
-      "type": "traitFallNegate"
-    }
-  ]
-}

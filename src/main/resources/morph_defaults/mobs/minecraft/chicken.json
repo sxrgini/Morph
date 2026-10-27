@@ -1,0 +1,12 @@
+{
+  "forEntity": "minecraft:chicken",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "abilitySlowFall",
+      "velocityMultiplier": 0.6,
+      "resetFallDistance": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "morph_variants",
+  "parentId": "morph_ability",
+  "maxLevel": 1,
+  "freeLevels": 0,
+  "cost": {
+    "baseValue": 60,
+    "incValue": 0,
+    "multiplier": 1,
+    "equation": 1
+  },
+  "schema": 2
+}

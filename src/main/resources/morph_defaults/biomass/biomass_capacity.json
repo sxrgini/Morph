@@ -1,0 +1,18 @@
+{
+  "id": "biomass_capacity",
+  "maxLevel": 50,
+  "freeLevels": 1,
+  "value": {
+    "baseValue": 50,
+    "incValue": 25,
+    "multiplier": 1.1,
+    "equation": 1
+  },
+  "cost": {
+    "baseValue": 20,
+    "incValue": 18,
+    "multiplier": 1,
+    "equation": 1
+  },
+  "schema": 2
+}

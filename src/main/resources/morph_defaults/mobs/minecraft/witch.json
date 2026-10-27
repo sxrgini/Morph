@@ -1,0 +1,10 @@
+{
+  "forEntity": "minecraft:witch",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

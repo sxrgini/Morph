@@ -164,6 +164,28 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
+    /** The client found glow / emissive textures for these modded mobs (see EmissiveScanner). Only operators (or the singleplayer owner) are listened to. */
+    public record ReportEmissive(List<String> entities) implements CustomPacketPayload
+    {
+        public static final Type<ReportEmissive> TYPE = typeOf("report_emissive");
+        public static final StreamCodec<RegistryFriendlyByteBuf, ReportEmissive> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeVarInt(v.entities.size());
+            v.entities.forEach(buf::writeUtf);
+        }, buf ->
+        {
+            int n = Math.min(buf.readVarInt(), 4096);
+            List<String> list = new ArrayList<>();
+            for(int i = 0; i < n; i++)
+            {
+                list.add(buf.readUtf(256));
+            }
+            return new ReportEmissive(list);
+        });
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
     /** The loader module implements this to register the payload types (and, for client bound ones, their handlers). */
     public interface Registrar
     {
@@ -192,5 +214,6 @@ public final class Packets
         r.c2s(ToggleAbility.TYPE, ToggleAbility.CODEC);
         r.c2s(PurchaseUpgrade.TYPE, PurchaseUpgrade.CODEC);
         r.c2s(UseSpecial.TYPE, UseSpecial.CODEC);
+        r.c2s(ReportEmissive.TYPE, ReportEmissive.CODEC);
     }
 }

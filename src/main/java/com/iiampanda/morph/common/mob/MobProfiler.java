@@ -239,6 +239,12 @@ public final class MobProfiler
             glow.lightLevel = e instanceof net.minecraft.world.entity.monster.Blaze ? 12 : 8;
             traits.add(glow);
         }
+        if(!"minecraft".equals(id.getNamespace()) && MobProfileManager.hasEmissiveTextures(id) && traits.stream().noneMatch(tr -> tr instanceof EmissiveTrait))
+        {
+            EmissiveTrait glow = new EmissiveTrait();
+            glow.lightLevel = 7;
+            traits.add(glow);
+        }
         if(e instanceof net.minecraft.world.entity.Shearable)
         {
             ShearableAbility shear = new ShearableAbility();

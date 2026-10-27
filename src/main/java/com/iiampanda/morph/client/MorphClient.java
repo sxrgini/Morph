@@ -41,8 +41,11 @@ public class MorphClient
         ClientPackets.register();
     }
 
+    private static boolean emissiveReported;
+
     public static void onDisconnect()
     {
+        emissiveReported = false;
         ClientState.reset();
         TraitHooks.active().clear();
     }
@@ -56,6 +59,11 @@ public class MorphClient
         if(mc.player == null)
         {
             return;
+        }
+        if(!emissiveReported && mc.level != null)
+        {
+            emissiveReported = true;
+            EmissiveScanner.scanAndReport(mc);
         }
         boolean use = mc.options.keyUse.isDown();
         if(use && !prevUse && mc.screen == null && !mc.player.isSpectator() && hasSpecial(mc))

@@ -99,6 +99,10 @@ public class SpecialProjectileAbility extends SpecialAbility<SpecialProjectileAb
         {
             return super.getTranslationKeyRoot() + ".wither";
         }
+        if("minecraft:fireball".equals(entity))
+        {
+            return super.getTranslationKeyRoot() + ".ghast";
+        }
         return super.getTranslationKeyRoot();
     }
 }

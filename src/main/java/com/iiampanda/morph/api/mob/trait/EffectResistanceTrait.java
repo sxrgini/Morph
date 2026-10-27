@@ -33,6 +33,6 @@ public class EffectResistanceTrait extends Trait<EffectResistanceTrait> implemen
     @Override
     public String getTranslationKeyRoot()
     {
-        return "morph.trait.traitEffectResistance." + (effectId == null ? "unknown" : effectId.replace(':', '.'));
+        return "morph.trait.traitEffectResistance." + (effectId == null ? "unknown" : effectId.equals("*") ? "all" : effectId.replace(':', '.'));
     }
 }

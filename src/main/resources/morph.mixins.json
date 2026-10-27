@@ -1,22 +1,18 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.ichun.mods.morph.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "morph.refmap.json",
+  "package": "com.iiampanda.morph.mixin",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AbstractHorseEntityInvokerMixin",
-    "EntityInvokerMixin",
     "EntityMixin",
-    "LivingEntityInvokerMixin",
+    "EntityInvoker",
+    "HealOrHarmMobEffectMixin",
+    "LivingEntityInvoker",
     "LivingEntityMixin",
-    "LlamaEntityInvokerMixin",
-    "PlayerEntityMixin"
-  ],
-  "client": [
-    "ForgeIngameGuiMixin",
-    "ModelRendererMixin",
-    "PlayerRendererMixin"
+    "MobInvoker",
+    "MobMixin",
+    "PlayerMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,8 +1,0 @@
-{
-  "forEntity": "atum:bandit_warlord",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

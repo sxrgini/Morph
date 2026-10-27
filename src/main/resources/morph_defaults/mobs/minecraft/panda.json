@@ -1,0 +1,9 @@
+{
+  "forEntity": "minecraft:panda",
+  "autoDetected": false,
+  "variantKeys": [
+    "MainGene",
+    "HiddenGene"
+  ],
+  "traits": []
+}

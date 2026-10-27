@@ -1,0 +1,13 @@
+{
+  "id": "morph_ability",
+  "parentId": "biomass_capacity",
+  "maxLevel": 1,
+  "freeLevels": 0,
+  "cost": {
+    "baseValue": 20,
+    "incValue": 0,
+    "multiplier": 1,
+    "equation": 1
+  },
+  "schema": 2
+}

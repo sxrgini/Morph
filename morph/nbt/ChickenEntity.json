@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.ChickenEntity",
-  "modifiers": [
-    {
-      "key": "EggLayTime",
-      "value": "2000000000"
-    }
-  ]
-}

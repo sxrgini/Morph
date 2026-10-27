@@ -1,0 +1,16 @@
+{
+  "forEntity": "minecraft:salmon",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitSwimmer",
+      "swimMultiplier": 3.5,
+      "landMultiplier": 0.1
+    },
+    {
+      "type": "traitWaterBreather",
+      "suffocatesOnLand": true
+    }
+  ]
+}

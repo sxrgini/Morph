@@ -1,0 +1,12 @@
+{
+  "forEntity": "minecraft:creeper",
+  "autoDetected": false,
+  "variantKeys": [
+    "powered"
+  ],
+  "traits": [
+    {
+      "type": "traitHostile"
+    }
+  ]
+}

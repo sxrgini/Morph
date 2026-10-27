@@ -1,9 +1,0 @@
-{
-  "author": "WenXin2",
-  "forEntity": "lotr:gundabad_orc_archer",
-  "traits": [
-    {
-      "type": "traitHostile"
-    }
-  ]
-}

@@ -1,0 +1,15 @@
+{
+  "forEntity": "minecraft:shulker",
+  "autoDetected": false,
+  "variantKeys": [
+    "Color"
+  ],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitImmunityFire"
+    }
+  ]
+}

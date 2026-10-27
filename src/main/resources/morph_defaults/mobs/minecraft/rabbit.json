@@ -1,0 +1,8 @@
+{
+  "forEntity": "minecraft:rabbit",
+  "autoDetected": false,
+  "variantKeys": [
+    "RabbitType"
+  ],
+  "traits": []
+}

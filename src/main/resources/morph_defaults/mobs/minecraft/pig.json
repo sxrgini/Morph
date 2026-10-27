@@ -1,0 +1,11 @@
+{
+  "forEntity": "minecraft:pig",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "abilityRideable",
+      "requiresSaddle": true
+    }
+  ]
+}

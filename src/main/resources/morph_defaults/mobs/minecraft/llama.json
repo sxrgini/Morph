@@ -1,0 +1,22 @@
+{
+  "forEntity": "minecraft:llama",
+  "autoDetected": false,
+  "variantKeys": [
+    "Variant"
+  ],
+  "traits": [
+    {
+      "type": "traitIntimidate",
+      "distance": 24.0,
+      "farRunSpeed": 1.5,
+      "nearRunSpeed": 1.5,
+      "entitiesToIntimidate": [
+        "minecraft:wolf"
+      ]
+    },
+    {
+      "type": "traitStepHeight",
+      "amount": 1.0
+    }
+  ]
+}

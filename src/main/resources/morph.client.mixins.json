@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.iiampanda.morph.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ModelPartAccessor",
+    "ModelPartCaptureMixin",
+    "PlayerRendererMixin",
+    "CameraMixin",
+    "AxolotlModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

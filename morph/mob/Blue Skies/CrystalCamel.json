@@ -1,9 +1,0 @@
-{
-  "forEntity": "blue_skies:crystal_camel",
-  "traits": [
-    {
-      "type": "abilityRideable",
-      "requiresSaddle": true
-    }
-  ]
-}

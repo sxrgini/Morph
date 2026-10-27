@@ -1,0 +1,30 @@
+{
+  "forEntity": "minecraft:drowned",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitHostile"
+    },
+    {
+      "type": "traitIntimidate",
+      "distance": 8.0,
+      "farRunSpeed": 0.5,
+      "nearRunSpeed": 0.5,
+      "entitiesToIntimidate": [
+        "minecraft:villager",
+        "minecraft:wandering_trader"
+      ]
+    },
+    {
+      "type": "traitStepHeight",
+      "amount": 1.0
+    },
+    {
+      "type": "traitSunburn"
+    },
+    {
+      "type": "traitUndead"
+    }
+  ]
+}

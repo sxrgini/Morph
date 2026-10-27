@@ -1,0 +1,11 @@
+{
+  "forEntity": "minecraft:mule",
+  "autoDetected": false,
+  "variantKeys": [],
+  "traits": [
+    {
+      "type": "traitStepHeight",
+      "amount": 1.0
+    }
+  ]
+}

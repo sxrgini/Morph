@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "morph",
+  "version": "${version}",
+  "name": "Morph: Revived",
+  "icon": "icon.png",
+  "description": "Morph: Revived is a partial rewrite/fork for iChun's Morph Mod for new versions! If your like me an played iChun's Morph mod back in 1.12.2 and haven't found anything to scratch that itch since, here's the solution!",
+  "authors": [
+    "iiAmPanda"
+  ],
+  "contact": {},
+  "license": "LGPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.iiampanda.morph.fabric.MorphFabric"
+    ],
+    "client": [
+      "com.iiampanda.morph.fabric.MorphFabricClient"
+    ]
+  },
+  "mixins": [
+    "morph.mixins.json",
+    {
+      "config": "morph.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "credits": "Original Morph mod by iChun (LGPL-3.0). Port by iiAmPanda."
+  }
+}

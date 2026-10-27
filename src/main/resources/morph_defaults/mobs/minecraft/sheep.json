@@ -1,0 +1,9 @@
+{
+  "forEntity": "minecraft:sheep",
+  "autoDetected": false,
+  "variantKeys": [
+    "Color",
+    "Sheared"
+  ],
+  "traits": []
+}

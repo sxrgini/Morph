@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.TameableEntity",
-  "modifiers": [
-    {
-      "key": "Owner",
-      "keep": true
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "forClass": "net.minecraft.entity.passive.SnowGolemEntity",
-  "modifiers": [
-    {
-      "key": "Pumpkin",
-      "keep": true
-    }
-  ]
-}

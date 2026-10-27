@@ -1,0 +1,19 @@
+{
+  "forEntity": "minecraft:tropical_fish",
+  "autoDetected": false,
+  "variantKeys": [
+    "BucketVariantTag",
+    "Variant"
+  ],
+  "traits": [
+    {
+      "type": "traitSwimmer",
+      "swimMultiplier": 2.0,
+      "landMultiplier": 0.05
+    },
+    {
+      "type": "traitWaterBreather",
+      "suffocatesOnLand": true
+    }
+  ]
+}

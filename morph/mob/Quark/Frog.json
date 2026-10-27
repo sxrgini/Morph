@@ -1,9 +1,0 @@
-{
-  "author": "WenXin2",
-  "forEntity": "quark:frog",
-  "traits": [
-    {
-      "type": "traitFallNegate"
-    }
-  ]
-}

@@ -1,0 +1,64 @@
+package com.iiampanda.morph.api.mob.trait.ability;
+
+import com.iiampanda.morph.api.mob.trait.IEventBusRequired;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+/** Other players can shear you with shears (sheep wool, mooshroom mushrooms...). */
+public class ShearableAbility extends Ability<ShearableAbility>implements IEventBusRequired
+{
+    public String dropItem;      // item id, default minecraft:white_wool
+    public Integer minCount;
+    public Integer maxCount;
+    public Integer cooldown;     // ticks between shearings, default 3000 (2.5 minutes)
+
+    public transient long lastSheared = -999999L;
+
+    public ShearableAbility() { type = "abilityShearable"; }
+
+    @Override protected String iconName() { return "step"; }
+
+    @Override public void tick(float strength) {}
+
+    @Override
+    public InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
+    {
+        if(target != player || interactor == player || !enabled || !interactor.getItemInHand(hand).is(Items.SHEARS))
+        {
+            return InteractionResult.PASS;
+        }
+        long now = player.level().getGameTime();
+        if(now - lastSheared < (cooldown == null ? 3000 : cooldown))
+        {
+            return InteractionResult.PASS;
+        }
+        if(!player.level().isClientSide)
+        {
+            lastSheared = now;
+            ResourceLocation id = ResourceLocation.tryParse(dropItem == null ? "minecraft:white_wool" : dropItem);
+            int min = minCount == null ? 1 : minCount;
+            int max = Math.max(min, maxCount == null ? 3 : maxCount);
+            int count = min + player.getRandom().nextInt(max - min + 1);
+            if(id != null)
+            {
+                ItemStack stack = new ItemStack(BuiltInRegistries.ITEM.get(id), count);
+                if(!stack.isEmpty())
+                {
+                    player.spawnAtLocation(stack, player.getBbHeight());
+                }
+            }
+            interactor.getItemInHand(hand).hurtAndBreak(1, interactor, LivingEntity.getSlotForHand(hand));
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1F, 1F);
+        }
+        return InteractionResult.sidedSuccess(player.level().isClientSide);
+    }
+}

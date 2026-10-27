@@ -17,6 +17,7 @@ import java.util.Set;
 /** Keeps the stand-in mob entity of every morphed player in step with the player each tick. */
 public final class MorphBodies
 {
+    private static final java.util.Map<LivingEntity, Integer> BC_START = new java.util.WeakHashMap<>();
     private static final Set<String> TICK_FAILED = new HashSet<>();
     private static final java.util.Map<LivingEntity, Boolean> WAS_SWINGING = new java.util.IdentityHashMap<>();
 
@@ -153,7 +154,7 @@ public final class MorphBodies
         {
             // the golem's arms only move for its chest interactions, so those play when the player swings
             long now = p.tickCount;
-            if(p.swinging && !GOLEM_SWING.containsKey(golem))
+            if((p.swinging || PalCompat.betterCombatAttacking(p)) && !GOLEM_SWING.containsKey(golem))
             {
                 GOLEM_SWING.put(golem, now);
             }
@@ -219,14 +220,20 @@ public final class MorphBodies
         // models that animate while moving (dolphin tail, bats, ...) read the stand-in's velocity, taken from where the player actually moved
         e.setDeltaMovement(p.getX() - p.xo, p.getY() - p.yo, p.getZ() - p.zo);
         // mobs with a dedicated attack animation (golems, ravagers, wardens, hoglins...) play it from entity event 4
+        boolean bcSwing = PalCompat.betterCombatAttacking(p);
+        boolean swingingNow = p.swinging || bcSwing;
         boolean was = WAS_SWINGING.getOrDefault(e, false);
-        if(p.swinging && !was)
+        if(swingingNow && !was)
         {
             try
             {
                 e.handleEntityEvent((byte)4);
             }
             catch(Throwable ignored) {}
+            if(bcSwing && !p.swinging)
+            {
+                BC_START.put(e, p.tickCount);
+            }
             if(com.iiampanda.morph.client.render.MorphBlocks.modded(e))
             {
                 // other mods hook swing() to start their attack animations
@@ -238,12 +245,30 @@ public final class MorphBodies
             }
         }
         if (WAS_SWINGING.size() > 32) WAS_SWINGING.clear();
-        WAS_SWINGING.put(e, p.swinging);
+        WAS_SWINGING.put(e, swingingNow);
         e.swinging = p.swinging;
         e.swingTime = p.swingTime;
         e.swingingArm = p.swingingArm;
         e.attackAnim = p.attackAnim;
         e.oAttackAnim = p.oAttackAnim;
+        Integer bcStart = BC_START.get(e);
+        if(bcStart != null && !p.swinging)
+        {
+            // Better Combat attacks never make the player swing, so the stand-in swings for the length of a normal swing
+            int age = p.tickCount - bcStart;
+            if(age >= 0 && age < 6)
+            {
+                e.swinging = true;
+                e.swingTime = age;
+                e.swingingArm = net.minecraft.world.InteractionHand.MAIN_HAND;
+                e.attackAnim = (age + 1) / 6F;
+                e.oAttackAnim = age / 6F;
+            }
+            else
+            {
+                BC_START.remove(e);
+            }
+        }
         e.hurtTime = p.hurtTime;
         e.hurtDuration = p.hurtDuration;
         e.deathTime = p.deathTime;
@@ -253,7 +278,7 @@ public final class MorphBodies
         }
         if(e instanceof Mob mob)
         {
-            mob.setAggressive(p.swinging || p.isUsingItem());
+            mob.setAggressive(swingingNow || p.isUsingItem());
         }
     }
 }

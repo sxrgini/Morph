@@ -46,7 +46,7 @@ public final class MorphRenderer
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static boolean submit(LivingEntityRenderer vanilla, LivingEntityRenderState state, PoseStack ps, SubmitNodeCollector collector, CameraRenderState camera)
     {
-        if(reentry || !(state instanceof AvatarRenderState avatar))
+        if(reentry || com.iiampanda.morph.client.PalCompat.isFirstPersonPass(state) || !(state instanceof AvatarRenderState avatar))
         {
             return false;
         }

@@ -1,21 +1,29 @@
 plugins {
-    id 'fabric-loom' version '1.12-SNAPSHOT'
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 version = project.mod_version
 group = project.maven_group
 base { archivesName = project.archives_base_name }
 
-dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+neoForge {
+    version = project.neo_version
+    runs {
+        server {
+            server()
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'morph'
+        }
+        client { client() }
+    }
+    mods {
+        morph { sourceSet sourceSets.main }
+    }
 }
 
 processResources {
     inputs.property "version", project.version
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/neoforge.mods.toml") {
         expand "version": inputs.properties.version
     }
 }
@@ -27,6 +35,5 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 }

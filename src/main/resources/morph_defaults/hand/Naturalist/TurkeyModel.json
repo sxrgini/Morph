@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.turkey.TurkeyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/leftWing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/rightWing"
+    }
+  ]
+}

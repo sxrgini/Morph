@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.PeacockModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftLeg",
+      "partName": "body/legLeft"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightLeg",
+      "partName": "body/legRight"
+    }
+  ]
+}

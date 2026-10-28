@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mobs_of_mythology:chupacabra",
+  "leftHandParts": [
+    {
+      "partName": "leg_1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "leg_2"
+    }
+  ]
+}

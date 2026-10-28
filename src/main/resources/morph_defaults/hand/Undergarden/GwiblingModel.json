@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.GwiblingModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/leftfin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/rightfin"
+    }
+  ]
+}

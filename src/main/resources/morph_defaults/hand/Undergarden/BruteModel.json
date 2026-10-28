@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.BruteModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "leftarm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "rightarm"
+    }
+  ]
+}

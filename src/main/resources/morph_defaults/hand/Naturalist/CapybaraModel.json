@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.capybara.CapybaraModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/rightArm"
+    }
+  ]
+}

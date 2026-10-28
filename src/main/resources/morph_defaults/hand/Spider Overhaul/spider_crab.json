@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.models.spider_crab.spider_crab",
+  "leftHandParts": [
+    {
+      "fieldName": "clawLow",
+      "partName": "crab_body/limbR/forelimb/clawLow"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "clawLow2",
+      "partName": "crab_body/limbL/forelimb2/clawLow2"
+    }
+  ]
+}

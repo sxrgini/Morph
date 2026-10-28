@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "samebutdifferent.ecologics.client.model.SquirrelModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "body/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "body/rightArm"
+    }
+  ]
+}

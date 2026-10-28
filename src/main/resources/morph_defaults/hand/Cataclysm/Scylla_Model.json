@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Scylla_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "everything/scylla/body/chest/l_arm/l_arm2/chain_main/chain_4/chain_3/chain_2/chain/chain_anchor/cube_r37"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r_arm2",
+      "partName": "everything/scylla/body/chest/r_arm/r_arm2"
+    }
+  ]
+}

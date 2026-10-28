@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Kobolediator_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "everything/mid_root/pelvis/lower_body/body/left_shoulder/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "everything/mid_root/pelvis/lower_body/body/right_shoulder/right_arm"
+    }
+  ]
+}

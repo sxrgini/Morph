@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Clawdian_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "everything/mid_root/lower_body/pelvis/body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "everything/mid_root/lower_body/pelvis/body/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.GloomperModel",
+  "leftHandParts": [
+    {
+      "fieldName": "arms/left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "arms/right"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.ant.AntModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/left_legs/left_front"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/right_legs/right_front"
+    }
+  ]
+}

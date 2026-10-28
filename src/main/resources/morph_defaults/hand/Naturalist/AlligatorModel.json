@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.alligator.AlligatorModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "root/legs/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "root/legs/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Ancient_Remnant_Rework_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "roots/mid_pivot/pelvis/spine1/spine2/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "roots/mid_pivot/pelvis/spine1/spine2/right_arm"
+    }
+  ]
+}

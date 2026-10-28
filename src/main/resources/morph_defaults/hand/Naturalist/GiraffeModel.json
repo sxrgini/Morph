@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.giraffe.GiraffeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/front_legs/leftHand/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/front_legs/rightHand/right_arm"
+    }
+  ]
+}

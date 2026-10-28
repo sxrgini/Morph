@@ -22,6 +22,8 @@ public final class ClientState
 
     /** Morph syncs that arrived before the player entity did. */
     public static final Map<UUID, Packets.SyncMorph> PENDING = new HashMap<>();
+    /** Morphed players currently sitting down. */
+    public static final java.util.Set<UUID> SITTING = new java.util.HashSet<>();
 
     private static final Map<String, LivingEntity> GUI_ENTITIES = new HashMap<>();
 
@@ -33,6 +35,7 @@ public final class ClientState
         mode = "classic";
         canSelect = canMorph = biomassUnlocked = abilitiesUnlocked = false;
         PENDING.clear();
+        SITTING.clear();
         GUI_ENTITIES.clear();
     }
 

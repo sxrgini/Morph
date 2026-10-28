@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Wave_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "projectile",
+      "partName": "everything/projectile"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "projectile",
+      "partName": "everything/projectile"
+    }
+  ]
+}

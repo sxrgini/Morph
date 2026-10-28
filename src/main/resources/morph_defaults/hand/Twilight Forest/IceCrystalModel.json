@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.IceCrystalModel",
+  "leftHandParts": [
+    {
+      "fieldName": "spike_9/cube_9"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "spike_9/cube_9"
+    }
+  ]
+}

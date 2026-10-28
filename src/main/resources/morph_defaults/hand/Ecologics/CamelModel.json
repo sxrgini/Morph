@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "samebutdifferent.ecologics.client.model.CamelModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFrontLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFrontLeg"
+    }
+  ]
+}

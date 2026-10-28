@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Laser_Beam_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "root/cube_r1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/cube_r1"
+    }
+  ]
+}

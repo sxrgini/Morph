@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.FrogModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "root/body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "root/body/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.MutantSnowGolemModel",
+  "leftHandParts": [
+    {
+      "fieldName": "innerForeLeg2",
+      "partName": "pelvis/leg2/inner_leg2/fore_leg2/inner_fore_leg2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "innerForeLeg1",
+      "partName": "pelvis/leg1/inner_leg1/fore_leg1/inner_fore_leg1"
+    }
+  ]
+}

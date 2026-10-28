@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Flare_Bomb_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "outer",
+      "partName": "root/outer"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "outer",
+      "partName": "root/outer"
+    }
+  ]
+}

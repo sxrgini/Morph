@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.CodModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_fin"
+    }
+  ]
+}

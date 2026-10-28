@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.EndersoulHandModel",
+  "leftHandParts": [
+    {
+      "fieldName": "hand/finger0/fore_finger0"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "hand/finger0/fore_finger0"
+    }
+  ]
+}

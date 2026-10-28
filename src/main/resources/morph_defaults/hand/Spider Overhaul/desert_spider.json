@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.models.desert_spider.desert_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "limbL21",
+      "partName": "spider/limbsL/L1/limbL21"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "limbR21",
+      "partName": "spider/limbsR/R1/limbR21"
+    }
+  ]
+}

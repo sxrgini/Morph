@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.dragonfly.DragonflyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/wings/wingsFront/wingLeftFront"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/wings/wingsFront/wingRightFront"
+    }
+  ]
+}

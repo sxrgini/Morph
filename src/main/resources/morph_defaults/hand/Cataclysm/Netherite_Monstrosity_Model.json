@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Netherite_Monstrosity_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "roots/lowerbody/upperbody/leftarmjoint/leftarm/leftarm2/lefthand/lefthand_r1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "roots/lowerbody/upperbody/leftarmjoint/leftarm/leftarm2/lefthand/righthand_r4"
+    }
+  ]
+}

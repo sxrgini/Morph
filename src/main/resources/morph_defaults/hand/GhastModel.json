@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.GhastModel",
+  "leftHandParts": [
+    {
+      "fieldName": "tentacle1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "tentacle0"
+    }
+  ]
+}

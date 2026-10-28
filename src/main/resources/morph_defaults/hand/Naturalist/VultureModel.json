@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.vulture.VultureModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/left_wing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/right_wing"
+    }
+  ]
+}

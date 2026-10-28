@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Aptrgangr_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm_r1",
+      "partName": "roots/body/chest/r_arm/r_arm_armor/left_arm_r1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm_r7",
+      "partName": "roots/body/chest/r_arm/right_arm2/axe/axe_head/emblem3/right_arm_r7"
+    }
+  ]
+}

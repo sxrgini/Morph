@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.DolphinModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/right_fin"
+    }
+  ]
+}

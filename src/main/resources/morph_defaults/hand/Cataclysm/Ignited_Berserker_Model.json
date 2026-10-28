@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Ignited_Berserker_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "everything/mid_root/rod/body/edges/left_f_blade/guard15"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "everything/mid_root/rod/body/edges/right_f_blade/guard5"
+    }
+  ]
+}

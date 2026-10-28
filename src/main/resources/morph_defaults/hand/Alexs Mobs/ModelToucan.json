@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelToucan",
+  "leftHandParts": [
+    {
+      "fieldName": "left_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_leg"
+    }
+  ]
+}

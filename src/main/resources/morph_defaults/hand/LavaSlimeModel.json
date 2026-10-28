@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.LavaSlimeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "inside_cube"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "inside_cube"
+    }
+  ]
+}

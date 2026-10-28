@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:leaf_insect",
+  "leftHandParts": [
+    {
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm"
+    }
+  ]
+}

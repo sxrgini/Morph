@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.ParrotModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftWing",
+      "partName": "left_wing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightWing",
+      "partName": "right_wing"
+    }
+  ]
+}

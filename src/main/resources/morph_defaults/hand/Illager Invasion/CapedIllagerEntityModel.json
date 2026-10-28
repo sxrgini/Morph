@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.illagerinvasion.client.model.CapedIllagerEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm"
+    }
+  ]
+}

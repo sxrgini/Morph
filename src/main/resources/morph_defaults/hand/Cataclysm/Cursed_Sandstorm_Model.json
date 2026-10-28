@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Cursed_Sandstorm_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "root"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root"
+    }
+  ]
+}

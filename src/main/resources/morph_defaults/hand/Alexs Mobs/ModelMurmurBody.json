@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelMurmurBody",
+  "leftHandParts": [
+    {
+      "fieldName": "arms"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "arms"
+    }
+  ]
+}

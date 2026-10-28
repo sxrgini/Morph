@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Maledictus_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "roots/berserker/pelvis/body/left_shoulder/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "roots/berserker/pelvis/body/right_shoulder/right_arm"
+    }
+  ]
+}

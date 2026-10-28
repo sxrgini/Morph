@@ -26,6 +26,7 @@ public class MorphFabricClient implements ClientModInitializer
         register(Packets.SyncData.TYPE);
         register(Packets.SyncBiomass.TYPE);
         register(Packets.Acquire.TYPE);
+        register(Packets.SyncSit.TYPE);
 
         ClientTickEvents.END_CLIENT_TICK.register(MorphClient::tick);
         HudElementRegistry.addLast(net.minecraft.resources.Identifier.fromNamespaceAndPath("morph", "hud"), HudOverlay::render);

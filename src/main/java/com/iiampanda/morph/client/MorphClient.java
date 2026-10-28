@@ -21,7 +21,7 @@ public class MorphClient
 {
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(net.minecraft.resources.Identifier.fromNamespaceAndPath("morph", "morph"));
 
-    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV, KEY_SIT;
+    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT;
 
     /** All of the mod's keys, for the loader module to register. */
     public static List<KeyMapping> createKeys()
@@ -30,10 +30,8 @@ public class MorphClient
         KEY_BIOMASS = new KeyMapping("key.morph.biomass", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B, CATEGORY);
         KEY_ABILITIES = new KeyMapping("key.morph.abilities", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, CATEGORY);
         KEY_DEMORPH = new KeyMapping("key.morph.demorph", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, CATEGORY);
-        KEY_NEXT_FAV = new KeyMapping("key.morph.nextFavourite", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_BRACKET, CATEGORY);
-        KEY_PREV_FAV = new KeyMapping("key.morph.prevFavourite", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_BRACKET, CATEGORY);
         KEY_SIT = new KeyMapping("key.morph.sit", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Z, CATEGORY);
-        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV, KEY_SIT);
+        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT);
     }
 
     /** Called by the loader module on the client, after the platform is set. */
@@ -136,14 +134,6 @@ public class MorphClient
         {
             Platform.sendToServer(new Packets.SetSit(false));
         }
-        while(KEY_NEXT_FAV.consumeClick())
-        {
-            cycle(mc, 1);
-        }
-        while(KEY_PREV_FAV.consumeClick())
-        {
-            cycle(mc, -1);
-        }
     }
 
     private static boolean hasSpecial(Minecraft mc)
@@ -156,40 +146,5 @@ public class MorphClient
             }
         }
         return false;
-    }
-
-    /** Steps through [your own form, favourite 1, favourite 2, ...]. */
-    private static void cycle(Minecraft mc, int dir)
-    {
-        if(mc.gui.screen() != null || !ClientState.canMorph)
-        {
-            return;
-        }
-        List<MorphVariant> favs = new ArrayList<>();
-        for(MorphVariant v : ClientState.DATA.morphs)
-        {
-            if(ClientState.DATA.isFavourite(v))
-            {
-                favs.add(v);
-            }
-        }
-        if(favs.isEmpty())
-        {
-            mc.player.sendOverlayMessage(Component.translatable("morph.message.noFavourites"));
-            return;
-        }
-        MorphVariant cur = MorphApi.getMorphInfo(mc.player).variant;
-        int idx = cur == null ? -1 : favs.indexOf(cur);
-        int next = idx + dir;
-        int count = favs.size() + 1; // +1 for the player's own form
-        int slot = Math.floorMod(next + 1, count) - 1;
-        if(slot < 0)
-        {
-            Platform.sendToServer(new Packets.RequestMorph(Optional.empty()));
-        }
-        else
-        {
-            Platform.sendToServer(new Packets.RequestMorph(Optional.of(favs.get(slot).write())));
-        }
     }
 }

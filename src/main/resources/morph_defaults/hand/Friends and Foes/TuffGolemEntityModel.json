@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.TuffGolemEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/rightArm"
+    }
+  ]
+}

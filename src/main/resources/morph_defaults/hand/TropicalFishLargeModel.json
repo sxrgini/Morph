@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.fish.TropicalFishLargeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_fin"
+    }
+  ]
+}

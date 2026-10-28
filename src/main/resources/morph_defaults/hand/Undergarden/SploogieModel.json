@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.SploogieModel",
+  "leftHandParts": [
+    {
+      "fieldName": "head/spine1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "head/spine1"
+    }
+  ]
+}

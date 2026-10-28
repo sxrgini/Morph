@@ -13,6 +13,13 @@ public class DamageSourceImmunityTrait extends Trait<DamageSourceImmunityTrait> 
     @Override public void tick(float strength) {}
 
     @Override
+    public String getTranslationKeyRoot()
+    {
+        String key = "morph.trait.traitImmunityDamageSource." + (damageType == null ? "unknown" : damageType.replace(':', '.'));
+        return net.minecraft.locale.Language.getInstance().has(key + ".name") ? key : super.getTranslationKeyRoot();
+    }
+
+    @Override
     public boolean allowDamage(LivingEntity victim, DamageSource source, float amount)
     {
         if(victim != player || damageType == null)

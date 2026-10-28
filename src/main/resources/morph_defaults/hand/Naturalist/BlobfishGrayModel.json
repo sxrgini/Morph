@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.fish.BlobfishGrayModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/leftFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/rightFin"
+    }
+  ]
+}

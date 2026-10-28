@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelSpectre",
+  "leftHandParts": [
+    {
+      "fieldName": "wing_left_p"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "wing_right_p"
+    }
+  ]
+}

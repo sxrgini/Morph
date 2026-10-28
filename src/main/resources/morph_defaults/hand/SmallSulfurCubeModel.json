@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.slime.SmallSulfurCubeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "cube"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "cube"
+    }
+  ]
+}

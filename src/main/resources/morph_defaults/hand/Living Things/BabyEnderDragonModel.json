@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.BabyEnderDragonModel",
+  "leftHandParts": [
+    {
+      "fieldName": "Body/FrontBody/FrontLeftLeg/FrontLeftLegLower/FrontLeftFoot"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "Body/FrontBody/FrontRightLeg/FrontRightLegLower/FrontRightFoot"
+    }
+  ]
+}

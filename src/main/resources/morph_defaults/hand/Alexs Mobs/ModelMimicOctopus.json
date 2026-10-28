@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelMimicOctopus",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFrontArm1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFrontArm1"
+    }
+  ]
+}

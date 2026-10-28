@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelGuster",
+  "leftHandParts": [
+    {
+      "fieldName": "eye_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "eye_right"
+    }
+  ]
+}

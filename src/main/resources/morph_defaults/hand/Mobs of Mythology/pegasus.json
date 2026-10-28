@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mobs_of_mythology:pegasus",
+  "leftHandParts": [
+    {
+      "partName": "left_front_knee"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_front_knee"
+    }
+  ]
+}

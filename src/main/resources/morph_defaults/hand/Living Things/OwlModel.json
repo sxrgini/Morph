@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.OwlModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftLeg",
+      "partName": "Body/LeftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightLeg",
+      "partName": "Body/RightLeg"
+    }
+  ]
+}

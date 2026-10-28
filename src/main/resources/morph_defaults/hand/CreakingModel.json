@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.creaking.CreakingModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/upper_body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/upper_body/right_arm"
+    }
+  ]
+}

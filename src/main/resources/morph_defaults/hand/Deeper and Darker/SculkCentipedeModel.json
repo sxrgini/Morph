@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.SculkCentipedeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/centipede/body/body_1/body_2/body_3/head/tendrils/left_tendril"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/centipede/body/body_1/body_2/body_3/head/tendrils/right_tendril"
+    }
+  ]
+}

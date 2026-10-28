@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.greatwhiteshark.GreatWhiteSharkModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/leftFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/rightFin"
+    }
+  ]
+}

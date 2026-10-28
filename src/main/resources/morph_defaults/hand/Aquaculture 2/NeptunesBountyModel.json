@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.model.NeptunesBountyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "lid"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "lid"
+    }
+  ]
+}

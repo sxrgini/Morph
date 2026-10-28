@@ -70,6 +70,32 @@ public final class MorphLimbs
                 anyScore = score;
             }
         }
+        if(limb == null && any == null)
+        {
+            // nothing hangs off that side (fish, slimes, ghasts, snakes...): borrow the front-most, lowest part so there is always a hand
+            float best = Float.MAX_VALUE;
+            for(ModelPart p : all)
+            {
+                var cubes = ((ModelPartAccessor)(Object)p).morph$cubes();
+                if(cubes.isEmpty())
+                {
+                    continue;
+                }
+                float h = 0F;
+                float w = 0F;
+                for(var c : cubes)
+                {
+                    h = Math.max(h, c.maxY - c.minY);
+                    w = Math.max(w, Math.max(c.maxX - c.minX, c.maxZ - c.minZ));
+                }
+                float score = p.z * 4F - p.y * 0.01F + Math.abs(p.x) * 0.5F + (h >= w ? 0F : 50F) + (h > 16F ? 100F : 0F);
+                if(score < best)
+                {
+                    best = score;
+                    any = p;
+                }
+            }
+        }
         return limb != null ? limb : any;
     }
 }

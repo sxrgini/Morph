@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.The_Prowler_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "missile3",
+      "partName": "roots/upperbody/rocket_luncher/missile3"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "roots/upperbody/right_arm"
+    }
+  ]
+}

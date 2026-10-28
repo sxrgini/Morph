@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.bee.AdultBeeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "frontLeg",
+      "partName": "bone/front_legs"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightWing",
+      "partName": "bone/right_wing"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.breeze.BreezeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/rods/rod_1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/rods/rod_2"
+    }
+  ]
+}

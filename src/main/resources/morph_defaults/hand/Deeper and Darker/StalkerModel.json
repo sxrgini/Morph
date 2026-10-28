@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.StalkerModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/waist/body/arms/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/waist/body/arms/right_arm"
+    }
+  ]
+}

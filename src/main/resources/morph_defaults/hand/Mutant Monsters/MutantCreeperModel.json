@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.common.client.model.MutantCreeperModel",
+  "leftHandParts": [
+    {
+      "fieldName": "pelvis/left_front_leg/left_front_leg_lower"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "pelvis/right_front_leg/right_front_leg_lower"
+    }
+  ]
+}

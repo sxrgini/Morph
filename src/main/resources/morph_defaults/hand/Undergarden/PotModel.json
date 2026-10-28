@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.PotModel",
+  "leftHandParts": [
+    {
+      "fieldName": "pot"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "pot"
+    }
+  ]
+}

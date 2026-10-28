@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:stick_bug",
+  "leftHandParts": [
+    {
+      "partName": "left_leg_1_2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_leg_1_2"
+    }
+  ]
+}

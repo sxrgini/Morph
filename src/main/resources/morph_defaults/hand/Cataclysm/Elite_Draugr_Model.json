@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Elite_Draugr_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "l_arm2",
+      "partName": "root/body/waist/chest/l_arm/l_arm2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r_arm2",
+      "partName": "root/body/waist/chest/r_arm/r_arm2"
+    }
+  ]
+}

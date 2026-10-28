@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.GwibModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/westFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/eastFin"
+    }
+  ]
+}

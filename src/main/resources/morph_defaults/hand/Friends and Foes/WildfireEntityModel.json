@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.WildfireEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftShield"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightShield"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.GlareEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "head/bottomAzalea/secondLayer/thirdLayer/fourthLayer"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "head/bottomAzalea/secondLayer/thirdLayer/fourthLayer"
+    }
+  ]
+}

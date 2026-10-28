@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.DeathTomeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "coverRight",
+      "partName": "book/cover_right"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "coverRight",
+      "partName": "book/cover_right"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.HydraMortarModel",
+  "leftHandParts": [
+    {
+      "fieldName": "mortar"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "mortar"
+    }
+  ]
+}

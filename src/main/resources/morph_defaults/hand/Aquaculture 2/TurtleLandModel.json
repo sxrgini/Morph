@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.renderer.entity.model.TurtleLandModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_front_leg"
+    }
+  ]
+}

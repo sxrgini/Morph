@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:roly_poly",
+  "leftHandParts": [
+    {
+      "partName": "left_legs_walk"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_legs_walk"
+    }
+  ]
+}

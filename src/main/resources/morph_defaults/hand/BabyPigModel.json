@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.pig.BabyPigModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFrontLeg",
+      "partName": "left_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFrontLeg",
+      "partName": "right_front_leg"
+    }
+  ]
+}

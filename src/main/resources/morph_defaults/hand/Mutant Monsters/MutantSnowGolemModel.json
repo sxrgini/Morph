@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.common.client.model.MutantSnowGolemModel",
+  "leftHandParts": [
+    {
+      "fieldName": "pelvis/abdomen/chest/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "pelvis/abdomen/chest/right_arm"
+    }
+  ]
+}

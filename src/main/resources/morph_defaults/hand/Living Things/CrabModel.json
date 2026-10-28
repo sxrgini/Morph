@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.CrabModel",
+  "leftHandParts": [
+    {
+      "fieldName": "Leg1",
+      "partName": "Body/Leg1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "Leg8",
+      "partName": "Body/Leg8"
+    }
+  ]
+}

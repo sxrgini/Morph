@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.PinchBeetleModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftLeg3",
+      "partName": "left_leg_3"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightLeg3",
+      "partName": "right_leg_3"
+    }
+  ]
+}

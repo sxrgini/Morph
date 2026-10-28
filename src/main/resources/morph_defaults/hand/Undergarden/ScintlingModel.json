@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.ScintlingModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftStalk",
+      "partName": "head/left_stalk"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightStalk",
+      "partName": "head/right_stalk"
+    }
+  ]
+}

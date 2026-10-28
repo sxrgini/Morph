@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.yungnickyoung.minecraft.ribbits.client.model.SupporterHatModel",
+  "leftHandParts": [
+    {
+      "fieldName": "main/cube_r2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "main/cube_r1"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.snail.SnailModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftEye",
+      "partName": "root/body/front/eyes/leftEye"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightEye",
+      "partName": "root/body/front/eyes/rightEye"
+    }
+  ]
+}

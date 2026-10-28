@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.fish.PufferfishBigModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_front_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_front_fin"
+    }
+  ]
+}

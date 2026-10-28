@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.CloggrumShieldModel",
+  "leftHandParts": [
+    {
+      "fieldName": "top"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "top"
+    }
+  ]
+}

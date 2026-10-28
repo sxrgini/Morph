@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.MaulerEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "frontLeftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "frontRightLeg"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mobs_of_mythology:wendigo",
+  "leftHandParts": [
+    {
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm"
+    }
+  ]
+}

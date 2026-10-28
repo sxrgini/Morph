@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.BighornModel",
+  "leftHandParts": [
+    {
+      "fieldName": "right_hind_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "left_hind_leg"
+    }
+  ]
+}

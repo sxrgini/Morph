@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.NagaModel",
+  "leftHandParts": [
+    {
+      "fieldName": "head"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "head"
+    }
+  ]
+}

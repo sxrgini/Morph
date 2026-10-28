@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.lizard.LizardTailModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root"
+    }
+  ]
+}

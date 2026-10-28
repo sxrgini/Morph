@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.Denizen2Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm"
+    }
+  ]
+}

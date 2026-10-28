@@ -51,7 +51,7 @@ public final class MorphGeo
     /** @return null when the mob has no geo model with an arm in any loaded mod */
     public static GeoArm find(Entity entity, Object renderer, boolean right)
     {
-        String key = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()) + (right ? "#R" : "#L");
+        String key = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()) + speciesOf(entity) + (right ? "#R" : "#L");
         Optional<GeoArm> cached = CACHE.get(key);
         if(cached == null)
         {
@@ -72,6 +72,26 @@ public final class MorphGeo
             }
         }
         return cached.orElse(null);
+    }
+
+    /** Mods with one entity type for many creatures (Cobblemon's pokemon) name the model after what the entity is: its species. */
+    private static String speciesOf(Entity entity)
+    {
+        try
+        {
+            if(!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath().equals("pokemon"))
+            {
+                return "";
+            }
+            Object pokemon = entity.getClass().getMethod("getPokemon").invoke(entity);
+            Object species = pokemon.getClass().getMethod("getSpecies").invoke(pokemon);
+            Object name = species.getClass().getMethod("getName").invoke(species);
+            return name == null ? "" : ":" + name;
+        }
+        catch(Throwable t)
+        {
+            return "";
+        }
     }
 
     private static String norm(String s)
@@ -153,7 +173,8 @@ public final class MorphGeo
     {
         Identifier id = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
         String ns = id.getNamespace();
-        String want = norm(id.getPath());
+        String species = speciesOf(entity);
+        String want = norm(species.isEmpty() ? id.getPath() : species.substring(1));
         ResourceManager mgr = Minecraft.getInstance().getResourceManager();
         List<Identifier> geos = best(index(GEO_INDEX, ns, new String[]{ "geo", "geckolib", "models", "bedrock" }, ".json"), want, true);
         int tried = 0;
@@ -181,7 +202,7 @@ public final class MorphGeo
             {
                 continue;
             }
-            ModelPart arm = buildArm(geometry, right);
+            ModelPart arm = buildArm(geometry, right, handBone(id, right));
             if(arm == null)
             {
                 continue;
@@ -279,7 +300,105 @@ public final class MorphGeo
         return (s.contains(side) && s.contains("arm")) || s.equals("arm" + c) || s.equals(c + "arm");
     }
 
-    private static ModelPart buildArm(JsonObject geometry, boolean right)
+    /** The bone a hand info (assets/&lt;mod&gt;/morph/hand, forEntity) names for this mob, or null. */
+    private static String handBone(Identifier id, boolean right)
+    {
+        HandInfos.Info info = HandInfos.lookup(id.toString(), null);
+        if(info == null)
+        {
+            return null;
+        }
+        for(HandInfos.Entry e : info.side(right))
+        {
+            String n = e.partName() != null ? e.partName() : e.fieldName();
+            if(n != null)
+            {
+                int i = n.lastIndexOf('/');
+                return i < 0 ? n : n.substring(i + 1);
+            }
+        }
+        return null;
+    }
+
+    /** The best limb-like bone on one side of a model with no arm bone (Bedrock pivots are absolute, y up, the front is -z). */
+    private static JsonObject pickLimb(Map<String, JsonObject> byName, boolean right)
+    {
+        for(boolean strict : new boolean[]{ true, false })
+        {
+            JsonObject best = null;
+            float bs = Float.MAX_VALUE;
+            for(JsonObject b : byName.values())
+            {
+                JsonArray cubes = arr(b, "cubes");
+                if(cubes == null || cubes.isEmpty())
+                {
+                    continue;
+                }
+                String n = norm(b.get("name").getAsString());
+                JsonArray pv = arr(b, "pivot");
+                float px = f(pv, 0, 0F), py = f(pv, 1, 0F), pz = f(pv, 2, 0F);
+                boolean nameLeft = n.contains("left") || n.matches("^l(arm|leg|wing|fin|claw|hand|paw).*") || n.matches(".*(arm|leg|wing|fin|claw|hand|paw)l$");
+                boolean nameRight = n.contains("right") || n.matches("^r(arm|leg|wing|fin|claw|hand|paw).*") || n.matches(".*(arm|leg|wing|fin|claw|hand|paw)r$");
+                boolean on = nameLeft ^ nameRight ? (right ? nameRight : nameLeft) : (right ? px < -0.5F : px > 0.5F);
+                if(strict && !on)
+                {
+                    continue;
+                }
+                float h = 0F, w = 0F;
+                for(JsonElement ce : cubes)
+                {
+                    JsonArray s = arr(ce.getAsJsonObject(), "size");
+                    h = Math.max(h, f(s, 1, 0F));
+                    w = Math.max(w, Math.max(f(s, 0, 0F), f(s, 2, 0F)));
+                }
+                float sc = pz * 4F + py * 0.01F + (on ? 0F : Math.abs(px) * 0.5F);
+                if(n.matches(".*(forearm|upperarm|arm|hand|claw|paw|frontleg|foreleg|fore|flipper|front).*"))
+                {
+                    sc -= 60F;
+                }
+                else if(n.matches(".*(leg|foot|wing|fin|tentacle|pincer|pedipalp|limb).*"))
+                {
+                    sc -= 30F;
+                }
+                if(n.matches(".*(backleg|hindleg|rear|back).*") && !n.matches(".*(front|fore).*"))
+                {
+                    sc += 70F;
+                }
+                if(n.matches(".*(bottom|lower|tip|toe|end)$"))
+                {
+                    sc += 25F;
+                }
+                if(n.matches(".*(eye|ear|horn|spike|nose|beak|jaw|antenna|tail|gill|crest|whisker|tooth|teeth|mouth|tongue|hair|mane|hat|stick|snout|tusk|brow|lash|fang|armor|plate|shield|sword|blade|head).*"))
+                {
+                    sc += 80F;
+                }
+                if(Math.max(h, w) < 3F)
+                {
+                    sc += 60F;
+                }
+                if(h < w)
+                {
+                    sc += 20F;
+                }
+                if(h > 16F)
+                {
+                    sc += 40F;
+                }
+                if(sc < bs)
+                {
+                    bs = sc;
+                    best = b;
+                }
+            }
+            if(best != null)
+            {
+                return best;
+            }
+        }
+        return null;
+    }
+
+    private static ModelPart buildArm(JsonObject geometry, boolean right, String bone)
     {
         JsonArray bones = arr(geometry, "bones");
         if(bones == null)
@@ -310,7 +429,19 @@ public final class MorphGeo
         }
         // the top most bone that looks like this arm
         JsonObject root = null;
-        for(JsonObject b : byName.values())
+        if(bone != null)
+        {
+            // a hand info named the bone
+            for(JsonObject b : byName.values())
+            {
+                if(norm(b.get("name").getAsString()).equals(norm(bone)))
+                {
+                    root = b;
+                    break;
+                }
+            }
+        }
+        for(JsonObject b : root != null ? java.util.List.<JsonObject>of() : byName.values())
         {
             if(isArmName(b.get("name").getAsString(), right))
             {
@@ -322,6 +453,10 @@ public final class MorphGeo
                     break;
                 }
             }
+        }
+        if(root == null)
+        {
+            root = pickLimb(byName, right); // no arm: the front limb, wing or fin on that side
         }
         if(root == null)
         {

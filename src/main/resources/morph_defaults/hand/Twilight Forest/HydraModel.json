@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.HydraModel",
+  "leftHandParts": [
+    {
+      "fieldName": "head_3/frill_3"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "head_1/frill_1"
+    }
+  ]
+}

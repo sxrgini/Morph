@@ -140,36 +140,18 @@ public final class MobProfiler
         {
             traits.add(new FireImmunityTrait());
         }
-        if(safeInvulnerable(e, e.damageSources().explosion(null, null)))
+        if(immuneTo(e, e.damageSources().explosion(null, null)))
         {
             traits.add(new ExplosiveImmunityTrait());
         }
-        if(safeInvulnerable(e, e.damageSources().magic()))
+        if(immuneTo(e, e.damageSources().magic()))
         {
             traits.add(new MagicImmunityTrait());
         }
-        for(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> holder : java.util.List.of(MobEffects.POISON, MobEffects.WITHER))
+        probeResistances(e, traits);
+        if(!(e instanceof net.minecraft.world.entity.player.Player) && e.isSensitiveToWater() && traits.stream().noneMatch(tr -> tr instanceof WaterSensitivityTrait || tr instanceof WaterBreatherTrait))
         {
-            try
-            {
-                if(!e.canBeAffected(new MobEffectInstance(holder)))
-                {
-                    EffectResistanceTrait resist = new EffectResistanceTrait();
-                    resist.effectId = BuiltInRegistries.MOB_EFFECT.getKey(holder.value()).toString();
-                    traits.add(resist);
-                }
-            }
-            catch(Throwable ignored) {}
-        }
-        for(String dmg : new String[]{"drown", "cactus", "freeze"})
-        {
-            // drowning/freezing immunity usually mirrors the water breathing / freeze immune tags
-            if(dmg.equals("freeze") && e.getType().builtInRegistryHolder().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES))
-            {
-                DamageSourceImmunityTrait t = new DamageSourceImmunityTrait();
-                t.damageType = "freeze";
-                traits.add(t);
-            }
+            traits.add(new WaterSensitivityTrait());
         }
 
         // --- mob nature ---
@@ -184,6 +166,10 @@ public final class MobProfiler
             {
                 traits.add(new SunburnTrait());
             }
+        }
+        if(traits.stream().noneMatch(tr -> tr instanceof SunburnTrait) && !e.fireImmune() && modded && burnsInSunlight(e))
+        {
+            traits.add(new SunburnTrait());
         }
 
         // --- movement attributes ---
@@ -372,6 +358,11 @@ public final class MobProfiler
         if(!"minecraft".equals(id.getNamespace()) && p.autoDetected != null && p.autoDetected)
         {
             // profiles Morph wrote for modded mobs before it could read their flight / swimming / breathing logic
+            if(p.defaultsVersion == null || p.defaultsVersion < 13)
+            {
+                // older builds read hit immunities wrongly (modded mobs came out immune to everything); read them again
+                changed |= p.traits.removeIf(tr -> tr instanceof ExplosiveImmunityTrait || tr instanceof MagicImmunityTrait || tr instanceof DamageSourceImmunityTrait || tr instanceof FireImmunityTrait);
+            }
             changed |= addTraits(p, detect(sample).traits);
         }
         changed |= addMissing(p, sample);
@@ -384,9 +375,10 @@ public final class MobProfiler
         for(Trait<?> t : wanted)
         {
             boolean has = false;
+            String wantedJson = TraitHandler.GSON.toJson(t);
             for(Trait<?> o : existing.traits)
             {
-                has |= o.type.equals(t.type);
+                has |= o.type.equals(t.type) && TraitHandler.GSON.toJson(o).equals(wantedJson);
             }
             if(!has)
             {
@@ -436,6 +428,228 @@ public final class MobProfiler
     private static double round(double d)
     {
         return Math.round(d * 100D) / 100D;
+    }
+
+
+    private static final java.util.List<java.util.function.Function<net.minecraft.world.damagesource.DamageSources, DamageSource>> PROBES = java.util.List.of(
+            ds -> ds.fall(), ds -> ds.drown(), ds -> ds.cactus(), ds -> ds.lightningBolt(), ds -> ds.hotFloor(), ds -> ds.sweetBerryBush(), ds -> ds.inWall(),
+            ds -> ds.dragonBreath(), ds -> ds.stalagmite(), ds -> ds.freeze(), ds -> ds.starve(), ds -> ds.flyIntoWall(), ds -> ds.wither());
+
+    private static java.lang.reflect.Field invulnerableField;
+
+    /** A new, unspawned copy of this kind of mob, or null when one cannot be made. Every test hit gets its own, so a mod's own hit cooldowns cannot carry over. */
+    private static LivingEntity fresh(LivingEntity e)
+    {
+        try
+        {
+            if(!(e.level() instanceof net.minecraft.server.level.ServerLevel sl))
+            {
+                return null;
+            }
+            net.minecraft.world.entity.EntityType<?> type = e.getType();
+            return type.create(sl, net.minecraft.world.entity.EntitySpawnReason.COMMAND) instanceof LivingEntity spare ? spare : null;
+        }
+        catch(Throwable t)
+        {
+            return null;
+        }
+    }
+
+    /** True if a small hit of this kind does nothing to a fresh copy of the mob (the mob itself is never touched). */
+    private static boolean ignores(LivingEntity proto, java.util.function.Function<net.minecraft.world.damagesource.DamageSources, DamageSource> probe)
+    {
+        LivingEntity c = fresh(proto);
+        if(c == null)
+        {
+            return false;
+        }
+        try
+        {
+            c.setSilent(true);
+            return shrugsOff(c, probe.apply(c.damageSources()));
+        }
+        catch(Throwable t)
+        {
+            return false;
+        }
+    }
+
+    /** A plain hit lands on a fresh copy, so test hits of other kinds can be believed when they do nothing. */
+    private static boolean readable(LivingEntity proto)
+    {
+        return !ignores(proto, ds -> ds.generic()) && fresh(proto) != null;
+    }
+
+    private static void resetInvulnerable(LivingEntity e)
+    {
+        try
+        {
+            if(invulnerableField == null)
+            {
+                invulnerableField = Entity.class.getDeclaredField("invulnerableTime");
+                invulnerableField.setAccessible(true);
+            }
+            invulnerableField.setInt(e, 0);
+        }
+        catch(Throwable ignored) {}
+        e.damageCooldownTime = 0;
+        try
+        {
+            if(lastHurtField == null)
+            {
+                lastHurtField = LivingEntity.class.getDeclaredField("lastHurt");
+                lastHurtField.setAccessible(true);
+            }
+            lastHurtField.setFloat(e, 0F);
+        }
+        catch(Throwable ignored) {}
+    }
+
+    private static java.lang.reflect.Field lastHurtField;
+
+    /** True if a small hit of this kind does nothing. Tried on the spare copy, so it also catches mods that ignore damage in their own code. */
+    private static boolean shrugsOff(LivingEntity e, DamageSource source)
+    {
+        try
+        {
+            float max = e.getMaxHealth();
+            float amount = Math.max(0.05F, Math.min(2F, max * 0.08F));
+            e.setHealth(max);
+            resetInvulnerable(e);
+            e.hurtTime = 0;
+            boolean hit = e.level() instanceof net.minecraft.server.level.ServerLevel sl ? e.hurtServer(sl, source, amount) : false;
+            float lost = max - e.getHealth();
+            e.setHealth(max);
+            resetInvulnerable(e);
+            e.hurtTime = 0;
+            e.deathTime = 0;
+            return lost <= 0.0001F;
+        }
+        catch(Throwable t)
+        {
+            return false;
+        }
+    }
+
+    /** Reads what a mob is immune to: damage types, fire, status effects. Works on any mob, whatever mod it comes from. */
+    private static void probeResistances(LivingEntity e, java.util.List<Trait<?>> traits)
+    {
+        if(!(e.level() instanceof net.minecraft.server.level.ServerLevel))
+        {
+            return;
+        }
+        boolean wasSilent = e.isSilent();
+        e.setSilent(true);
+        try
+        {
+            // a control hit: a mob that shrugs that off cannot be read this way (invulnerable or not simulated)
+            if(readable(e))
+            {
+                java.util.List<DamageSourceImmunityTrait> found = new java.util.ArrayList<>();
+                for(java.util.function.Function<net.minecraft.world.damagesource.DamageSources, DamageSource> probe : PROBES)
+                {
+                    DamageSource src = probe.apply(e.damageSources());
+                    String name = src.getMsgId();
+                    if(name.equals("drown") && traits.stream().anyMatch(tr -> tr instanceof WaterBreatherTrait))
+                    {
+                        continue;
+                    }
+                    if(name.equals("freeze") && traits.stream().anyMatch(tr -> tr instanceof DamageSourceImmunityTrait d && "freeze".equals(d.damageType)))
+                    {
+                        continue;
+                    }
+                    if(ignores(e, probe))
+                    {
+                        DamageSourceImmunityTrait imm = new DamageSourceImmunityTrait();
+                        imm.damageType = name;
+                        found.add(imm);
+                    }
+                }
+                // a mob that ignores most of everything is one the hits cannot be read on (custom hit cooldowns, phases...), not a mob that is immune to it all
+                if(found.size() <= 5)
+                {
+                    traits.addAll(found);
+                    if(traits.stream().noneMatch(tr -> tr instanceof FireImmunityTrait) && ignores(e, ds -> ds.inFire()) && ignores(e, ds -> ds.onFire()) && ignores(e, ds -> ds.lava()))
+                    {
+                        traits.add(new FireImmunityTrait());
+                    }
+                }
+                else
+                {
+                    traits.removeIf(tr -> tr instanceof ExplosiveImmunityTrait || tr instanceof MagicImmunityTrait);
+                }
+            }
+        }
+        catch(Throwable ignored) {}
+        finally
+        {
+            try
+            {
+                e.setHealth(e.getMaxHealth());
+                resetInvulnerable(e);
+                e.hurtTime = 0;
+                e.deathTime = 0;
+                e.setSilent(wasSilent);
+            }
+            catch(Throwable ignored) {}
+        }
+        // status effects: every harmful one, including the ones other mods add
+        java.util.List<String> blocked = new java.util.ArrayList<>();
+        int harmful = 0;
+        for(net.minecraft.world.effect.MobEffect eff : BuiltInRegistries.MOB_EFFECT)
+        {
+            try
+            {
+                if(eff.getCategory() != net.minecraft.world.effect.MobEffectCategory.HARMFUL)
+                {
+                    continue;
+                }
+                harmful++;
+                if(!e.canBeAffected(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(eff))))
+                {
+                    blocked.add(BuiltInRegistries.MOB_EFFECT.getKey(eff).toString());
+                }
+            }
+            catch(Throwable ignored) {}
+        }
+        if(harmful >= 6 && blocked.size() >= harmful * 0.8D)
+        {
+            EffectResistanceTrait all = new EffectResistanceTrait();
+            all.effectId = "*";
+            traits.add(all);
+        }
+        else
+        {
+            for(String effect : blocked.stream().limit(12).toList())
+            {
+                EffectResistanceTrait resist = new EffectResistanceTrait();
+                resist.effectId = effect;
+                traits.add(resist);
+            }
+        }
+    }
+
+    /** Mods write their own "burns in daylight" logic, usually in a method with sun / daylight in its name. */
+    private static boolean burnsInSunlight(LivingEntity e)
+    {
+        for(Class<?> c = e.getClass(); c != null && c != Mob.class && c != LivingEntity.class && c != Object.class; c = c.getSuperclass())
+        {
+            for(java.lang.reflect.Method m : c.getDeclaredMethods())
+            {
+                String n = m.getName().toLowerCase(Locale.ROOT);
+                if((n.contains("sunburn") || n.contains("burnindaylight") || n.contains("burnsinsun") || n.contains("burnindaylight") || n.contains("burnsindaylight")) && m.getParameterCount() == 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /** True only if a hit of that kind does nothing to a mob that does take plain damage (no claim when the mob cannot be read this way). */
+    private static boolean immuneTo(LivingEntity e, DamageSource source)
+    {
+        return readable(e) && ignores(e, ds -> source);
     }
 
     private static boolean safeInvulnerable(LivingEntity e, DamageSource source)

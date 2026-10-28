@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "samebutdifferent.ecologics.client.model.CoconutCrabModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFrontLeg",
+      "partName": "root/leftFrontLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFrontLeg",
+      "partName": "root/rightFrontLeg"
+    }
+  ]
+}

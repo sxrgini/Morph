@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Deepling_Priest_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm"
+    }
+  ]
+}

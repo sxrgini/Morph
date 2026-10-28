@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.UndergarModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/left_pectoral_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/right_pectoral_fin"
+    }
+  ]
+}

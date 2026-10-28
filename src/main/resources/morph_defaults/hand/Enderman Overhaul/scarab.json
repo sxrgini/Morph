@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "endermanoverhaul:scarab",
+  "leftHandParts": [
+    {
+      "partName": "left_leg_4"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_leg_1"
+    }
+  ]
+}

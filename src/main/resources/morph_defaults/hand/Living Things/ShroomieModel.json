@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.ShroomieModel",
+  "leftHandParts": [
+    {
+      "fieldName": "ArmLeft",
+      "partName": "Body/ArmLeft"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "ArmRight",
+      "partName": "Body/ArmRight"
+    }
+  ]
+}

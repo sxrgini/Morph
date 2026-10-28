@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.CreeperMinionModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leg4"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "leg3"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.FireBeetleModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftLeg1",
+      "partName": "left_leg_1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightLeg1",
+      "partName": "right_leg_1"
+    }
+  ]
+}

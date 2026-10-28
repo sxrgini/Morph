@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.v_models.jungle_spider.v_jungle_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "spider/body/head/cheliceraR/cube_r4"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "spider/body/head/cube_r1"
+    }
+  ]
+}

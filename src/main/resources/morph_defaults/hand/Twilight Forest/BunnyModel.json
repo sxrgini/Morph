@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.BunnyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "right_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "left_front_leg"
+    }
+  ]
+}

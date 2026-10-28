@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.SeahorseModel",
+  "leftHandParts": [
+    {
+      "fieldName": "Ear_Left",
+      "partName": "Body/head/ear_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "Ear_Right",
+      "partName": "Body/head/ear_right"
+    }
+  ]
+}

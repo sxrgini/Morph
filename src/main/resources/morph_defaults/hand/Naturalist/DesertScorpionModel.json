@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.scorpion.DesertScorpionModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/rightArm"
+    }
+  ]
+}

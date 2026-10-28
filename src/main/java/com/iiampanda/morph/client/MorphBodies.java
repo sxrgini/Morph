@@ -109,7 +109,8 @@ public final class MorphBodies
         e.yOld = p.yOld;
         e.zOld = p.zOld;
         e.setOnGround(p.onGround());
-        e.setPose(p.getPose() == Pose.SWIMMING || p.getPose() == Pose.FALL_FLYING || p.getPose() == Pose.SPIN_ATTACK ? Pose.STANDING : p.getPose());
+        SitSupport.apply(e, ClientState.SITTING.contains(p.getUUID()));
+        if(!SitSupport.ownsPose(e)) e.setPose(p.getPose() == Pose.SWIMMING || p.getPose() == Pose.FALL_FLYING || p.getPose() == Pose.SPIN_ATTACK ? Pose.STANDING : p.getPose());
         e.setSprinting(p.isSprinting());
         e.setShiftKeyDown(p.isShiftKeyDown());
         e.setSwimming(p.isSwimming());
@@ -229,6 +230,7 @@ public final class MorphBodies
                 e.handleEntityEvent((byte)4);
             }
             catch(Throwable ignored) {}
+            ModAnimations.attack(e);
             net.minecraft.world.entity.LivingEntity.SwingDescription sw = p.getCurrentSwing();
             if(sw != null)
             {

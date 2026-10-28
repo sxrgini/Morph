@@ -20,7 +20,7 @@ public class MorphClient
 {
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(net.minecraft.resources.Identifier.fromNamespaceAndPath("morph", "morph"));
 
-    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV;
+    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV, KEY_SIT;
 
     /** All of the mod's keys, for the loader module to register. */
     public static List<KeyMapping> createKeys()
@@ -31,7 +31,8 @@ public class MorphClient
         KEY_DEMORPH = new KeyMapping("key.morph.demorph", InputConstants.Type.KEYBOARD, InputConstants.KEY_N, CATEGORY);
         KEY_NEXT_FAV = new KeyMapping("key.morph.nextFavourite", InputConstants.Type.KEYBOARD, InputConstants.KEY_RBRACKET, CATEGORY);
         KEY_PREV_FAV = new KeyMapping("key.morph.prevFavourite", InputConstants.Type.KEYBOARD, InputConstants.KEY_LBRACKET, CATEGORY);
-        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV);
+        KEY_SIT = new KeyMapping("key.morph.sit", InputConstants.Type.KEYBOARD, InputConstants.KEY_Z, CATEGORY);
+        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_NEXT_FAV, KEY_PREV_FAV, KEY_SIT);
     }
 
     /** Called by the loader module on the client, after the platform is set. */
@@ -45,6 +46,7 @@ public class MorphClient
     public static void onDisconnect()
     {
         emissiveReported = false;
+        com.iiampanda.morph.client.render.HandInfos.reset();
         ClientState.reset();
         TraitHooks.active().clear();
     }
@@ -111,6 +113,27 @@ public class MorphClient
             {
                 Platform.sendToServer(new Packets.RequestMorph(Optional.empty()));
             }
+        }
+        while(KEY_SIT.consumeClick())
+        {
+            if(mc.gui.screen() == null && MorphApi.getMorphInfo(mc.player).isMorphed())
+            {
+                net.minecraft.world.entity.LivingEntity stand = MorphApi.getMorphInfo(mc.player).getEntity();
+                boolean sitting = ClientState.SITTING.contains(mc.player.getUUID());
+                if(stand != null && (sitting || SitSupport.canSit(stand)))
+                {
+                    Platform.sendToServer(new Packets.SetSit(!sitting));
+                }
+                else
+                {
+                    mc.player.sendOverlayMessage(Component.translatable("morph.message.cannotSit"));
+                }
+            }
+        }
+        // a sitting morph stands up when its player moves, jumps or sneaks
+        if(ClientState.SITTING.contains(mc.player.getUUID()) && (mc.player.getDeltaMovement().horizontalDistanceSqr() > 0.0016D || mc.options.keyJump.isDown() || mc.player.isShiftKeyDown() || !mc.player.onGround()))
+        {
+            Platform.sendToServer(new Packets.SetSit(false));
         }
         while(KEY_NEXT_FAV.consumeClick())
         {

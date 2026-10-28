@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.snake.SnakeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "neck",
+      "partName": "main/neck"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "neck",
+      "partName": "main/neck"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.allay.AllayModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "root/body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "root/body/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.JavelinModel",
+  "leftHandParts": [
+    {
+      "fieldName": "javelin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "javelin"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.common.client.model.MutantCrossbowModel",
+  "leftHandParts": [
+    {
+      "fieldName": "arm_wear/middle/middle1/side1/side3/rope1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "arm_wear/middle/middle1/side1/side3/rope1"
+    }
+  ]
+}

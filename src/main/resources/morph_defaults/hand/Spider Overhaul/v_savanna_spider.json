@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.v_models.savanna_spider.v_savanna_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "spider/body/head/hair/cube_r3"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r1",
+      "partName": "spider/limbs_r/r1"
+    }
+  ]
+}

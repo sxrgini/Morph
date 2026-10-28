@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Symbiocto_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "face_tentacle1",
+      "partName": "everything/octo_head/face_tentacle1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "face_tentacle3",
+      "partName": "everything/octo_head/face_tentacle3"
+    }
+  ]
+}

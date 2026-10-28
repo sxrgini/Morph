@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.MogModel",
+  "leftHandParts": [
+    {
+      "fieldName": "frontLegLeft",
+      "partName": "left_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "frontLegRight",
+      "partName": "right_front_leg"
+    }
+  ]
+}

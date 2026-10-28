@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelMimicube",
+  "leftHandParts": [
+    {
+      "fieldName": "eye_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "eye_right"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.renderer.entity.model.FishLongnoseModel",
+  "leftHandParts": [
+    {
+      "fieldName": "finLeft",
+      "partName": "fin_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "finRight",
+      "partName": "fin_right"
+    }
+  ]
+}

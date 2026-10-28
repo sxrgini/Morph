@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.warden.WardenModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "bone/body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "bone/body/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.giantisopod.GiantIsopodModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/skull/antennae/leftAntennae"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/skull/antennae/rightAntennae"
+    }
+  ]
+}

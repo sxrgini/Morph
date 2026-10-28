@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.tortoise.TortoiseModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/front_legs/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/front_legs/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.MinoshroomModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm"
+    }
+  ]
+}

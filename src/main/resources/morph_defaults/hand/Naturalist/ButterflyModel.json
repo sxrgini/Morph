@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.butterfly.ButterflyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body"
+    }
+  ]
+}

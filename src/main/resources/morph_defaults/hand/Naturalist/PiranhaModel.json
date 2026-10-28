@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.fish.PiranhaModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/right_fin"
+    }
+  ]
+}

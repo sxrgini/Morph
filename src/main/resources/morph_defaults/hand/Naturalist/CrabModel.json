@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.crab.CrabModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftEye",
+      "partName": "root/head/crabBody/crabHead/leftEye"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "root/head/crabBody/rightClaw/rightArm"
+    }
+  ]
+}

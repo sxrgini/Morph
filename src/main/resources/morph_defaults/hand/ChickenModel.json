@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.ChickenModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftLeg",
+      "partName": "left_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightLeg",
+      "partName": "right_leg"
+    }
+  ]
+}

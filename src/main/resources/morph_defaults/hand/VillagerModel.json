@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.VillagerModel",
+  "leftHandParts": [
+    {
+      "fieldName": "arms"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "arms"
+    }
+  ]
+}

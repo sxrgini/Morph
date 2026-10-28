@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:snail",
+  "leftHandParts": [
+    {
+      "partName": "left_mandible"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "body_2"
+    }
+  ]
+}

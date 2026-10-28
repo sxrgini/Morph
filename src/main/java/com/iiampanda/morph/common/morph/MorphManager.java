@@ -135,6 +135,7 @@ public final class MorphManager
      */
     public static boolean morph(ServerPlayer player, @Nullable MorphVariant variant, boolean force)
     {
+        SitState.set(player, false);
         PlayerData data = data(player);
         if(!force)
         {
@@ -352,6 +353,7 @@ public final class MorphManager
         if(onlyTo != null)
         {
             Platform.sendToPlayer(onlyTo, payload);
+            SitState.resend(player, onlyTo);
             return;
         }
         Platform.sendToPlayer(player, payload);

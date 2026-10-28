@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.IronGolemModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "right_arm"
+    }
+  ]
+}

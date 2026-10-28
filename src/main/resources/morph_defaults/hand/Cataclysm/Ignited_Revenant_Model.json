@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Ignited_Revenant_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_parts"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_parts"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.ShatteredModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/arms/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/arms/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.bear.BlackBearModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "root/front_legs/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "root/front_legs/right_arm"
+    }
+  ]
+}

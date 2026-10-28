@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Endermaptera_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_leg_front"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_leg_front"
+    }
+  ]
+}

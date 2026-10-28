@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.illagerinvasion.client.model.InvokerFangsModel",
+  "leftHandParts": [
+    {
+      "fieldName": "upper_jaw"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "base"
+    }
+  ]
+}

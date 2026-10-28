@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelAlligatorSnappingTurtle",
+  "leftHandParts": [
+    {
+      "fieldName": "arm_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "arm_right"
+    }
+  ]
+}

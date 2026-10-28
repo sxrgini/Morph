@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.renderer.entity.model.JellyfishModel",
+  "leftHandParts": [
+    {
+      "fieldName": "tentaclesLeft",
+      "partName": "tentacles_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "tentaclesRight",
+      "partName": "tentacles_right"
+    }
+  ]
+}

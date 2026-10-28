@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.MysteriousPotModel",
+  "leftHandParts": [
+    {
+      "fieldName": "front_left_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "front_right_leg"
+    }
+  ]
+}

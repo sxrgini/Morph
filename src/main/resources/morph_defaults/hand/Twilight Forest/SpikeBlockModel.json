@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.SpikeBlockModel",
+  "leftHandParts": [
+    {
+      "fieldName": "block/spikes_22"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "block/spikes_24"
+    }
+  ]
+}

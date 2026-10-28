@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.SpiderPigModel",
+  "leftHandParts": [
+    {
+      "fieldName": "innerFrontLeg2",
+      "partName": "base/body2/body1/front_leg2/inner_front_leg2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "innerLowerFrontLeg1",
+      "partName": "base/body2/body1/front_leg1/inner_front_leg1/lower_front_leg1/inner_lower_front_leg1"
+    }
+  ]
+}

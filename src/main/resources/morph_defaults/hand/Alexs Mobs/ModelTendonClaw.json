@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelTendonClaw",
+  "leftHandParts": [
+    {
+      "fieldName": "claw1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "claw1"
+    }
+  ]
+}

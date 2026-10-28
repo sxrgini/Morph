@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.models.cavern_spider.cavern_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "limb1L2",
+      "partName": "spider/limbsL/L1/limb1L2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "limb1R2",
+      "partName": "spider/limbsR/R1/limb1R2"
+    }
+  ]
+}

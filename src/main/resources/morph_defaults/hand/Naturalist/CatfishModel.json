@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.fish.CatfishModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/leftFrontFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/rightFrontFin"
+    }
+  ]
+}

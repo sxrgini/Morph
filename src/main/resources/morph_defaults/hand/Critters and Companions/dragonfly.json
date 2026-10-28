@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:dragonfly",
+  "leftHandParts": [
+    {
+      "partName": "left_wing1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_wing1"
+    }
+  ]
+}

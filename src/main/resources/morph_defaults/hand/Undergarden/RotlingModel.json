@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.RotlingModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "body/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "body/rightArm"
+    }
+  ]
+}

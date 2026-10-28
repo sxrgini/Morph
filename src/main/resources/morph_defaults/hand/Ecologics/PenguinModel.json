@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "samebutdifferent.ecologics.client.model.PenguinModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFlipper",
+      "partName": "body/leftFlipper"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFlipper",
+      "partName": "body/rightFlipper"
+    }
+  ]
+}

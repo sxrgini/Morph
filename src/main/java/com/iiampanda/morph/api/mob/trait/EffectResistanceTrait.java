@@ -33,6 +33,7 @@ public class EffectResistanceTrait extends Trait<EffectResistanceTrait> implemen
     @Override
     public String getTranslationKeyRoot()
     {
-        return "morph.trait.traitEffectResistance." + (effectId == null ? "unknown" : effectId.equals("*") ? "all" : effectId.replace(':', '.'));
+        String key = "morph.trait.traitEffectResistance." + (effectId == null ? "unknown" : effectId.equals("*") ? "all" : effectId.replace(':', '.'));
+        return net.minecraft.locale.Language.getInstance().has(key + ".name") ? key : "morph.trait.traitEffectResistance.unknown";
     }
 }

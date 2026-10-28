@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.hippo.HippoModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.desert_spider.CactusSpineModel",
+  "leftHandParts": [
+    {
+      "fieldName": "bb_main"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "bb_main"
+    }
+  ]
+}

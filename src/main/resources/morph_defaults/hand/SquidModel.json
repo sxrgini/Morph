@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.SquidModel",
+  "leftHandParts": [
+    {
+      "fieldName": "tentacle7"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "tentacle5"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.ostrich.OstrichModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/leftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/rightLeg"
+    }
+  ]
+}

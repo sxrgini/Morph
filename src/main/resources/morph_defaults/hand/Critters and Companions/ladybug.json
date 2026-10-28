@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:ladybug",
+  "leftHandParts": [
+    {
+      "partName": "left_wing_2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_wing_2"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.PhantomModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftWingBase",
+      "partName": "body/left_wing_base"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightWingBase",
+      "partName": "body/right_wing_base"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.GreaterDwellerModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightLeg"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.fish.BassModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body",
+      "partName": "root/body"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body",
+      "partName": "root/body"
+    }
+  ]
+}

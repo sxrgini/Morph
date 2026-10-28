@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.MutantSkeletonPartModel",
+  "leftHandParts": [
+    {
+      "fieldName": "foreleg2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "foreleg2"
+    }
+  ]
+}

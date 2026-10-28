@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.client.model.MutantArrowModel",
+  "leftHandParts": [
+    {
+      "fieldName": "point4",
+      "partName": "stick/point4"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "point4",
+      "partName": "stick/point4"
+    }
+  ]
+}

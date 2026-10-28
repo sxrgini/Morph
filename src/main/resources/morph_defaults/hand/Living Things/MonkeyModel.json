@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.MonkeyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "FrontLeftLegTop",
+      "partName": "Body/BodyFront/FrontLeftLegTop"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "FrontRightLegTop",
+      "partName": "Body/BodyFront/FrontRightLegTop"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mobs_of_mythology:kobold_warrior",
+  "leftHandParts": [
+    {
+      "partName": "left_arm2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_leg"
+    }
+  ]
+}

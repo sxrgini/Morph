@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.equine.ZebraModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/frontLegs/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/frontLegs/rightArm"
+    }
+  ]
+}

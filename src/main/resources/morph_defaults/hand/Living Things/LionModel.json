@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.LionModel",
+  "leftHandParts": [
+    {
+      "fieldName": "FrontLeftLeg",
+      "partName": "Body/Legs/FrontLeftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "FrontRightLeg",
+      "partName": "Body/Legs/FrontRightLeg"
+    }
+  ]
+}

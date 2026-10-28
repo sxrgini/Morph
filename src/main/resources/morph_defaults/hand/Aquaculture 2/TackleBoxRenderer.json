@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.renderer.tileentity.TackleBoxRenderer",
+  "leftHandParts": [
+    {
+      "fieldName": "lid/handle"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "lid/handle"
+    }
+  ]
+}

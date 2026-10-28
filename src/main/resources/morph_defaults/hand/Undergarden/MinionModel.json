@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.MinionModel",
+  "leftHandParts": [
+    {
+      "fieldName": "frontLeftLeg",
+      "partName": "body/frontLeftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "frontRightLeg",
+      "partName": "body/frontRightLeg"
+    }
+  ]
+}

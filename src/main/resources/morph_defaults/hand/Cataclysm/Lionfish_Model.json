@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Lionfish_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_long_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_long_fin"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.komododragon.KomodoDragonModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/right_arm"
+    }
+  ]
+}

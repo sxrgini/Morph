@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.PenguinModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftWing",
+      "partName": "Body/LeftWing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightWing",
+      "partName": "Body/RightWing"
+    }
+  ]
+}

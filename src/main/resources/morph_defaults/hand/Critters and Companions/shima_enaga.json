@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:shima_enaga",
+  "leftHandParts": [
+    {
+      "partName": "left_wing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_wing"
+    }
+  ]
+}

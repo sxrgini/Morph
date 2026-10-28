@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.FlamingoModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftLegTop",
+      "partName": "Body/Legs/LeftLegTop"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightLegTop",
+      "partName": "Body/Legs/RightLegTop"
+    }
+  ]
+}

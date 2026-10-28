@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.CicadaModel",
+  "leftHandParts": [
+    {
+      "fieldName": "legs"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "legs"
+    }
+  ]
+}

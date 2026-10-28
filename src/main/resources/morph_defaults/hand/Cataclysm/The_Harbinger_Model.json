@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.The_Harbinger_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_side_guard"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "righthead"
+    }
+  ]
+}

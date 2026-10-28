@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.GrongletModel",
+  "leftHandParts": [
+    {
+      "fieldName": "burs/side_burs/leftbur"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "burs/side_burs/rightbur"
+    }
+  ]
+}

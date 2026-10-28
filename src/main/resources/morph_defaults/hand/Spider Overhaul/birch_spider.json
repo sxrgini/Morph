@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.models.birch_spider.birch_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "limbL21",
+      "partName": "spider/limbsL/L1/limbL21"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "spider/body/head/cube_r1"
+    }
+  ]
+}

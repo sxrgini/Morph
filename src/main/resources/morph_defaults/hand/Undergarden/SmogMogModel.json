@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.SmogMogModel",
+  "leftHandParts": [
+    {
+      "fieldName": "frontLeftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "frontRightLeg"
+    }
+  ]
+}

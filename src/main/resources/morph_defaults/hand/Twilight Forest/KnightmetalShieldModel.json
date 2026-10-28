@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.KnightmetalShieldModel",
+  "leftHandParts": [
+    {
+      "fieldName": "handle"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "handle"
+    }
+  ]
+}

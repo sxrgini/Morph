@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.camel.BabyCamelModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_front_leg"
+    }
+  ]
+}

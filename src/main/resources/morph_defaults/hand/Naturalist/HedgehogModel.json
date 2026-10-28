@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.hedgehog.HedgehogModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/unrolled/legs/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/unrolled/legs/right_arm"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.HelmetCrabModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftClaw",
+      "partName": "crab/left_claw"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "crab/right_claw/claw_base"
+    }
+  ]
+}

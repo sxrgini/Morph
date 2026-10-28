@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.bird.BirdBabyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/neck/leftWing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/neck/rightWing"
+    }
+  ]
+}

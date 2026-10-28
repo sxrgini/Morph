@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Storm_Serpent_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "everything/seg6/seg5/seg4/seg3/seg2/seg1/head/upper/teeth/cube_r2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "everything/seg6/seg5/seg4/seg3/seg2/seg1/head/upper/teeth/cube_r1"
+    }
+  ]
+}

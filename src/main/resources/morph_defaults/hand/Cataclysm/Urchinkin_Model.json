@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Urchinkin_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm",
+      "partName": "everything/mid_root/legs/body/left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm",
+      "partName": "everything/mid_root/legs/body/right_arm"
+    }
+  ]
+}

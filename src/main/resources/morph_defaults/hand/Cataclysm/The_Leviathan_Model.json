@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.The_Leviathan_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "L_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "R_fin"
+    }
+  ]
+}

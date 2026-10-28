@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Cindaria_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "everything/lowerBody/upperBody/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "everything/lowerBody/upperBody/rightArm"
+    }
+  ]
+}

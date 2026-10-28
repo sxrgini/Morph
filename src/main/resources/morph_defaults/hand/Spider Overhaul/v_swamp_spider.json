@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.v_models.swamp_spider.v_swamp_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "l1",
+      "partName": "limbs_l/l1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r1",
+      "partName": "limbs_r/r1"
+    }
+  ]
+}

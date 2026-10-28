@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.wither.WitherBossModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftHead",
+      "partName": "left_head"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightHead",
+      "partName": "right_head"
+    }
+  ]
+}

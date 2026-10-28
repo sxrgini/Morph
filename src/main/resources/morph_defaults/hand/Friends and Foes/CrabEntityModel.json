@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.CrabEntityModel",
+  "leftHandParts": [
+    {
+      "fieldName": "main/body/leftClaw/leftClawParts"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "main/body/rightClaw"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:mud_ball",
+  "leftHandParts": [
+    {
+      "partName": "main"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "main"
+    }
+  ]
+}

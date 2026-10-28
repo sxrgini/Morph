@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.MoonwormModel",
+  "leftHandParts": [
+    {
+      "fieldName": "shape2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "shape1"
+    }
+  ]
+}

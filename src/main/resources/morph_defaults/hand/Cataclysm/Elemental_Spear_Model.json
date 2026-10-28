@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Elemental_Spear_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "rot",
+      "partName": "root/rot"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rot",
+      "partName": "root/rot"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.MantarayModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftFlipper",
+      "partName": "Body/LeftFlipper"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightFlipper",
+      "partName": "Body/RightFlipper"
+    }
+  ]
+}

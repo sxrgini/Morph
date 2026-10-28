@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.MuncherModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm"
+    }
+  ]
+}

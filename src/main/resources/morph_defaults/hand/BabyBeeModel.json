@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.bee.BabyBeeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftWing",
+      "partName": "bone/left_wing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightWing",
+      "partName": "bone/right_wing"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelEnderiophage",
+  "leftHandParts": [
+    {
+      "fieldName": "tailfront_leftPivot"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "tailfront_rightPivot"
+    }
+  ]
+}

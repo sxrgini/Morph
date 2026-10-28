@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.SculkSnapperModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/legs/left_front_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/legs/right_front_leg"
+    }
+  ]
+}

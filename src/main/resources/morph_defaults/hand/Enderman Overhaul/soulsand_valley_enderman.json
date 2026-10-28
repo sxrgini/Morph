@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "endermanoverhaul:soulsand_valley_enderman",
+  "leftHandParts": [
+    {
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm"
+    }
+  ]
+}

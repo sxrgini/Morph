@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:sea_bunny",
+  "leftHandParts": [
+    {
+      "partName": "main"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_antennae"
+    }
+  ]
+}

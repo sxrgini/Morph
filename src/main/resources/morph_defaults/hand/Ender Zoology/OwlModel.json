@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.enderzoology.common.client.model.animal.owl.OwlModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftLeg",
+      "partName": "body/left_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightLeg",
+      "partName": "body/right_leg"
+    }
+  ]
+}

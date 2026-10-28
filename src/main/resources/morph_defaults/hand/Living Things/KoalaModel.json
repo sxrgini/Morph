@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.KoalaModel",
+  "leftHandParts": [
+    {
+      "fieldName": "Body/LegFrontLeft/LegFrontLeft2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "Body/LegFrontRight/LegFrontRight2"
+    }
+  ]
+}

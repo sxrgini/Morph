@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.AncientBlazeModel",
+  "leftHandParts": [
+    {
+      "fieldName": "Body/Shields/shield_1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "Head",
+      "partName": "Body/Head"
+    }
+  ]
+}

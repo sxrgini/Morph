@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.duck.DuckBabyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/leftLeg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/rightLeg"
+    }
+  ]
+}

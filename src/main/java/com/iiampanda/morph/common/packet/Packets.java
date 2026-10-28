@@ -186,6 +186,28 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
+    /** The player asks to sit down or stand up (only a morph that can sit does anything). */
+    public record SetSit(boolean sitting) implements CustomPacketPayload
+    {
+        public static final Type<SetSit> TYPE = typeOf("set_sit");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SetSit> CODEC = CustomPacketPayload.codec((v, buf) -> buf.writeBoolean(v.sitting), buf -> new SetSit(buf.readBoolean()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    /** A morphed player sat down or stood up. */
+    public record SyncSit(UUID player, boolean sitting) implements CustomPacketPayload
+    {
+        public static final Type<SyncSit> TYPE = typeOf("sync_sit");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SyncSit> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeUUID(v.player);
+            buf.writeBoolean(v.sitting);
+        }, buf -> new SyncSit(buf.readUUID(), buf.readBoolean()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
     /** The loader module implements this to register the payload types (and, for client bound ones, their handlers). */
     public interface Registrar
     {
@@ -215,5 +237,7 @@ public final class Packets
         r.c2s(PurchaseUpgrade.TYPE, PurchaseUpgrade.CODEC);
         r.c2s(UseSpecial.TYPE, UseSpecial.CODEC);
         r.c2s(ReportEmissive.TYPE, ReportEmissive.CODEC);
+        r.c2s(SetSit.TYPE, SetSit.CODEC);
+        r.s2c(SyncSit.TYPE, SyncSit.CODEC);
     }
 }

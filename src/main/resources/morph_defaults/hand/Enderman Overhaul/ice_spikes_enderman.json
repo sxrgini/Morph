@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "endermanoverhaul:ice_spikes_enderman",
+  "leftHandParts": [
+    {
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm"
+    }
+  ]
+}

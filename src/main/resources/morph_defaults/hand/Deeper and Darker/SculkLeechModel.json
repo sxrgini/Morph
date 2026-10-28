@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.SculkLeechModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/body_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/body_fin"
+    }
+  ]
+}

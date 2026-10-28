@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.models.sculk_spider.sculk_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "sensorL",
+      "partName": "spider/body/head/sensorL"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "sensorL3",
+      "partName": "spider/body/head/sensorL3"
+    }
+  ]
+}

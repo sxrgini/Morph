@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelLeafcutterAnt",
+  "leftHandParts": [
+    {
+      "fieldName": "legfront_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "legfront_right"
+    }
+  ]
+}

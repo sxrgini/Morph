@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.RedThreadModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "left"
+    }
+  ]
+}

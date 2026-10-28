@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.mole.DirtTrailModel",
+  "leftHandParts": [
+    {
+      "fieldName": "mound/extra1/extra1_r2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "mound/extra1/extra1_r1"
+    }
+  ]
+}

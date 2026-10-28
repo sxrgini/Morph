@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:weevil",
+  "leftHandParts": [
+    {
+      "partName": "left_leg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_leg"
+    }
+  ]
+}

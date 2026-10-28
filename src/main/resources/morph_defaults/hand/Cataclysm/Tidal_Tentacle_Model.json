@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Tidal_Tentacle_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "tonguePivot"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "tonguePivot"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Deepling_Warlock_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "left_shoulder"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_shoulder"
+    }
+  ]
+}

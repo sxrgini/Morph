@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "io.github.bonsaistudi0s.crittersandcompanions.client.model.GrapplingHookModel",
+  "leftHandParts": [
+    {
+      "fieldName": "hook"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "hook"
+    }
+  ]
+}

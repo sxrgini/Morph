@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mowziesmobs:umvuthana",
+  "leftHandParts": [
+    {
+      "partName": "leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "rightArm"
+    }
+  ]
+}

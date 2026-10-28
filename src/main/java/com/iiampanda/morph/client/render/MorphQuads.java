@@ -207,11 +207,9 @@ public final class MorphQuads
         float[] b = bounds();
         float height = b[4] - b[1];
         float wmax = right ? b[3] : -b[0];
-        if(height <= 0F || wmax <= 0.05F)
-        {
-            return null;
-        }
         MorphQuads out = null;
+        if(height > 0F && wmax > 0.05F)
+        {
         for(float th : new float[]{ 0.55F, 0.3F })
         {
             out = new MorphQuads();
@@ -235,6 +233,29 @@ public final class MorphQuads
                 break;
             }
             out = null;
+        }
+        }
+        if(out == null)
+        {
+            // nothing sticks out on that side (the model is all down the middle): use the lower part, or the whole mob, so there is always a hand
+            out = new MorphQuads();
+            for(Quad q : quads)
+            {
+                float cy = 0F;
+                for(int i = 0; i < 4; i++)
+                {
+                    cy += q.p[i * 3 + 1] / 4F;
+                }
+                if(height <= 0F || (cy - b[1]) / height < 0.7F)
+                {
+                    out.quads.add(q);
+                }
+            }
+            if(out.quads.size() < 4)
+            {
+                out = new MorphQuads();
+                out.quads.addAll(quads);
+            }
         }
         return out;
     }

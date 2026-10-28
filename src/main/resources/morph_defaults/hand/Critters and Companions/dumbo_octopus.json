@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:dumbo_octopus",
+  "leftHandParts": [
+    {
+      "partName": "left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_fin"
+    }
+  ]
+}

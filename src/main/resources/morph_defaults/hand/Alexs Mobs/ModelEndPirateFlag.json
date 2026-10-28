@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelEndPirateFlag",
+  "leftHandParts": [
+    {
+      "fieldName": "flag2"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.monster.silverfish.SilverfishModel",
+  "leftHandParts": [
+    {
+      "fieldName": "segment0"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "segment0"
+    }
+  ]
+}

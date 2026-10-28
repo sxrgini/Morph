@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "dev.chybx.spideroverhaul.entity.v_models.ice_spider.v_ice_spider",
+  "leftHandParts": [
+    {
+      "fieldName": "l1",
+      "partName": "spider/limbs_l/l1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r1",
+      "partName": "spider/limbs_r/r1"
+    }
+  ]
+}

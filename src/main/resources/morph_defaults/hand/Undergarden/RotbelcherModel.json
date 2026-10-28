@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.RotbelcherModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftArm",
+      "partName": "torso/leftArm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "torso/rightArm"
+    }
+  ]
+}

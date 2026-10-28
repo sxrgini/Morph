@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.kyanite.deeperdarker.client.model.HelmetHornsModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftHorn",
+      "partName": "left_horn"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightHorn",
+      "partName": "right_horn"
+    }
+  ]
+}

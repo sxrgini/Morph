@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.common.client.model.CreeperMinionEggModel",
+  "leftHandParts": [
+    {
+      "fieldName": "egg"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "egg"
+    }
+  ]
+}

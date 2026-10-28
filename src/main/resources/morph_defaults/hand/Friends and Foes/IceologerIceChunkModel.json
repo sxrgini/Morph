@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.faboslav.friendsandfoes.common.client.render.entity.model.IceologerIceChunkModel",
+  "leftHandParts": [
+    {
+      "fieldName": "firstFullBlock"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "firstFullBlock"
+    }
+  ]
+}

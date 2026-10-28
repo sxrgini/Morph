@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.SharkModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftFin",
+      "partName": "Body/LeftFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightFin",
+      "partName": "Body/RightFin"
+    }
+  ]
+}

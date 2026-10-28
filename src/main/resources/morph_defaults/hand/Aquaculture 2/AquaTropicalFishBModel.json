@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.teammetallurgy.aquaculture.client.renderer.entity.model.AquaTropicalFishBModel",
+  "leftHandParts": [
+    {
+      "fieldName": "left_fin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_fin"
+    }
+  ]
+}

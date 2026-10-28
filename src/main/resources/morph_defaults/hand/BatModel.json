@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.ambient.BatModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftWing",
+      "partName": "body/left_wing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightWing",
+      "partName": "body/right_wing"
+    }
+  ]
+}

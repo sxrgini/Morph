@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelEmu",
+  "leftHandParts": [
+    {
+      "fieldName": "leg_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "leg_right"
+    }
+  ]
+}

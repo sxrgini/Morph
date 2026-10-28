@@ -1,0 +1,6 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "ribbits:ribbit",
+  "leftHandParts": [ { "partName": "left_arm" } ],
+  "rightHandParts": [ { "partName": "right_arm" } ]
+}

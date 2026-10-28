@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.mutantmonsters.common.client.model.EndersoulFragmentModel",
+  "leftHandParts": [
+    {
+      "fieldName": "base"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "base"
+    }
+  ]
+}

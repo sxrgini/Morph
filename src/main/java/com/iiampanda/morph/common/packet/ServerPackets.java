@@ -19,6 +19,10 @@ public final class ServerPackets
                 com.iiampanda.morph.common.mob.MobProfileManager.markEmissive(payload.entities());
             }
         }
+        if(packet instanceof Packets.SetSit payload)
+        {
+            com.iiampanda.morph.common.morph.SitState.set(player, payload.sitting());
+        }
         if(packet instanceof Packets.RequestMorph payload)
         {
             if(payload.variant().isPresent())

@@ -59,6 +59,17 @@ public final class ClientPackets
         {
             ClientState.DATA.biomass = payload.biomass();
         }
+        else if(packet instanceof Packets.SyncSit payload)
+        {
+            if(payload.sitting())
+            {
+                ClientState.SITTING.add(payload.player());
+            }
+            else
+            {
+                ClientState.SITTING.remove(payload.player());
+            }
+        }
         else if(packet instanceof Packets.Acquire payload)
         {
             AcquisitionEffects.start(payload);

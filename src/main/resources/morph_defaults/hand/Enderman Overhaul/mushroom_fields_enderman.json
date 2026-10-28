@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "endermanoverhaul:mushroom_fields_enderman",
+  "leftHandParts": [
+    {
+      "partName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm"
+    }
+  ]
+}

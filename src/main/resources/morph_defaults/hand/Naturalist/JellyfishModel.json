@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.jellyfish.JellyfishModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/tentacles/leftMidFrontTentacle/leftMidFrontTentacle_r1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/tentacles/rightMidFrontTentacle/rightMidFrontTentacle_r1"
+    }
+  ]
+}

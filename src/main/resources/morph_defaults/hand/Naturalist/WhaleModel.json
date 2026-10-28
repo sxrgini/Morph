@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.whale.WhaleModel",
+  "leftHandParts": [
+    {
+      "fieldName": "leftFin",
+      "partName": "root/leftFin"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightFin",
+      "partName": "root/rightFin"
+    }
+  ]
+}

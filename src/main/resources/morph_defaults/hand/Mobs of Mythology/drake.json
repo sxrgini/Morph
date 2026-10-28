@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "mobs_of_mythology:drake",
+  "leftHandParts": [
+    {
+      "partName": "left_leg_part_one"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_arm2"
+    }
+  ]
+}

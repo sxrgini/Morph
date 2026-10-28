@@ -1,0 +1,15 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.clam.ClamModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/top"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "rightArm",
+      "partName": "root/bottom/rightArm"
+    }
+  ]
+}

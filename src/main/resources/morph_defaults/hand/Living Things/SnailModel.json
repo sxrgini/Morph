@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.SnailModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftEyeStick",
+      "partName": "Body/LeftEyeStick"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightEyeStick",
+      "partName": "Body/RightEyeStick"
+    }
+  ]
+}

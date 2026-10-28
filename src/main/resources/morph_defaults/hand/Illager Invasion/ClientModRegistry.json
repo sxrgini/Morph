@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "fuzs.illagerinvasion.client.init.ClientModRegistry",
+  "leftHandParts": [
+    {
+      "fieldName": "left_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "right_arm"
+    }
+  ]
+}

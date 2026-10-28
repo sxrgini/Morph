@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "quek.undergarden.client.model.NargoyleModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/upperbody/arms/upperarmleft"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/upperbody/arms/upperarmright"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "io.github.bonsaistudi0s.crittersandcompanions.client.model.BubbleModel",
+  "leftHandParts": [
+    {
+      "fieldName": "bubble"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "bubble"
+    }
+  ]
+}

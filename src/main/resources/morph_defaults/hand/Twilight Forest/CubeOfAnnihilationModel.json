@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.CubeOfAnnihilationModel",
+  "leftHandParts": [
+    {
+      "fieldName": "box"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "box"
+    }
+  ]
+}

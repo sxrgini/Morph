@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.firefly.FireflyBabyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/body/neck"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/body/neck"
+    }
+  ]
+}

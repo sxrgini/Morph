@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "twilightforest.client.model.entity.FireflyModel",
+  "leftHandParts": [
+    {
+      "fieldName": "legs"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "legs"
+    }
+  ]
+}

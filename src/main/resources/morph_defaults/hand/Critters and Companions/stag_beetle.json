@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forEntity": "crittersandcompanions:stag_beetle",
+  "leftHandParts": [
+    {
+      "partName": "left_mandible"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "partName": "right_mandible"
+    }
+  ]
+}

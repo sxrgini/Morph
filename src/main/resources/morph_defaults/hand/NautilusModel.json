@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.nautilus.NautilusModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/shell"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/shell"
+    }
+  ]
+}

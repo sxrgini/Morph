@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Amethyst_Crab_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "under_claw"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "under_claw2"
+    }
+  ]
+}

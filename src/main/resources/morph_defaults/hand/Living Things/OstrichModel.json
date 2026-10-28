@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.tristankechlo.livingthings.client.model.entity.OstrichModel",
+  "leftHandParts": [
+    {
+      "fieldName": "LeftLegTop",
+      "partName": "Body/LeftLegTop"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "RightLegTop",
+      "partName": "Body/RightLegTop"
+    }
+  ]
+}

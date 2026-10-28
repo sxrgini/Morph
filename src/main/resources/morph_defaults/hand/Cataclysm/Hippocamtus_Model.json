@@ -1,0 +1,16 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.L_Ender.cataclysm.client.model.entity.Hippocamtus_Model",
+  "leftHandParts": [
+    {
+      "fieldName": "l_arm",
+      "partName": "everything/body/chest/l_arm"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "r_arm2",
+      "partName": "everything/body/chest/r_arm/r_arm2"
+    }
+  ]
+}

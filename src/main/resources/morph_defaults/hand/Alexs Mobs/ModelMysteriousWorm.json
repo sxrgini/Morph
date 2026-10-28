@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelMysteriousWorm",
+  "leftHandParts": [
+    {
+      "fieldName": "head"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "head"
+    }
+  ]
+}

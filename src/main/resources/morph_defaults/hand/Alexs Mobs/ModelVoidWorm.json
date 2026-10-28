@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.github.alexthe666.alexsmobs.client.model.ModelVoidWorm",
+  "leftHandParts": [
+    {
+      "fieldName": "bottomfrills_left"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "bottomfrills_right"
+    }
+  ]
+}

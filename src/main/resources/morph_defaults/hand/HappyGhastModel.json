@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "net.minecraft.client.model.animal.ghast.HappyGhastModel",
+  "leftHandParts": [
+    {
+      "fieldName": "body/tentacle1"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "body/tentacle0"
+    }
+  ]
+}

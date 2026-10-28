@@ -1,0 +1,14 @@
+{
+  "author": "iiAmPanda",
+  "forClass": "com.crispytwig.naturalist.client.model.animal.bird.BirdModel",
+  "leftHandParts": [
+    {
+      "fieldName": "root/bodyRot/body/wings/leftWingShoulderRot/leftWingRot/leftWing"
+    }
+  ],
+  "rightHandParts": [
+    {
+      "fieldName": "root/bodyRot/body/wings/rightWingShoulderRot/rightWingRot/rightWing"
+    }
+  ]
+}

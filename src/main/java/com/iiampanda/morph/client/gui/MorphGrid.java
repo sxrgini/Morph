@@ -222,6 +222,35 @@ public class MorphGrid
     }
 
     //---------------- rendering ----------------
+    private static final int STAR = 11;
+    private static final net.minecraft.resources.ResourceLocation STAR_OFF = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("morph", "textures/gui/star.png");
+    private static final net.minecraft.resources.ResourceLocation STAR_ON = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("morph", "textures/gui/star_filled.png");
+
+    /** True if the point is on the favourite star in the top right corner of the tile at (tx, ty). */
+    private static boolean overStar(int tx, int ty, int mx, int my)
+    {
+        int sx = tx + TILE_W - STAR - 4, sy = ty + 4;
+        return mx >= sx - 1 && mx < sx + STAR + 1 && my >= sy - 1 && my < sy + STAR + 1;
+    }
+
+    /** Stars a mob type (all of its forms) when none is a favourite, takes every favourite form off otherwise. */
+    private void toggleGroup(Group gr)
+    {
+        boolean any = gr.anyFavourite();
+        for(MorphVariant v : new ArrayList<>(gr.variants))
+        {
+            if(ClientState.DATA.isFavourite(v) == any)
+            {
+                onFavourite.accept(v);
+            }
+        }
+    }
+
+    private static Component starTip(boolean fav)
+    {
+        return Component.translatable(fav ? "morph.gui.favourite.remove" : "morph.gui.favourite.add");
+    }
+
     private void drawTile(GuiGraphics g, Font font, int tx, int ty, MorphVariant v, boolean isHover, boolean isCurrent, boolean fav, int count, Minecraft mc, float dt)
     {
         g.fill(tx + 2, ty + 2, tx + TILE_W - 2, ty + TILE_H - 2, isHover ? 0xCC4A4A60 : 0xCC26263A);
@@ -234,13 +263,10 @@ public class MorphGrid
         {
             drawEntity(g, e, tx + TILE_W / 2, ty + TILE_H / 2 + 4, isHover, mc, dt);
         }
-        if(fav)
-        {
-            g.drawString(font, "\u2605", tx + 5, ty + 5, 0xFFFFD700, true);
-        }
+        g.blit(fav ? STAR_ON : STAR_OFF, tx + TILE_W - STAR - 4, ty + 4, 0, 0, STAR, STAR, STAR, STAR);
         if(v.baby && count <= 1)
         {
-            g.drawString(font, "b", tx + TILE_W - 10, ty + 5, 0xFF9AD0FF, true);
+            g.drawString(font, "b", tx + 5, ty + 5, 0xFF9AD0FF, true);
         }
         if(count > 1)
         {
@@ -301,7 +327,15 @@ public class MorphGrid
         if(hovered != null)
         {
             List<Component> tip = new ArrayList<>();
-            tip.add(hovered.variants.size() == 1 ? hovered.variants.get(0).displayName() : hovered.name());
+            int hi = entries.indexOf(hovered);
+            if(overStar(left + (hi % cols) * TILE_W, y + (hi / cols - scrollRows) * TILE_H, mx, my))
+            {
+                tip.add(starTip(hovered.anyFavourite()));
+            }
+            else
+            {
+                tip.add(hovered.variants.size() == 1 ? hovered.variants.get(0).displayName() : hovered.name());
+            }
             g.renderComponentTooltip(font, tip, mx, my);
         }
 
@@ -334,11 +368,19 @@ public class MorphGrid
         if(hov != null)
         {
             List<Component> tip = new ArrayList<>();
-            tip.add(hov.displayName());
-            String label = hov.variantLabel();
-            if(!label.isEmpty())
+            int pi = popup.variants.indexOf(hov);
+            if(overStar(gx + (pi % cols) * TILE_W, gy + (pi / cols - popScroll) * TILE_H, mx, my))
             {
-                tip.add(Component.literal(label).withStyle(net.minecraft.ChatFormatting.GRAY));
+                tip.add(starTip(ClientState.DATA.isFavourite(hov)));
+            }
+            else
+            {
+                tip.add(hov.displayName());
+                String label = hov.variantLabel();
+                if(!label.isEmpty())
+                {
+                    tip.add(Component.literal(label).withStyle(net.minecraft.ChatFormatting.GRAY));
+                }
             }
             g.pose().translate(0F, 0F, 200F);
             g.renderComponentTooltip(font, tip, mx, my);
@@ -386,6 +428,13 @@ public class MorphGrid
                 MorphVariant v = popupHover(mx, my);
                 if(v != null)
                 {
+                    int[] pr = popupRect();
+                    int pi = popup.variants.indexOf(v);
+                    if(button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT && overStar(pr[0] + 4 + (pi % popCols()) * TILE_W, pr[1] + 16 + (pi / popCols() - popScroll) * TILE_H, mx, my))
+                    {
+                        onFavourite.accept(v);
+                        return true;
+                    }
                     if(button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT && enabled)
                     {
                         popup = null;
@@ -412,6 +461,12 @@ public class MorphGrid
         if(gr == null)
         {
             return false;
+        }
+        int sidx = entries.indexOf(gr);
+        if(button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT && overStar(gridLeft() + (sidx % columns()) * TILE_W, y + (sidx / columns() - scrollRows) * TILE_H, mx, my))
+        {
+            toggleGroup(gr);
+            return true;
         }
         if(gr.variants.size() == 1)
         {

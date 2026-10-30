@@ -91,6 +91,18 @@ public final class TraitHooks
     /** @return the first non-PASS result */
     public static InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
     {
+        if(target instanceof Player)
+        {
+            int forTarget = 0;
+            for(Trait<?> trait : ACTIVE)
+            {
+                if(trait.player == target)
+                {
+                    forTarget++;
+                }
+            }
+            com.iiampanda.morph.common.Dbg.log("interact {} -> {} hand={} active traits={} for target={}", interactor.getName().getString(), target.getName().getString(), hand, ACTIVE.size(), forTarget);
+        }
         for(Trait<?> trait : ACTIVE)
         {
             InteractionResult result = trait.onInteractEntity(interactor, target, hand);

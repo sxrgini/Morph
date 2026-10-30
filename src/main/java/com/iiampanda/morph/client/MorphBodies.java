@@ -39,7 +39,44 @@ public final class MorphBodies
         return age + t[0];
     }
 
+    private static final java.util.Map<LivingEntity, Boolean> ORIGINAL_PUMPKIN = new java.util.WeakHashMap<>();
     private static final java.util.Map<LivingEntity, Long> GOLEM_SWING = new java.util.WeakHashMap<>();
+
+    private static final java.util.Map<LivingEntity, double[]> SHULKER_LOCK = new java.util.WeakHashMap<>();
+
+    private static void lockShulker(AbstractClientPlayer p, LivingEntity e)
+    {
+        double dx = p.getX() - p.xo;
+        double dz = p.getZ() - p.zo;
+        boolean still = dx * dx + dz * dz < 0.00001D && Math.abs(p.getY() - p.yo) < 0.01D && p.onGround();
+        if(!still)
+        {
+            SHULKER_LOCK.remove(e);
+            return;
+        }
+        double[] lock = SHULKER_LOCK.get(e);
+        if(lock == null)
+        {
+            lock = new double[]{e.getX(), e.getY(), e.getZ(), e.getYRot(), e.getXRot(), e.yBodyRot, e.yHeadRot};
+            SHULKER_LOCK.put(e, lock);
+        }
+        e.setPos(lock[0], lock[1], lock[2]);
+        e.xo = lock[0];
+        e.yo = lock[1];
+        e.zo = lock[2];
+        e.xOld = lock[0];
+        e.yOld = lock[1];
+        e.zOld = lock[2];
+        e.setYRot((float)lock[3]);
+        e.yRotO = (float)lock[3];
+        e.setXRot((float)lock[4]);
+        e.xRotO = (float)lock[4];
+        e.yBodyRot = (float)lock[5];
+        e.yBodyRotO = (float)lock[5];
+        e.yHeadRot = (float)lock[6];
+        e.yHeadRotO = (float)lock[6];
+        e.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
+    }
 
     private MorphBodies() {}
 
@@ -118,12 +155,42 @@ public final class MorphBodies
         e.setInvisible(p.isInvisible());
         e.setSilent(Morph.configServer != null && Morph.configServer.silentMorphs);
         e.setCustomName(p.getDisplayName());
-        e.setCustomNameVisible(p != mc.player);
+        e.setCustomNameVisible(p != mc.player && !com.iiampanda.morph.common.morph.BucketHold.VIEW.contains(p.getUUID()));
         for(EquipmentSlot slot : EquipmentSlot.values())
         {
             e.setItemSlot(slot, p.getItemBySlot(slot));
         }
 
+        if(e instanceof net.minecraft.world.entity.monster.Strider strider)
+        {
+            strider.setSuffocating(!(p.isInLava() || p.getFluidHeight(net.minecraft.tags.FluidTags.LAVA) > 0D));
+        }
+        if(e instanceof net.minecraft.world.entity.animal.golem.SnowGolem golem)
+        {
+            boolean had = ORIGINAL_PUMPKIN.computeIfAbsent(golem, k -> golem.hasPumpkin());
+            golem.setPumpkin(had && !ClientState.SHEARED.contains(p.getUUID()));
+        }
+        if(e instanceof net.minecraft.world.entity.animal.sheep.Sheep sheep)
+        {
+            sheep.setSheared(ClientState.SHEARED.contains(p.getUUID()));
+        }
+        if(e instanceof net.minecraft.world.entity.monster.cubemob.SulfurCube)
+        {
+            e.setItemSlot(EquipmentSlot.BODY, com.iiampanda.morph.api.mob.trait.SwallowBlocksTrait.bodyStack(p));
+        }
+        boolean saddleRide = false;
+        for(var t : MorphApi.getMorphInfo(p).traits)
+        {
+            if(t instanceof com.iiampanda.morph.api.mob.trait.ability.RideableAbility r && (r.requiresHarness == null || !r.requiresHarness))
+            {
+                saddleRide = true;
+            }
+        }
+        if(saddleRide)
+        {
+            net.minecraft.world.item.ItemStack off = p.getOffhandItem();
+            e.setItemSlot(EquipmentSlot.SADDLE, off.is(net.minecraft.world.item.Items.SADDLE) ? off.copy() : net.minecraft.world.item.ItemStack.EMPTY);
+        }
         if(e instanceof net.minecraft.world.entity.animal.armadillo.Armadillo armadillo)
         {
             // the player's roll up shows as the armadillo curling into a ball and back out
@@ -218,6 +285,10 @@ public final class MorphBodies
         e.yBodyRotO = p.yBodyRotO + flip;
         e.yHeadRot = p.yHeadRot + flip;
         e.yHeadRotO = p.yHeadRotO + flip;
+        if(e instanceof net.minecraft.world.entity.monster.Shulker)
+        {
+            lockShulker(p, e);
+        }
         // models that animate while moving (dolphin tail, bats, ...) read the stand-in's velocity, taken from where the player actually moved
         e.setDeltaMovement(p.getX() - p.xo, p.getY() - p.yo, p.getZ() - p.zo);
         // mobs with a dedicated attack animation (golems, ravagers, wardens, hoglins...) play it from entity event 4

@@ -34,6 +34,7 @@ public final class TraitHandler
         register("traitStepHeight", StepHeightTrait.class);
         register("traitSwimmer", SwimmerTrait.class);
         register("traitSunburn", SunburnTrait.class);
+        register("traitSnowMelt", SnowMeltTrait.class);
         register("traitWaterBreather", WaterBreatherTrait.class);
         register("traitFullBright", FullBrightTrait.class);
         register("traitDarknessAura", DarknessAuraTrait.class);

@@ -99,6 +99,15 @@ public class MorphInfo
                 trait.addHooks();
             }
         }
+        if(newVariant != null)
+        {
+            StringBuilder names = new StringBuilder();
+            for(Trait<?> trait : traits)
+            {
+                names.append(trait.type).append(' ');
+            }
+            com.iiampanda.morph.common.Dbg.log("{} morphed, traits: {}", player.getName().getString(), names);
+        }
         player.refreshDimensions();
     }
 

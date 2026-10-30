@@ -149,6 +149,10 @@ public final class MobProfiler
             traits.add(new MagicImmunityTrait());
         }
         probeResistances(e, traits);
+        if(e instanceof net.minecraft.world.entity.animal.golem.SnowGolem)
+        {
+            traits.add(new SnowMeltTrait());
+        }
         if(!(e instanceof net.minecraft.world.entity.player.Player) && e.isSensitiveToWater() && traits.stream().noneMatch(tr -> tr instanceof WaterSensitivityTrait || tr instanceof WaterBreatherTrait))
         {
             traits.add(new WaterSensitivityTrait());
@@ -294,6 +298,30 @@ public final class MobProfiler
     private static boolean addMissing(MobProfile existing, LivingEntity sample)
     {
         boolean changed = addSpecialDefaults(existing, sample);
+        if(sample instanceof net.minecraft.world.entity.Bucketable || sample instanceof net.minecraft.world.entity.Shearable || isRideable(sample))
+        {
+            for(Trait<?> t : detect(sample).traits)
+            {
+                if(t instanceof CanBucketAbility || t instanceof ShearableAbility || t instanceof RideableAbility)
+                {
+                    boolean has = false;
+                    for(Trait<?> o : existing.traits)
+                    {
+                        has |= o.type.equals(t.type);
+                    }
+                    if(!has)
+                    {
+                        existing.traits.add(t);
+                        changed = true;
+                    }
+                }
+            }
+        }
+        if(sample instanceof net.minecraft.world.entity.animal.golem.SnowGolem && existing.traits.stream().noneMatch(tr -> tr instanceof SnowMeltTrait))
+        {
+            existing.traits.add(new SnowMeltTrait());
+            changed = true;
+        }
         if(sample instanceof Dolphin || BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType()).getPath().equals("armadillo") || BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType()).getPath().equals("frog") || sample instanceof net.minecraft.world.entity.animal.happyghast.HappyGhast || sample instanceof net.minecraft.world.entity.animal.nautilus.AbstractNautilus || sample instanceof net.minecraft.world.entity.monster.cubemob.SulfurCube)
         {
             MobProfile fresh = detect(sample);
@@ -404,7 +432,7 @@ public final class MobProfiler
                 }
             }
         }
-        if("minecraft".equals(id.getNamespace()) && (id.getPath().equals("ghast") || id.getPath().equals("armadillo")) && !SpecialAbilities.hasSpecial(existing))
+        if("minecraft".equals(id.getNamespace()) && (id.getPath().equals("ghast") || id.getPath().equals("armadillo") || id.getPath().equals("blaze")) && !SpecialAbilities.hasSpecial(existing))
         {
             SpecialAbility<?> def = SpecialAbilities.defaultFor(sample);
             if(def != null)

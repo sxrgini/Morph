@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "EntityMixin",
+    "EntityTypeMixin",
     "EntityInvoker",
     "HealOrHarmMobEffectMixin",
     "LivingEntityInvoker",

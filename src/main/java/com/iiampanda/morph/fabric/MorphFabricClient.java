@@ -27,6 +27,8 @@ public class MorphFabricClient implements ClientModInitializer
         register(Packets.SyncBiomass.TYPE);
         register(Packets.Acquire.TYPE);
         register(Packets.SyncSit.TYPE);
+        register(Packets.SyncBucketed.TYPE);
+        register(Packets.SyncSheared.TYPE);
 
         ClientTickEvents.END_CLIENT_TICK.register(MorphClient::tick);
         HudRenderCallback.EVENT.register(HudOverlay::render);

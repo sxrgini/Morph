@@ -56,6 +56,10 @@ public class MorphFabric implements ModInitializer
         EntityTrackingEvents.START_TRACKING.register(Morph::onStartTracking);
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> { Morph.onLivingDeath(entity, source); Morph.onDeath(entity); });
         UseEntityCallback.EVENT.register((player, level, hand, entity, hit) -> Morph.onUseEntity(player, entity, hand));
+        net.fabricmc.fabric.api.event.player.UseItemCallback.EVENT.register((player, level, hand) ->
+        {
+            return Morph.onUseItem(player, hand) ? net.minecraft.world.InteractionResultHolder.success(player.getItemInHand(hand)) : net.minecraft.world.InteractionResultHolder.pass(player.getItemInHand(hand));
+        });
         ServerTickEvents.END_SERVER_TICK.register(Morph::onServerTick);
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> Morph.registerCommands(dispatcher));
     }

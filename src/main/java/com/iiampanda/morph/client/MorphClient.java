@@ -44,6 +44,9 @@ public class MorphClient
 
     public static void onDisconnect()
     {
+        cameraBeforeHold = null;
+        com.iiampanda.morph.common.morph.BucketHold.VIEW.clear();
+        ClientState.SHEARED.clear();
         emissiveReported = false;
         com.iiampanda.morph.client.render.HandInfos.reset();
         ClientState.reset();
@@ -51,6 +54,7 @@ public class MorphClient
     }
 
     private static boolean prevUse;
+    private static net.minecraft.client.CameraType cameraBeforeHold;
 
     public static void tick(Minecraft mc)
     {
@@ -119,6 +123,7 @@ public class MorphClient
             {
                 net.minecraft.world.entity.LivingEntity stand = MorphApi.getMorphInfo(mc.player).getEntity();
                 boolean sitting = ClientState.SITTING.contains(mc.player.getUUID());
+                com.iiampanda.morph.common.Dbg.log("sit key: stand-in={} canSit={} sitting={}", stand == null ? "none" : stand.getClass().getSimpleName(), stand != null && SitSupport.canSit(stand), sitting);
                 if(stand != null && (sitting || SitSupport.canSit(stand)))
                 {
                     Platform.sendToServer(new Packets.SetSit(!sitting));
@@ -128,6 +133,18 @@ public class MorphClient
                     mc.player.displayClientMessage(Component.translatable("morph.message.cannotSit"), true);
                 }
             }
+        }
+        net.minecraft.world.entity.Entity viewing = mc.getCameraEntity();
+        boolean held = viewing != null && viewing != mc.player && !mc.player.isSpectator();
+        if(held && cameraBeforeHold == null)
+        {
+            cameraBeforeHold = mc.options.getCameraType();
+            mc.options.setCameraType(net.minecraft.client.CameraType.THIRD_PERSON_BACK);
+        }
+        else if(!held && cameraBeforeHold != null)
+        {
+            mc.options.setCameraType(cameraBeforeHold);
+            cameraBeforeHold = null;
         }
         // a sitting morph stands up when its player moves, jumps or sneaks
         if(ClientState.SITTING.contains(mc.player.getUUID()) && (mc.player.getDeltaMovement().horizontalDistanceSqr() > 0.0016D || mc.options.keyJump.isDown() || mc.player.isShiftKeyDown() || !mc.player.onGround()))

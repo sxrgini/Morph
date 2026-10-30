@@ -24,6 +24,7 @@ public final class ClientState
     public static final Map<UUID, Packets.SyncMorph> PENDING = new HashMap<>();
     /** Morphed players currently sitting down. */
     public static final java.util.Set<UUID> SITTING = new java.util.HashSet<>();
+    public static final java.util.Set<UUID> SHEARED = new java.util.HashSet<>();
 
     private static final Map<String, LivingEntity> GUI_ENTITIES = new HashMap<>();
 

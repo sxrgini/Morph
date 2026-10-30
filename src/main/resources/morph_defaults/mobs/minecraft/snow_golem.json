@@ -7,6 +7,9 @@
   "traits": [
     {
       "type": "traitWaterSensitivity"
+    },
+    {
+      "type": "traitSnowMelt"
     }
   ]
 }

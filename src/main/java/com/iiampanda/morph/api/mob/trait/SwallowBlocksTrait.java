@@ -17,7 +17,165 @@ public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEv
 {
     public SwallowBlocksTrait() { type = "traitSwallowBlocks"; }
 
-    @Override public void tick(float strength) {}
+    public static final java.util.Map<java.util.UUID, String> SYNCED = new java.util.concurrent.ConcurrentHashMap<>();
+    private static final java.util.Map<java.util.UUID, Double> LAST_Y = new java.util.concurrent.ConcurrentHashMap<>();
+    private static final java.util.Map<java.util.UUID, Double> FALL_VY = new java.util.concurrent.ConcurrentHashMap<>();
+
+    private transient String appliedItem = "";
+    private transient String announcedItem = "";
+    private transient java.util.List<net.minecraft.world.entity.SulfurCubeArchetype> applied = java.util.List.of();
+
+    public static ItemStack bodyStack(Player p)
+    {
+        if(p.level().isClientSide())
+        {
+            String id = SYNCED.get(p.getUUID());
+            if(id == null)
+            {
+                return p.getItemBySlot(EquipmentSlot.BODY);
+            }
+            net.minecraft.resources.Identifier key = net.minecraft.resources.Identifier.tryParse(id);
+            ItemStack stack = key == null || id.isEmpty() ? ItemStack.EMPTY : new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(key));
+            return stack;
+        }
+        return p.getItemBySlot(EquipmentSlot.BODY);
+    }
+
+    public static boolean hasBlock(Player p)
+    {
+        return of(p) != null && !bodyStack(p).isEmpty();
+    }
+
+    private static java.util.List<net.minecraft.world.entity.SulfurCubeArchetype> archetypes(Player p, ItemStack stack)
+    {
+        if(stack.isEmpty())
+        {
+            return java.util.List.of();
+        }
+        return p.level().registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.SULFUR_CUBE_ARCHETYPE).stream().filter(a -> stack.is(a.items())).toList();
+    }
+
+    private void applyArchetypes(ItemStack stack)
+    {
+        for(var a : applied)
+        {
+            for(var mod : a.attributeModifiers())
+            {
+                var inst = player.getAttribute(mod.attribute());
+                if(inst != null)
+                {
+                    inst.removeModifier(mod.modifier());
+                }
+            }
+        }
+        applied = archetypes(player, stack);
+        for(var a : applied)
+        {
+            for(var mod : a.attributeModifiers())
+            {
+                var inst = player.getAttribute(mod.attribute());
+                if(inst != null)
+                {
+                    inst.addOrUpdateTransientModifier(mod.modifier());
+                }
+            }
+        }
+    }
+
+    private static String idOf(ItemStack stack)
+    {
+        return stack.isEmpty() ? "" : net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
+    }
+
+    private void broadcast(ServerPlayer sp, String id)
+    {
+        com.iiampanda.morph.common.packet.Packets.SyncSwallowed payload = new com.iiampanda.morph.common.packet.Packets.SyncSwallowed(sp.getUUID(), id);
+        com.iiampanda.morph.platform.Platform.sendToPlayer(sp, payload);
+        com.iiampanda.morph.platform.Platform.sendToTracking(sp, payload);
+        announcedItem = id;
+    }
+
+    @Override
+    public void tick(float strength)
+    {
+        ItemStack stack = player.getItemBySlot(EquipmentSlot.BODY);
+        String id = idOf(stack);
+        boolean buoyant = false;
+        for(var a : applied)
+        {
+            buoyant |= a.buoyant();
+        }
+        if(buoyant && !stack.isEmpty() && player.isInWater() && !player.isShiftKeyDown())
+        {
+            player.setDeltaMovement(player.getDeltaMovement().add(0D, 0.03D, 0D));
+        }
+        if(player.level().isClientSide() || !(player instanceof ServerPlayer sp) || strength < 1F)
+        {
+            return;
+        }
+        if(!id.equals(appliedItem))
+        {
+            applyArchetypes(stack);
+            appliedItem = id;
+        }
+        if(!id.equals(announcedItem) || sp.tickCount % 40 == 0)
+        {
+            broadcast(sp, id);
+        }
+        if(stack.isEmpty() || sp.isSpectator())
+        {
+            return;
+        }
+        double bounce = sp.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.BOUNCINESS);
+        net.minecraft.world.phys.AABB box = sp.getBoundingBox();
+        if(bounce > 0D)
+        {
+            for(ServerPlayer q : sp.level().getEntitiesOfClass(ServerPlayer.class, box.inflate(0.05D, 0D, 0.05D).expandTowards(0D, 2.5D, 0D), e -> e != sp && !e.isSpectator()))
+            {
+                double last = LAST_Y.getOrDefault(q.getUUID(), q.getY());
+                double vy = q.getY() - last;
+                LAST_Y.put(q.getUUID(), q.getY());
+                if(!q.onGround())
+                {
+                    if(vy < 0D)
+                    {
+                        q.resetFallDistance();
+                        FALL_VY.put(q.getUUID(), vy);
+                    }
+                }
+                else if(q.getY() <= box.maxY + 0.1D)
+                {
+                    Double prev = FALL_VY.remove(q.getUUID());
+                    if(prev != null && prev < -0.15D && !q.isShiftKeyDown())
+                    {
+                        double up = Math.min(1.3D, -prev * Math.max(0.5D, bounce));
+                        q.setDeltaMovement(q.getDeltaMovement().x, up, q.getDeltaMovement().z);
+                        q.connection.send(new net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket(q));
+                        q.resetFallDistance();
+                        for(var a : applied)
+                        {
+                            sp.level().playSound(null, q.getX(), q.getY(), q.getZ(), a.soundSettings().hitSound(), SoundSource.PLAYERS, 1F, 1F);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if(sp.tickCount % 10 == 0)
+        {
+            for(var a : applied)
+            {
+                if(a.contactDamage().isPresent())
+                {
+                    var dmg = a.contactDamage().get();
+                    for(net.minecraft.world.entity.LivingEntity victim : sp.level().getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, box.inflate(0.1D), e -> e != sp && e.isAlive() && !(e instanceof Player pl && (pl.isCreative() || pl.isSpectator()))))
+                    {
+                        victim.hurtServer(sp.level(), new net.minecraft.world.damagesource.DamageSource(dmg.damageType(), dmg.attributeToSource() ? sp : null), dmg.amount().sample(sp.getRandom()));
+                    }
+                }
+            }
+        }
+    }
 
     public static boolean swallowable(ItemStack stack)
     {
@@ -90,6 +248,12 @@ public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEv
     @Override
     public void onUnmorph()
     {
+        applyArchetypes(ItemStack.EMPTY);
+        appliedItem = "";
+        if(player instanceof ServerPlayer spp)
+        {
+            broadcast(spp, "");
+        }
         if(player instanceof ServerPlayer sp && sp.isAlive())
         {
             ItemStack current = sp.getItemBySlot(EquipmentSlot.BODY);

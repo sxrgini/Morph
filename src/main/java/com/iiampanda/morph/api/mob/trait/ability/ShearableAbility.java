@@ -27,10 +27,34 @@ public class ShearableAbility extends Ability<ShearableAbility>implements IEvent
 
     @Override protected String iconName() { return "step"; }
 
-    @Override public void tick(float strength) {}
+    private boolean announced;
+
+    private void broadcastSheared(boolean sheared)
+    {
+        if(player instanceof net.minecraft.server.level.ServerPlayer sp)
+        {
+            com.iiampanda.morph.common.packet.Packets.SyncSheared payload = new com.iiampanda.morph.common.packet.Packets.SyncSheared(sp.getUUID(), sheared);
+            com.iiampanda.morph.platform.Platform.sendToPlayer(sp, payload);
+            com.iiampanda.morph.platform.Platform.sendToTracking(sp, payload);
+            announced = sheared;
+        }
+    }
 
     @Override
-    public InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
+    public void tick(float strength)
+    {
+        if(player.level().isClientSide())
+        {
+            return;
+        }
+        boolean sheared = player.level().getGameTime() - lastSheared < (cooldown == null ? 3000 : cooldown);
+        if(sheared != announced || (sheared && player.tickCount % 40 == 0))
+        {
+            broadcastSheared(sheared);
+        }
+    }
+
+    private InteractionResult interactImpl(Player interactor, Entity target, InteractionHand hand)
     {
         if(target != player || interactor == player || !enabled || !interactor.getItemInHand(hand).is(Items.SHEARS))
         {
@@ -44,6 +68,7 @@ public class ShearableAbility extends Ability<ShearableAbility>implements IEvent
         if(!player.level().isClientSide())
         {
             lastSheared = now;
+            broadcastSheared(true);
             Identifier id = Identifier.tryParse(dropItem == null ? "minecraft:white_wool" : dropItem);
             int min = minCount == null ? 1 : minCount;
             int max = Math.max(min, maxCount == null ? 3 : maxCount);
@@ -59,6 +84,21 @@ public class ShearableAbility extends Ability<ShearableAbility>implements IEvent
             interactor.getItemInHand(hand).hurtAndBreak(1, interactor, hand.asEquipmentSlot());
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1F, 1F);
         }
+        if(player.level().isClientSide())
+        {
+            com.iiampanda.morph.client.ClientInteract.send(target, interactor, hand);
+        }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
+    {
+        InteractionResult result = interactImpl(interactor, target, hand);
+        if(target == player && interactor != player)
+        {
+            com.iiampanda.morph.common.Dbg.log("{} {} by {} sneaking={} holding={} enabled={} result={}", player.level().isClientSide() ? "client" : "server", type, interactor.getName().getString(), interactor.isShiftKeyDown(), interactor.getItemInHand(hand), enabled, result);
+        }
+        return result;
     }
 }

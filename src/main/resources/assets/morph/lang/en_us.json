@@ -95,6 +95,8 @@
   "morph.trait.traitStepHeight.desc": "Walk up taller blocks without jumping.",
   "morph.trait.traitSwimmer.name": "Swimmer",
   "morph.trait.traitSwimmer.desc": "Swims fast, but may be slow on land.",
+  "morph.trait.traitSnowMelt.name": "Melts",
+  "morph.trait.traitSnowMelt.desc": "Takes damage in warm biomes.",
   "morph.trait.traitSunburn.name": "Sunburn",
   "morph.trait.traitSunburn.desc": "Burns in direct sunlight.",
   "morph.trait.traitWaterBreather.name": "Water Breather",
@@ -159,6 +161,8 @@
   "morph.trait.traitEffectResistance.all.desc": "Immune to harmful status effects.",
   "morph.trait.traitEffectResistance.minecraft.hunger.name": "Hunger Resistance",
   "morph.trait.traitEffectResistance.minecraft.hunger.desc": "Immune to this status effect.",
+  "morph.trait.abilitySpecialProjectile.blaze.name": "Fire Charges",
+  "morph.trait.abilitySpecialProjectile.blaze.desc": "Shoot a burst of small fireballs.",
   "morph.trait.abilitySpecialProjectile.ghast.name": "Fireball",
   "morph.trait.abilitySpecialProjectile.ghast.desc": "Shoot a ghastly Fireball.",
   "morph.trait.traitImmunityDamageSource.fall.name": "Fall Immunity",
@@ -188,5 +192,6 @@
   "morph.trait.traitImmunityDamageSource.wither.name": "Wither Damage Immunity",
   "morph.trait.traitImmunityDamageSource.wither.desc": "Immune to the wither effect.",
   "key.morph.sit": "Sit Down / Stand Up",
+  "morph.message.bucketed": "You are in a bucket. Sneak to climb out.",
   "morph.message.cannotSit": "This form has no sitting animation."
 }

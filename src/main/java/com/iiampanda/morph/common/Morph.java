@@ -80,6 +80,7 @@ public class Morph
 
     public static void onServerStopped()
     {
+        com.iiampanda.morph.common.morph.BucketHold.clear();
         TraitHooks.active().clear();
     }
 
@@ -141,6 +142,11 @@ public class Morph
         }
     }
 
+    public static boolean onUseItem(Player player, InteractionHand hand)
+    {
+        return player instanceof ServerPlayer sp && com.iiampanda.morph.common.morph.BucketHold.useBucket(sp, hand);
+    }
+
     public static InteractionResult onUseEntity(Player player, Entity entity, InteractionHand hand)
     {
         return TraitHooks.onInteractEntity(player, entity, hand);
@@ -148,6 +154,7 @@ public class Morph
 
     public static void onServerTick(MinecraftServer server)
     {
+        com.iiampanda.morph.common.morph.BucketHold.tick(server);
         if(server.getTickCount() % 10 == 0)
         {
             MorphManager.tickDirtyBiomass(server);

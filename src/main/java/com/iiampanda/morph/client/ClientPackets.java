@@ -59,8 +59,35 @@ public final class ClientPackets
         {
             ClientState.DATA.biomass = payload.biomass();
         }
+        else if(packet instanceof Packets.SyncSwallowed payload)
+        {
+            com.iiampanda.morph.api.mob.trait.SwallowBlocksTrait.SYNCED.put(payload.player(), payload.item());
+        }
+        else if(packet instanceof Packets.SyncSheared payload)
+        {
+            if(payload.sheared())
+            {
+                ClientState.SHEARED.add(payload.player());
+            }
+            else
+            {
+                ClientState.SHEARED.remove(payload.player());
+            }
+        }
+        else if(packet instanceof Packets.SyncBucketed payload)
+        {
+            if(payload.held())
+            {
+                com.iiampanda.morph.common.morph.BucketHold.VIEW.add(payload.player());
+            }
+            else
+            {
+                com.iiampanda.morph.common.morph.BucketHold.VIEW.remove(payload.player());
+            }
+        }
         else if(packet instanceof Packets.SyncSit payload)
         {
+            com.iiampanda.morph.common.Dbg.log("client got sit sync {} sitting={}", payload.player(), payload.sitting());
             if(payload.sitting())
             {
                 ClientState.SITTING.add(payload.player());

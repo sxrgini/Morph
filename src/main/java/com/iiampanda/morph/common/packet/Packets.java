@@ -208,6 +208,42 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
+    public record SyncBucketed(UUID player, boolean held) implements CustomPacketPayload
+    {
+        public static final Type<SyncBucketed> TYPE = typeOf("sync_bucketed");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SyncBucketed> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeUUID(v.player);
+            buf.writeBoolean(v.held);
+        }, buf -> new SyncBucketed(buf.readUUID(), buf.readBoolean()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    public record SyncSheared(UUID player, boolean sheared) implements CustomPacketPayload
+    {
+        public static final Type<SyncSheared> TYPE = typeOf("sync_sheared");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SyncSheared> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeUUID(v.player);
+            buf.writeBoolean(v.sheared);
+        }, buf -> new SyncSheared(buf.readUUID(), buf.readBoolean()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    public record SyncSwallowed(UUID player, String item) implements CustomPacketPayload
+    {
+        public static final Type<SyncSwallowed> TYPE = typeOf("sync_swallowed");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SyncSwallowed> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeUUID(v.player);
+            buf.writeUtf(v.item);
+        }, buf -> new SyncSwallowed(buf.readUUID(), buf.readUtf()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
     /** The loader module implements this to register the payload types (and, for client bound ones, their handlers). */
     public interface Registrar
     {
@@ -239,5 +275,8 @@ public final class Packets
         r.c2s(ReportEmissive.TYPE, ReportEmissive.CODEC);
         r.c2s(SetSit.TYPE, SetSit.CODEC);
         r.s2c(SyncSit.TYPE, SyncSit.CODEC);
+        r.s2c(SyncBucketed.TYPE, SyncBucketed.CODEC);
+        r.s2c(SyncSheared.TYPE, SyncSheared.CODEC);
+        r.s2c(SyncSwallowed.TYPE, SyncSwallowed.CODEC);
     }
 }

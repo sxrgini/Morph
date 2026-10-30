@@ -80,6 +80,11 @@ public abstract class EntityMixin implements MorphEntityAccess
         {
             return;
         }
+        if(standing.position().y >= p.getBoundingBox().maxY - 0.05D && com.iiampanda.morph.api.mob.trait.SwallowBlocksTrait.hasBlock(p))
+        {
+            cir.setReturnValue(true);
+            return;
+        }
         RideableAbility ride = RideableAbility.of(p);
         if(ride != null && ride.solidPlatform != null && ride.solidPlatform && ride.gearReady() && standing.position().y >= p.getBoundingBox().maxY - 0.05D)
         {

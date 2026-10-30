@@ -254,10 +254,10 @@ public final class MobProfileManager
             {
                 save(id, existing);
             }
-            if((existing.defaultsVersion == null || existing.defaultsVersion < 13))
+            if((existing.defaultsVersion == null || existing.defaultsVersion < 15))
             {
                 MobProfiler.migrate(existing, sample);
-                existing.defaultsVersion = 13;
+                existing.defaultsVersion = 15;
                 save(id, existing);
             }
             return existing;

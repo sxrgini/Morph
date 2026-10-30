@@ -104,6 +104,14 @@ public class MorphNeoForge
                 event.setCanceled(true);
             }
         });
+        bus.addListener(PlayerInteractEvent.RightClickItem.class, event ->
+        {
+            if(Morph.onUseItem(event.getEntity(), event.getHand()))
+            {
+                event.setCancellationResult(InteractionResult.SUCCESS);
+                event.setCanceled(true);
+            }
+        });
         bus.addListener(ServerTickEvent.Post.class, event -> Morph.onServerTick(event.getServer()));
         bus.addListener(RegisterCommandsEvent.class, event -> Morph.registerCommands(event.getDispatcher()));
     }

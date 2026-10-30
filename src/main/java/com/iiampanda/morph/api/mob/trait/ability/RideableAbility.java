@@ -18,8 +18,7 @@ public class RideableAbility extends Ability<RideableAbility> implements IEventB
 
     @Override public void tick(float strength) {}
 
-    @Override
-    public InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
+    private InteractionResult interactImpl(Player interactor, Entity target, InteractionHand hand)
     {
         if(target != player || interactor == player || !enabled || interactor.isPassenger() || interactor.isSecondaryUseActive())
         {
@@ -31,8 +30,31 @@ public class RideableAbility extends Ability<RideableAbility> implements IEventB
         }
         if(!player.level().isClientSide && player.getPassengers().isEmpty())
         {
-            interactor.startRiding(player);
+            com.iiampanda.morph.common.morph.RideBypass.ACTIVE.set(true);
+            try
+            {
+                interactor.startRiding(player);
+            }
+            finally
+            {
+                com.iiampanda.morph.common.morph.RideBypass.ACTIVE.set(false);
+            }
         }
-        return InteractionResult.sidedSuccess(player.level().isClientSide);
+        if(player.level().isClientSide)
+        {
+            com.iiampanda.morph.client.ClientInteract.send(target, interactor, hand);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
+    {
+        InteractionResult result = interactImpl(interactor, target, hand);
+        if(target == player && interactor != player)
+        {
+            com.iiampanda.morph.common.Dbg.log("{} {} by {} sneaking={} holding={} enabled={} result={}", player.level().isClientSide ? "client" : "server", type, interactor.getName().getString(), interactor.isShiftKeyDown(), interactor.getItemInHand(hand), enabled, result);
+        }
+        return result;
     }
 }

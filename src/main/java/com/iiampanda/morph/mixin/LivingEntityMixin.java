@@ -16,6 +16,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin
 {
+    @Inject(method = "isPushable", at = @At("HEAD"), cancellable = true)
+    private void morph$bucketed(CallbackInfoReturnable<Boolean> cir)
+    {
+        if((Object)this instanceof Player p && com.iiampanda.morph.common.morph.BucketHold.VIEW.contains(p.getUUID()))
+        {
+            cir.setReturnValue(false);
+        }
+    }
+
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     private void morph$hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir)
     {

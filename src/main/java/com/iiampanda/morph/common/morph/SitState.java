@@ -24,6 +24,7 @@ public final class SitState
     /** Sets whether the player sits. Only morphed players can; anything else stands. */
     public static void set(ServerPlayer player, boolean sit)
     {
+        com.iiampanda.morph.common.Dbg.log("{} asks sit={} morphed={}", player.getName().getString(), sit, MorphApi.getMorphInfo(player).isMorphed());
         sit = sit && MorphApi.getMorphInfo(player).isMorphed();
         if(sit)
         {

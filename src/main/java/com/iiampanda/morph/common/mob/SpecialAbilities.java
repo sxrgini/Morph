@@ -95,6 +95,17 @@ public final class SpecialAbilities
                 s.sound = "event:1015,event:1016";
                 return s;
             }
+            case "blaze" ->
+            {
+                SpecialProjectileAbility s = new SpecialProjectileAbility();
+                s.entity = "minecraft:small_fireball";
+                s.speed = 1.2D;
+                s.count = 3;
+                s.spreadDegrees = 6D;
+                s.cooldown = 30;
+                s.sound = "minecraft:entity.blaze.shoot";
+                return s;
+            }
             case "armadillo" ->
             {
                 SpecialRollUpAbility s = new SpecialRollUpAbility();

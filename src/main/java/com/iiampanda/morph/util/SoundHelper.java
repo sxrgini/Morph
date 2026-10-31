@@ -13,7 +13,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Lets a morphed player make the noises of the mob they are. */
 public final class SoundHelper
 {
     private static final java.util.Map<java.util.UUID, Integer> AMBIENT = new java.util.HashMap<>();
@@ -38,7 +37,6 @@ public final class SoundHelper
         return e == null ? null : ((LivingEntityInvoker)e).morph$getDeathSound();
     }
 
-    /** @return true if the vanilla step sound should be skipped */
     public static boolean step(Player player, BlockPos pos, BlockState state)
     {
         LivingEntity e = body(player);
@@ -48,7 +46,7 @@ public final class SoundHelper
         }
         if(player.level().isClientSide)
         {
-            // the server broadcasts the mob's step sound to everyone, including us
+
             return true;
         }
         e.setPos(player.getX(), player.getY(), player.getZ());
@@ -57,7 +55,6 @@ public final class SoundHelper
         return true;
     }
 
-    /** Random idle noises, server side only. */
     public static void tickAmbient(Player player)
     {
         if(player.level().isClientSide || player.isSpectator())

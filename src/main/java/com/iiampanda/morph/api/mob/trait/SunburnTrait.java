@@ -5,7 +5,6 @@ import com.iiampanda.morph.api.morph.MorphInfo;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
-/** Burns in direct daylight unless wearing a helmet. */
 public class SunburnTrait extends Trait<SunburnTrait>
 {
     public Boolean childrenAreImmune;

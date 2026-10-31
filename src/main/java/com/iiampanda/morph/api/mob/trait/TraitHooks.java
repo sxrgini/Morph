@@ -12,10 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Central dispatcher for the events traits can hook into. Fabric has no per-object event bus, so traits that are marked with
- * {@link IEventBusRequired} are kept in this list while they are applied and the relevant Fabric events / mixins call into it.
- */
 public final class TraitHooks
 {
     private static final List<Trait<?>> ACTIVE = new CopyOnWriteArrayList<>();
@@ -40,7 +36,6 @@ public final class TraitHooks
         return ACTIVE;
     }
 
-    /** @return false if any active trait wants to nullify this damage */
     public static boolean allowDamage(LivingEntity victim, DamageSource source, float amount)
     {
         for(Trait<?> trait : ACTIVE)
@@ -62,7 +57,6 @@ public final class TraitHooks
         return amount;
     }
 
-    /** @return false if any active trait wants to deny this effect */
     public static boolean allowEffect(LivingEntity victim, MobEffectInstance effect)
     {
         for(Trait<?> trait : ACTIVE)
@@ -75,7 +69,6 @@ public final class TraitHooks
         return true;
     }
 
-    /** @return false if any active trait wants to stop this mob from targeting that entity */
     public static boolean allowTarget(Mob mob, LivingEntity target)
     {
         for(Trait<?> trait : ACTIVE)
@@ -88,7 +81,6 @@ public final class TraitHooks
         return true;
     }
 
-    /** @return the first non-PASS result */
     public static InteractionResult onInteractEntity(Player interactor, Entity target, InteractionHand hand)
     {
         if(target instanceof Player)

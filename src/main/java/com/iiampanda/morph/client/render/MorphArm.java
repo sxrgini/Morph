@@ -22,14 +22,12 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.HashSet;
 import java.util.Set;
 
-/** First person: draws the morph's own arm in place of the player's, when the mob has one. */
 public final class MorphArm
 {
-    private static final Set<String> BROKEN = new HashSet<>();
+    private static final java.util.Map<String, Integer> BROKEN = new java.util.HashMap<>();
 
     private MorphArm() {}
 
-    /** Depth first search for a part by name (the Warden's arms sit under bone/body). */
     private static ModelPart find(ModelPart part, String name)
     {
         for(java.util.Map.Entry<String, ModelPart> e : ((com.iiampanda.morph.client.mixin.ModelPartAccessor)(Object)part).morph$children().entrySet())
@@ -47,7 +45,6 @@ public final class MorphArm
         return null;
     }
 
-    /** A private copy of a model part (cubes are shared, poses are not), so borrowing a leg as an arm never disturbs the body model. */
     private static ModelPart copy(ModelPart p)
     {
         com.iiampanda.morph.client.mixin.ModelPartAccessor acc = (com.iiampanda.morph.client.mixin.ModelPartAccessor)(Object)p;
@@ -71,7 +68,6 @@ public final class MorphArm
 
     private record Limb(ModelPart part, ResourceLocation texture, MorphQuads quads) {}
 
-    /** Work to do once vanilla has drawn the player's own arm (the static skin goes over it). */
     private static Runnable after;
 
     public static void finish()
@@ -84,7 +80,6 @@ public final class MorphArm
         }
     }
 
-    /** @return true if we drew the arm (the vanilla arm must not be drawn) */
     public static boolean render(PlayerRenderer vanilla, PoseStack ps, MultiBufferSource buffers, int light, AbstractClientPlayer player, HumanoidArm side)
     {
         after = null;
@@ -104,7 +99,6 @@ public final class MorphArm
             return true;
         }
 
-        // same phases as the body: freeze to the static skin, blocks slide into the new arm, thaw
         float t = info.getProgress(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false));
         LivingEntity oldE = info.prevVariant == null ? null : info.getPrevEntity();
         LivingEntity newE = info.isMorphed() ? info.getEntity() : null;
@@ -121,7 +115,7 @@ public final class MorphArm
         if(e == null)
         {
             after = () -> overlay(blocks, ps, buffers, light, alpha);
-            return false; // the player's own arm: vanilla draws it
+            return false;
         }
         Limb limb = limbOf(vanilla, e, side);
         if(limb != null)
@@ -145,7 +139,6 @@ public final class MorphArm
         }
     }
 
-    /** Mobs without vanilla model parts (GeckoLib and the like): the quads on the arm's side of whatever the renderer draws. */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static Limb quadLimb(LivingEntity entity, EntityRenderer renderer, HumanoidArm side)
     {
@@ -186,7 +179,6 @@ public final class MorphArm
         }
     }
 
-    /** The cubes of the arm a mob (or the player, for null) would hold out, in arm space. */
     private static MorphBlocks blocksOf(PlayerRenderer vanilla, AbstractClientPlayer player, LivingEntity entity, HumanoidArm side)
     {
         MorphBlocks mb = new MorphBlocks();
@@ -205,8 +197,6 @@ public final class MorphArm
         return mb;
     }
 
-
-    /** The hand of a mob whose model is made of boxes (see MorphBoxes), or null. */
     private static Limb boxLimb(LivingEntity entity, Object model, Object type, HumanoidArm side)
     {
         boolean right = side == HumanoidArm.RIGHT;
@@ -245,8 +235,6 @@ public final class MorphArm
         return new Limb(null, null, quads);
     }
 
-
-    /** A hand info for this mob (see HandInfos), built into one part, or null when there is none (or its parts are not in the model). */
     private static ModelPart overrideArm(LivingEntity entity, Object model, java.util.Collection<ModelPart> roots, HumanoidArm side)
     {
         boolean right = side == HumanoidArm.RIGHT;
@@ -294,7 +282,6 @@ public final class MorphArm
         }
         return new ModelPart(java.util.List.of(), kids);
     }
-
 
     private static ModelPart resolve(Object model, java.util.Collection<ModelPart> roots, HandInfos.Entry entry)
     {
@@ -357,7 +344,6 @@ public final class MorphArm
         return new float[] { Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.min(a[2], b[2]), Math.max(a[3], b[3]), Math.max(a[4], b[4]), Math.max(a[5], b[5]) };
     }
 
-    /** Parts that are far too big, too small or too far off to pass for an arm are scaled and moved so their top sits at the shoulder. Ordinary limbs are left alone. */
     private static void fit(ModelPart arm)
     {
         float[] b = extent(arm, 0F, 0F, 0F);
@@ -390,11 +376,6 @@ public final class MorphArm
         arm.y += -2F - b[1] * s;
     }
 
-    /**
-     * Last check on every borrowed arm: its box (with its own position and scale) has to sit where a player's arm does, at the shoulder on
-     * its own side and not much bigger. Whatever put it elsewhere (an odd pivot, a parent's offset, a very large mob) is undone by moving
-     * and shrinking it. Ordinary arms pass untouched.
-     */
     private static final Set<String> LOGGED = new HashSet<>();
 
     private static ModelPart settle(ModelPart arm, HumanoidArm side, Object what)
@@ -443,7 +424,6 @@ public final class MorphArm
         return arm;
     }
 
-    /** Older models keep their parts in java fields rather than a named tree. */
     private static ModelPart FIELDPART(Object model, String name)
     {
         for(Class<?> c = model.getClass(); c != null && c != Object.class; c = c.getSuperclass())
@@ -462,7 +442,6 @@ public final class MorphArm
         return null;
     }
 
-    /** @param entity null = the player's own arm */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static Limb limbOf(PlayerRenderer vanilla, LivingEntity entity, HumanoidArm side)
     {
@@ -473,7 +452,7 @@ public final class MorphArm
             a.xRot = 0F;
             return new Limb(a, null, null);
         }
-        if(BROKEN.contains(entity.getType().toString()))
+        if(BROKEN.getOrDefault(entity.getType().toString(), 0) >= 200)
         {
             return null;
         }
@@ -482,7 +461,7 @@ public final class MorphArm
             EntityRenderer renderer = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(entity);
             if(MorphBlocks.modded(entity))
             {
-                // the mod's own model files know where the arm is
+
                 MorphGeo.GeoArm geo = MorphGeo.find(entity, renderer, side == HumanoidArm.RIGHT);
                 if(geo != null)
                 {
@@ -497,7 +476,7 @@ public final class MorphArm
             Object boxModel = MorphBoxes.unwrap(model);
             if(boxModel != null)
             {
-                // Citadel style box models (Alex's Mobs, Cataclysm...): the hand info or the best arm-like box, read by reflection
+
                 Limb boxed = boxLimb(entity, boxModel, RenderType.entityCutoutNoCull(living.getTextureLocation(entity)), side);
                 if(boxed != null)
                 {
@@ -513,7 +492,7 @@ public final class MorphArm
                 hm.swimAmount = 0F;
                 model.setupAnim(entity, 0F, 0F, 0F, 0F, 0F);
                 arm = side == HumanoidArm.RIGHT ? hm.rightArm : hm.leftArm;
-                placeAsArm = true; // modded humanoids (Minoshroom, giants...) keep their arms at odd pivots
+                placeAsArm = true;
             }
             else
             {
@@ -545,7 +524,7 @@ public final class MorphArm
                 }
                 if(arm != null)
                 {
-                    // sit it where a player's arm would be so the first person camera transform lines up
+
                     placeAsArm = true;
                 }
             }
@@ -565,7 +544,7 @@ public final class MorphArm
             }
             if(arm == null)
             {
-                return quadLimb(entity, renderer, side); // no model part to borrow
+                return quadLimb(entity, renderer, side);
             }
             arm = copy(arm);
             if(placeAsArm)
@@ -580,8 +559,8 @@ public final class MorphArm
         }
         catch(Throwable t)
         {
-            BROKEN.add(entity.getType().toString());
-            com.iiampanda.morph.common.Morph.LOGGER.error("Could not draw the first person arm of {}", entity.getType(), t);
+            BROKEN.merge(entity.getType().toString(), 1, Integer::sum);
+            if(BROKEN.get(entity.getType().toString()) == 1) com.iiampanda.morph.common.Morph.LOGGER.error("Could not draw the first person arm of {}", entity.getType(), t);
             return null;
         }
     }

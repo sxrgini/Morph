@@ -31,6 +31,8 @@ public class MorphNeoForge
     public MorphNeoForge(IEventBus modBus)
     {
         Platform.set(new NeoForgePlatform());
+        com.iiampanda.morph.common.MorphRules.INVENTORY = net.minecraft.world.level.GameRules.register("morphCanUseInventory", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(true));
+        com.iiampanda.morph.common.MorphRules.INTERACT = net.minecraft.world.level.GameRules.register("morphCanInteract", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(true));
         Morph.init("NeoForge 1.21.1");
 
         modBus.addListener(RegisterEvent.class, event -> event.register(Registries.SOUND_EVENT, helper -> helper.register(Morph.SOUND_ID, Morph.MORPH_SOUND)));
@@ -109,6 +111,28 @@ public class MorphNeoForge
             if(Morph.onUseItem(event.getEntity(), event.getHand()))
             {
                 event.setCancellationResult(InteractionResult.SUCCESS);
+                event.setCanceled(true);
+            }
+        });
+        bus.addListener(PlayerInteractEvent.RightClickBlock.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getEntity()))
+            {
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+            }
+        });
+        bus.addListener(PlayerInteractEvent.LeftClickBlock.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getEntity()))
+            {
+                event.setCanceled(true);
+            }
+        });
+        bus.addListener(net.neoforged.neoforge.event.level.BlockEvent.BreakEvent.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getPlayer()))
+            {
                 event.setCanceled(true);
             }
         });

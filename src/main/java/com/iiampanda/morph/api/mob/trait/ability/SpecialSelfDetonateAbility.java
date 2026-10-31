@@ -5,16 +5,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
 
-/** Creeper "Self Detonate": hisses for a moment, then blows up like a creeper and kills the player who used it. */
 public class SpecialSelfDetonateAbility extends SpecialAbility<SpecialSelfDetonateAbility>
 {
-    /** Ticks between right clicking and the explosion (a creeper's fuse is 30; default 40 = 2 seconds). */
+
     public Integer fuseTicks;
-    /** Explosion radius (a creeper uses 3, a charged creeper 6). */
+
     public Double radius;
-    /** Whether the explosion breaks blocks (still respects the mobGriefing game rule). Default true. */
+
     public Boolean breakBlocks;
-    /** Whether the player dies too. Default true. */
+
     public Boolean killPlayer;
 
     public transient int fuse;
@@ -25,7 +24,6 @@ public class SpecialSelfDetonateAbility extends SpecialAbility<SpecialSelfDetona
 
     @Override protected int defaultCooldown() { return fuseLength() + 20; }
 
-    /** Can't be used again while the fuse is burning. */
     @Override public int getCooldown() { return Math.max(super.getCooldown(), fuseLength() + 1); }
 
     @Override

@@ -11,12 +11,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Models built from boxes rather than vanilla ModelParts: Citadel's AdvancedModelBox (Alex's Mobs), the LionfishAPI copy of it
- * (L_Ender's Cataclysm) and anything else shaped like them. They are only read by reflection, so none of those mods is needed to
- * compile, and a box is recognised by what it has (a rotation point, rotation angles and a render method), not by its class name.
- * The hand infos name the model's field, exactly as they do for ModelParts.
- */
 public final class MorphBoxes
 {
     private MorphBoxes() {}
@@ -49,7 +43,6 @@ public final class MorphBoxes
         }
     }
 
-    /** A box: has a rotation point, rotation angles and a render method taking a pose stack and a vertex consumer. */
     public static boolean isBox(Object o)
     {
         if(o == null || field(o.getClass(), "rotationPointX") == null || field(o.getClass(), "rotateAngleX") == null)
@@ -86,7 +79,6 @@ public final class MorphBoxes
         return best;
     }
 
-    /** The box in a model's field of that name, or null when the field is not a box. */
     public static Object boxField(Object model, String name)
     {
         if(name == null)
@@ -106,16 +98,11 @@ public final class MorphBoxes
         return null;
     }
 
-    /** True if the model keeps its parts in boxes. */
     public static boolean hasBoxes(Object model)
     {
         return !allBoxes(model).isEmpty();
     }
 
-    /**
-     * The model that actually holds the boxes: the model itself, or one it wraps (Alex's Mobs on newer versions puts its Citadel model
-     * inside a vanilla EntityModel bridge). Null if there are none.
-     */
     public static Object unwrap(Object model)
     {
         if(model == null)
@@ -204,7 +191,6 @@ public final class MorphBoxes
         catch(Throwable ignored) {}
     }
 
-    /** Puts the model back to its rest pose (the one its constructor saved) so the hand is not caught mid stride. Skipped when the model never saved one. */
     public static void rest(Object model)
     {
         for(Object box : allBoxes(model).keySet())
@@ -223,11 +209,6 @@ public final class MorphBoxes
         catch(Throwable ignored) {}
     }
 
-    /**
-     * Draws a box (and what hangs off it) into quads, with its parents' pose applied, turned the way a renderer would turn the mob
-     * (y up) so the quads can be treated like any other captured limb.
-     * @param type the render type every quad is drawn with
-     */
     public static MorphQuads capture(Object box, Object type)
     {
         List<Object> chain = new ArrayList<>();
@@ -266,7 +247,7 @@ public final class MorphBoxes
         {
             return null;
         }
-        // model space is y down and x flipped compared with the world the renderer puts it in
+
         for(MorphQuads.Quad q : mq.quads)
         {
             for(int i = 0; i < 4; i++)
@@ -278,7 +259,6 @@ public final class MorphBoxes
         return mq;
     }
 
-    /** A box for the player's hand when the mob has no hand info: the best arm-like thing on that side. */
     public static Object pick(Object model, boolean right)
     {
         Map<Object, String> all = allBoxes(model);

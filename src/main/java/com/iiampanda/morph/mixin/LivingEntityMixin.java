@@ -60,7 +60,6 @@ public abstract class LivingEntityMixin
         }
     }
 
-    /** Fish morphs must not get their air bar refilled by vanilla while on land. */
     @Inject(method = "increaseAirSupply", at = @At("HEAD"), cancellable = true)
     private void morph$noAirOnLand(int current, CallbackInfoReturnable<Integer> cir)
     {

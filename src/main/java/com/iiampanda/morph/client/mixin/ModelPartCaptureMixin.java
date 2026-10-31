@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ModelPart.class)
 public abstract class ModelPartCaptureMixin
 {
-    /** While a mob is being captured for the morph animation its cubes are recorded instead of drawn. */
+
     @Inject(method = "compile", at = @At("HEAD"), cancellable = true)
     private void morph$capture(PoseStack.Pose pose, VertexConsumer buffer, int light, int overlay, int color, CallbackInfo ci)
     {

@@ -9,10 +9,9 @@ import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 
 import java.util.List;
 
-/** Mobs of the listed entity types run away from you. */
 public class IntimidateTrait extends Trait<IntimidateTrait>
 {
-    public List<String> entitiesToIntimidate; // entity type ids
+    public List<String> entitiesToIntimidate;
     public Double distance;
     public Double farRunSpeed;
     public Double nearRunSpeed;

@@ -18,25 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Hand infos: which part of a mob's model is held out as the player's arm in first person, and how to nudge it into place.
- * Same idea as the original mod's morph/hand folder. Files are plain JSON and are read, later ones overriding earlier ones, from:
- *  1. every loaded mod / resource pack:  assets/&lt;namespace&gt;/morph/hand/&lt;anything&gt;.json   (this is how a mob mod ships its own)
- *  2. the player's config folder:        config/morph/hand/&lt;anything&gt;.json  (sub folders are fine)
- *
- * <pre>
- * {
- *   "author": "you",
- *   "forEntity": "examplemod:crab",                          // an entity type id, or...
- *   "forClass": "com.example.client.model.CrabModel",       // ...a model class (its subclasses are covered too)
- *   "leftHandParts":  [ { "partName": "left_claw",  "placementCorrectors": [ { "type": "translate", "axis": "y", "amount": -0.25 } ] } ],
- *   "rightHandParts": [ { "partName": "right_claw" } ]
- * }
- * </pre>
- * fieldName is the java field of the part in the model class (like the original mod), partName is the part's name in the model tree (a/b/c walks down it); give either or both. Several parts can be listed
- * (an arm and its sleeve, say). placementCorrectors are optional: "translate" moves in blocks, "rotate" turns in degrees, on axis x, y or z.
- * The part is first set where a player's arm sits, with its own rotation cleared, and then the correctors are applied.
- */
 public final class HandInfos
 {
     public record Corrector(boolean rotate, char axis, float amount) {}
@@ -126,7 +107,6 @@ public final class HandInfos
         Morph.LOGGER.info("Loaded {} hand info(s)", BY_ENTITY.size() + BY_CLASS.size());
     }
 
-    /** Copies the hand infos bundled in the jar (morph_defaults/hand, listed in its index.txt) into the config folder, never overwriting a file. */
     private static void copyDefaults(Path dir)
     {
         try(java.io.InputStream in = HandInfos.class.getResourceAsStream("/morph_defaults/hand/index.txt"))
@@ -228,7 +208,6 @@ public final class HandInfos
         return list;
     }
 
-    /** The info for a mob: its entity id first, then its model's class and superclasses. */
     public static synchronized Info lookup(String entityId, Class<?> modelClass)
     {
         ensureLoaded();

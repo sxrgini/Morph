@@ -13,13 +13,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-/** Other players can shear you with shears (sheep wool, mooshroom mushrooms...). */
 public class ShearableAbility extends Ability<ShearableAbility>implements IEventBusRequired
 {
-    public String dropItem;      // item id, default minecraft:white_wool
+    public String dropItem;
     public Integer minCount;
     public Integer maxCount;
-    public Integer cooldown;     // ticks between shearings, default 3000 (2.5 minutes)
+    public Integer cooldown;
 
     public transient long lastSheared = -999999L;
 

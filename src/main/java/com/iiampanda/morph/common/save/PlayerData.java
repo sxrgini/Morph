@@ -9,13 +9,12 @@ import net.minecraft.nbt.Tag;
 import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
-/** Everything Morph remembers about one player. Also what the client holds as its own copy. */
 public class PlayerData
 {
     public final List<MorphVariant> morphs = new ArrayList<>();
     public final Set<String> favourites = new LinkedHashSet<>();
     public final Map<String, Integer> purchased = new HashMap<>();
-    /** Abilities the player has switched on (Default mode). */
+
     public final Set<String> enabledAbilities = new HashSet<>();
     public double biomass;
     @Nullable public MorphVariant current;

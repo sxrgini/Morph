@@ -15,14 +15,12 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Pattern;
 
-/** config/morph/server.json */
 public class ConfigServer
 {
     public enum FilterType { ALLOW, DENY }
 
     public enum ModeType { CLASSIC, DEFAULT, COMMAND_ONLY, COMMAND_ALLOW_SELECTION, DISGUISE }
 
-    /** Used to migrate old config files; don't edit. */
     public Integer configVersion = 2;
 
     public ModeType morphMode = ModeType.DEFAULT;
@@ -32,31 +30,25 @@ public class ConfigServer
     public List<String> disabledTraits = new ArrayList<>();
     public List<String> disabledMobs = new ArrayList<>(List.of("minecraft:armor_stand"));
 
-    /** Variants and baby forms */
     public boolean allowVariants = true;
     public boolean allowBabyForms = true;
 
-    /** Modded mob support */
-    public boolean autoDetectMobAbilities = true; // inspect mobs without a config file and write one for them
+    public boolean autoDetectMobAbilities = true;
     public boolean generateMobConfigFiles = true;
-    /** On server start, inspect every registered mob (including modded ones) and write config files for those that have none. */
+
     public boolean scanAllMobsOnStartup = true;
 
-    /** Largest hitbox a morph can give you (blocks). Keeps huge mobs like the Ender Dragon from wedging you into the terrain. The model still renders full size. */
     public float maxHitboxWidth = 3F;
     public float maxHitboxHeight = 4F;
 
-    /** Boss / mini boss special moves, used by right clicking while morphed. */
     public boolean specialAbilities = true;
     public boolean specialRequiresEmptyHand = true;
 
-    /** Biomass (Default mode) */
     public double biomassValue = 0.3D;
-    /** Biomass gained per kill, as a fraction of the killed mob's max health (0.5 = half its health). */
+
     public double biomassHealthFraction = 0.5D;
     public boolean biomassBypassAdvancement = true;
 
-    /** modifier;more|less[;cap] */
     public List<String> supportedAttributes = new ArrayList<>(List.of(
             "minecraft:generic.max_health;more;20",
             "minecraft:generic.knockback_resistance;more",
@@ -102,7 +94,7 @@ public class ConfigServer
                         cfg = read;
                         if(read.configVersion == null)
                         {
-                            // files from before 1.0.1 defaulted to Classic; biomass (Default mode) is the intended default now
+
                             cfg.configVersion = 2;
                             if(cfg.morphMode == ModeType.CLASSIC)
                             {
@@ -112,7 +104,7 @@ public class ConfigServer
                     }
                 }
             }
-            try(Writer w = Files.newBufferedWriter(file)) //re-save so newly added options show up
+            try(Writer w = Files.newBufferedWriter(file))
             {
                 GSON.toJson(cfg, w);
             }

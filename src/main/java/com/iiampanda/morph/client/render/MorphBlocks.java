@@ -10,16 +10,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * The cubes of a mob's model, as oriented boxes. A morph turns one mob's boxes into the other's on a static skin,
- * which is what gives the "blocks sliding into the new mob" look of the original mod.
- */
 public final class MorphBlocks
 {
-    /** Set while a model is being captured instead of drawn. */
+
     public static MorphBlocks capturing;
 
-    /** A box: centre plus three half-extent vectors. */
     public static final class Block
     {
         public final Vector3f c = new Vector3f();
@@ -28,7 +23,6 @@ public final class MorphBlocks
 
     public final List<Block> blocks = new ArrayList<>();
 
-    /** Raw quads of a mob whose renderer doesn't use vanilla model parts (only recorded when {@link #recordQuads} is set). */
     public final MorphQuads quads = new MorphQuads();
     public boolean recordQuads;
 
@@ -37,13 +31,11 @@ public final class MorphBlocks
         return recordQuads && !MorphQuads.ignored(type) ? quads.new Rec(type) : null;
     }
 
-    /** True for entities from other mods. */
     public static boolean modded(net.minecraft.world.entity.Entity e)
     {
         return !"minecraft".equals(net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getNamespace());
     }
 
-    /** Turns recorded quads into blocks, and makes sure there is always something to animate. */
     public void finishCapture(net.minecraft.world.entity.Entity e)
     {
         if(recordQuads)
@@ -61,7 +53,6 @@ public final class MorphBlocks
         }
     }
 
-    /** @param m the cube's model space -> entity space transform; the bounds are in 1/16 block units */
     public void add(Matrix4f m, float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
         Block b = new Block();
@@ -75,7 +66,6 @@ public final class MorphBlocks
         blocks.add(b);
     }
 
-    /** Records every cube of a part (called while the part is being drawn, with its final pose). */
     public void addPart(net.minecraft.client.model.geom.ModelPart part, Matrix4f pose)
     {
         for(net.minecraft.client.model.geom.ModelPart.Cube cube : ((com.iiampanda.morph.client.mixin.ModelPartAccessor)(Object)part).morph$cubes())
@@ -84,7 +74,6 @@ public final class MorphBlocks
         }
     }
 
-    /** Records every visible cube under a part, in the space the PoseStack is currently in. */
     public void addTree(net.minecraft.client.model.geom.ModelPart part, PoseStack ps)
     {
         if(!part.visible)
@@ -143,7 +132,6 @@ public final class MorphBlocks
 
     private static final int[][] PERMS = { {0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0} };
 
-    /** Blends two block sets; the one with fewer blocks has some split in two so every block has somewhere to go. */
     public static List<Block> blend(MorphBlocks from, MorphBlocks to, float t)
     {
         List<Block> a = sorted(from.blocks);
@@ -170,7 +158,7 @@ public final class MorphBlocks
         {
             Block x = a.get((int)((long)i * a.size() / n));
             Block y = b.get((int)((long)i * b.size() / n));
-            // line the axes of y up with those of x so the box doesn't tumble through itself
+
             int[] best = PERMS[0];
             float bestScore = -1F;
             for(int[] p : PERMS)
@@ -209,7 +197,6 @@ public final class MorphBlocks
         return lp < 1e-5F || lq < 1e-5F ? 0F : p.dot(q) / (lp * lq);
     }
 
-    /** Draws the blocks, in the space the PoseStack is currently in, with the static morph skin. */
     public static void emit(List<Block> blocks, PoseStack.Pose pose, VertexConsumer vc, int light, float alpha)
     {
         int color = ((int)(Math.max(0F, Math.min(1F, alpha)) * 255F) << 24) | 0xFFFFFF;

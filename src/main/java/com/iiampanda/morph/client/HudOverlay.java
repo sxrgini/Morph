@@ -66,7 +66,7 @@ public final class HudOverlay
                 ResourceLocation icon = a.texIcon();
                 if(icon != null)
                 {
-                    boolean eff18 = icon.getNamespace().equals("minecraft"); // sz18
+                    boolean eff18 = icon.getNamespace().equals("minecraft");
                     int sz = eff18 ? 18 : 16;
                     g.blit(icon, eff18 ? x - 1 : x, eff18 ? y - 1 : y, 0, 0, sz, sz, sz, sz);
                 }

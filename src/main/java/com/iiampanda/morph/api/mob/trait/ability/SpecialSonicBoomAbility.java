@@ -9,7 +9,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-/** The Warden's sonic screech: a beam in the direction you are looking that ignores armour. */
 public class SpecialSonicBoomAbility extends SpecialAbility<SpecialSonicBoomAbility>
 {
     public Double range;

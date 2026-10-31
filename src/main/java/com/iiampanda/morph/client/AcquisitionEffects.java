@@ -7,7 +7,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import java.util.ArrayList;
 import java.util.List;
 
-/** The streams of particles that fly from a mob you just absorbed into you. */
 public final class AcquisitionEffects
 {
     private static final List<Active> ACTIVE = new ArrayList<>();

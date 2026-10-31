@@ -6,9 +6,6 @@ import net.minecraft.nbt.Tag;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Helpers for the bits of CompoundTag that were directly accessible (tagMap) in 1.16.5.
- */
 public final class NbtUtil
 {
     private NbtUtil() {}
@@ -18,7 +15,6 @@ public final class NbtUtil
         return new ArrayList<>(tag.getAllKeys());
     }
 
-    /** Shallow put-all (replaces existing keys, unlike CompoundTag.merge which merges nested compounds). */
     public static void putAll(CompoundTag target, CompoundTag source)
     {
         for(String key : source.getAllKeys())

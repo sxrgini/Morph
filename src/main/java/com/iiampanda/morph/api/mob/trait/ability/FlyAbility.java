@@ -4,7 +4,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.phys.Vec3;
 
-/** Creative style flight. */
 public class FlyAbility extends Ability<FlyAbility>
 {
     public Boolean slowdownInWater;

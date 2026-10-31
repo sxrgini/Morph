@@ -5,7 +5,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
-/** Healing hurts, harming heals. */
 public class UndeadTrait extends Trait<UndeadTrait> implements IEventBusRequired
 {
     public UndeadTrait() { type = "traitUndead"; }
@@ -18,7 +17,6 @@ public class UndeadTrait extends Trait<UndeadTrait> implements IEventBusRequired
         return true;
     }
 
-    /** Called by a mixin for instant health / instant damage. Returns true if the effect has been taken over. */
     public static boolean onInstantEffect(LivingEntity target, boolean healing, int amplifier)
     {
         if(target.level().isClientSide || !(target instanceof net.minecraft.world.entity.player.Player p))

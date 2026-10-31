@@ -15,12 +15,10 @@ import net.minecraft.world.entity.animal.IronGolem;
 
 import java.lang.reflect.Field;
 
-/** Boss detection, default special moves, and the right-click handler. */
 public final class SpecialAbilities
 {
     private SpecialAbilities() {}
 
-    /** Special move for the vanilla bosses / mini bosses; null for everything else. */
     public static SpecialAbility<?> defaultForVanilla(ResourceLocation id)
     {
         if(!"minecraft".equals(id.getNamespace()))
@@ -124,7 +122,6 @@ public final class SpecialAbilities
         }
     }
 
-    /** Heuristic for modded bosses: boss tag, a boss bar field, very high health, or a hostile with high health. */
     public static boolean isBoss(LivingEntity e)
     {
         if(e instanceof net.minecraft.world.entity.player.Player)
@@ -151,7 +148,6 @@ public final class SpecialAbilities
         return !(e instanceof IronGolem) && (health >= 100D || (e instanceof Enemy && health >= 80D));
     }
 
-    /** The move a mob gets by default: the vanilla one, or a random (but stable per mob type) pick for other bosses. */
     public static SpecialAbility<?> defaultFor(LivingEntity e)
     {
         ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType());
@@ -219,7 +215,6 @@ public final class SpecialAbilities
         return false;
     }
 
-    /** Adds the default move to a profile that has none and has not been looked at yet. @return true if the file needs saving. */
     public static boolean upgrade(MobProfile profile, SpecialAbility<?> def)
     {
         if(profile.specialsHandled != null)
@@ -234,7 +229,6 @@ public final class SpecialAbilities
         return def != null;
     }
 
-    /** Right click while morphed (sent by the client). */
     public static void use(ServerPlayer player)
     {
         if(Morph.configServer != null && !Morph.configServer.specialAbilities)

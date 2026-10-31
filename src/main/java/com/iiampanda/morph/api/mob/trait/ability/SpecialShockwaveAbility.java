@@ -12,13 +12,12 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
-/** A roar / pulse around you that damages, knocks back and/or applies an effect to everything nearby. */
 public class SpecialShockwaveAbility extends SpecialAbility<SpecialShockwaveAbility>
 {
     public Double radius;
     public Double damage;
     public Double knockback;
-    /** Optional effect id (minecraft:mining_fatigue ...). */
+
     public String effect;
     public Integer effectDuration;
     public Integer effectAmplifier;

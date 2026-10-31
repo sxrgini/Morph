@@ -25,9 +25,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
-/**
- * Morph by iiAmPanda, a port of the original Morph mod by iChun. Loader independent: the Fabric / NeoForge modules call into this class.
- */
+
 public class Morph
 {
     public static final String MOD_ID = "morph";
@@ -37,10 +35,9 @@ public class Morph
     public static ConfigServer configServer;
     public static MorphMode mode;
     public static final ResourceLocation SOUND_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "morph");
-    /** Created here, registered by the loader module. */
+
     public static final SoundEvent MORPH_SOUND = SoundEvent.createVariableRangeEvent(SOUND_ID);
 
-    /** Called once by the loader module after {@link com.iiampanda.morph.platform.Platform#set}. */
     public static void init(String loaderName)
     {
         configServer = ConfigServer.load();
@@ -65,7 +62,6 @@ public class Morph
         LOGGER.info("Morph ({}) by iiAmPanda (original mod by iChun) loaded in {} mode", loaderName, mode.name());
     }
 
-    //---- events, called by the loader modules ----
     public static void onServerStarted(MinecraftServer server)
     {
         if(configServer.scanAllMobsOnStartup && configServer.generateMobConfigFiles)
@@ -86,10 +82,10 @@ public class Morph
 
     public static void onJoin(ServerPlayer player)
     {
+        MorphRules.forget(player);
         MorphManager.onJoin(player);
     }
 
-    /** @param alive true when the player came back from the End instead of dying */
     public static void onRespawn(ServerPlayer oldPlayer, ServerPlayer newPlayer, boolean alive)
     {
         MorphManager.onRespawn(oldPlayer, newPlayer, alive);
@@ -108,7 +104,6 @@ public class Morph
         }
     }
 
-    /** Any death: credits the kill to whoever gets the kill credit (direct attacker, projectile owner, or last player to hurt it). */
     public static void onLivingDeath(LivingEntity killed, net.minecraft.world.damagesource.DamageSource source)
     {
         if(killed.level().isClientSide() || killed instanceof net.minecraft.server.level.ServerPlayer)
@@ -155,6 +150,7 @@ public class Morph
     public static void onServerTick(MinecraftServer server)
     {
         com.iiampanda.morph.common.morph.BucketHold.tick(server);
+        MorphRules.tick(server);
         if(server.getTickCount() % 10 == 0)
         {
             MorphManager.tickDirtyBiomass(server);

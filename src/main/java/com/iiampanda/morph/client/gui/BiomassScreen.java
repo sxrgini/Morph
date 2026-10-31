@@ -18,7 +18,6 @@ import net.minecraft.resources.Identifier;
 
 import java.util.*;
 
-/** The Biomass menu: Upgrades, Abilities and Morphs. */
 public class BiomassScreen extends Screen
 {
     public enum Tab { UPGRADES, ABILITIES, MORPHS }
@@ -85,7 +84,6 @@ public class BiomassScreen extends Screen
         layoutTree();
     }
 
-    //---------------- upgrade tree ----------------
     private void layoutTree()
     {
         nodePos.clear();
@@ -130,7 +128,7 @@ public class BiomassScreen extends Screen
     private void renderTree(GuiGraphicsExtractor g, int mx, int my)
     {
         g.enableScissor(10, 58, width - 10, height - 34);
-        // links
+
         for(BiomassUpgradeInfo info : Upgrades.TREE.values())
         {
             int[] p = nodePos.get(info.id);
@@ -200,7 +198,6 @@ public class BiomassScreen extends Screen
         return d == Math.rint(d) ? Long.toString((long)d) : String.format(Locale.ROOT, "%.2f", d);
     }
 
-    //---------------- abilities ----------------
     private void renderAbilities(GuiGraphicsExtractor g, int mx, int my)
     {
         abilityRows.clear();
@@ -270,14 +267,12 @@ public class BiomassScreen extends Screen
         }
     }
 
-    //---------------- screen ----------------
     @Override
     public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float dt)
     {
-        super.extractRenderState(g, mx, my, dt); // draws blurred background + widgets once
+        super.extractRenderState(g, mx, my, dt);
         g.centeredText(font, title, width / 2, 8, 0xFFFFFFFF);
 
-        // biomass bar
         double max = Upgrades.maxBiomass(ClientState.DATA);
         double cur = ClientState.DATA.biomass;
         int bw = 180, bx = width / 2 - bw / 2;

@@ -25,11 +25,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Finds a modded mob's real arm by reading the mods' own resources: the Bedrock style "geo" model files used by GeckoLib
- * and similar libraries, and the entity textures. Everything loaded (mod jars, resource packs) is searched through the
- * game's resource manager, so no per-mod support is needed.
- */
 public final class MorphGeo
 {
     public record GeoArm(ModelPart part, Identifier texture) {}
@@ -40,7 +35,6 @@ public final class MorphGeo
 
     private MorphGeo() {}
 
-    /** Called when resources reload. */
     public static void clear()
     {
         CACHE.clear();
@@ -48,7 +42,6 @@ public final class MorphGeo
         TEX_INDEX.clear();
     }
 
-    /** @return null when the mob has no geo model with an arm in any loaded mod */
     public static GeoArm find(Entity entity, Object renderer, boolean right)
     {
         String key = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()) + speciesOf(entity) + (right ? "#R" : "#L");
@@ -74,7 +67,6 @@ public final class MorphGeo
         return cached.orElse(null);
     }
 
-    /** Mods with one entity type for many creatures (Cobblemon's pokemon) name the model after what the entity is: its species. */
     private static String speciesOf(Entity entity)
     {
         try
@@ -107,7 +99,6 @@ public final class MorphGeo
         return norm(dot < 0 ? p : p.substring(0, dot));
     }
 
-    /** 0 = same name, larger = looser; -1 = unrelated. */
     private static int score(String want, String have)
     {
         if(have.equals(want))
@@ -300,7 +291,6 @@ public final class MorphGeo
         return (s.contains(side) && s.contains("arm")) || s.equals("arm" + c) || s.equals(c + "arm");
     }
 
-    /** The bone a hand info (assets/&lt;mod&gt;/morph/hand, forEntity) names for this mob, or null. */
     private static String handBone(Identifier id, boolean right)
     {
         HandInfos.Info info = HandInfos.lookup(id.toString(), null);
@@ -320,7 +310,6 @@ public final class MorphGeo
         return null;
     }
 
-    /** The best limb-like bone on one side of a model with no arm bone (Bedrock pivots are absolute, y up, the front is -z). */
     private static JsonObject pickLimb(Map<String, JsonObject> byName, boolean right)
     {
         for(boolean strict : new boolean[]{ true, false })
@@ -427,11 +416,11 @@ public final class MorphGeo
             JsonObject b = e.getAsJsonObject();
             byName.put(b.get("name").getAsString(), b);
         }
-        // the top most bone that looks like this arm
+
         JsonObject root = null;
         if(bone != null)
         {
-            // a hand info named the bone
+
             for(JsonObject b : byName.values())
             {
                 if(norm(b.get("name").getAsString()).equals(norm(bone)))
@@ -456,7 +445,7 @@ public final class MorphGeo
         }
         if(root == null)
         {
-            root = pickLimb(byName, right); // no arm: the front limb, wing or fin on that side
+            root = pickLimb(byName, right);
         }
         if(root == null)
         {
@@ -469,7 +458,7 @@ public final class MorphGeo
         int count = 0;
         for(JsonObject b : byName.values())
         {
-            // the arm bone itself and everything parented under it (forearm, hand...)
+
             boolean inside = false;
             for(JsonObject c = b; c != null; )
             {
@@ -524,7 +513,7 @@ public final class MorphGeo
         {
             return null;
         }
-        // an arm sized to fit in front of the camera, top edge at the shoulder
+
         float h = Math.max(0.01F, maxY - minY);
         float w = Math.max(0.01F, Math.max(maxX - minX, maxZ - minZ));
         float scale = Math.min(1F, Math.min(14F / h, 6F / w));

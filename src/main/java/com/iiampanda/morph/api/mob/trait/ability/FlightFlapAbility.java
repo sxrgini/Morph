@@ -2,7 +2,6 @@ package com.iiampanda.morph.api.mob.trait.ability;
 
 import net.minecraft.world.phys.Vec3;
 
-/** Bat/bee style flight: tap jump in mid-air to flap upwards. */
 public class FlightFlapAbility extends Ability<FlightFlapAbility>
 {
     public Boolean resetVerticalVelocity;
@@ -50,7 +49,6 @@ public class FlightFlapAbility extends Ability<FlightFlapAbility>
         keyHeld = pressed;
     }
 
-    /** Used by the server to avoid kicking flapping players for "flying". */
     public boolean isActive()
     {
         return enabled;

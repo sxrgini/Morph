@@ -30,10 +30,6 @@ import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
 
-/**
- * Looks at a live instance of any mob (vanilla or modded) and works out which traits and abilities it should grant.
- * The result is written to the mob's config file so players can edit it afterwards.
- */
 public final class MobProfiler
 {
     private static final String[] VARIANT_HINTS = {"variant", "type", "colo", "skin", "texture", "size", "kind", "pattern", "model", "style", "breed", "species", "form", "coat", "marking"};
@@ -57,7 +53,6 @@ public final class MobProfiler
         ArrayList<Trait<?>> traits = new ArrayList<>();
         Mob mob = e instanceof Mob m ? m : null;
 
-        // --- flying ---
         boolean flier = (e instanceof net.minecraft.world.entity.Mob fm && fm.getMoveControl() instanceof net.minecraft.world.entity.ai.control.FlyingMoveControl) || e instanceof EnderDragon || e instanceof Vex || e instanceof Blaze
                 || (mob != null && (mob.getMoveControl() instanceof FlyingMoveControl || mob.getNavigation() instanceof FlyingPathNavigation
                 || nameHas(mob.getMoveControl(), "flight", "flying", "ethereal") || nameHas(mob.getNavigation(), "flying", "flight")))
@@ -85,13 +80,11 @@ public final class MobProfiler
             }
         }
 
-        // --- wall climbing ---
         if(e instanceof Spider || (mob != null && mob.getNavigation() instanceof WallClimberNavigation))
         {
             traits.add(new ClimbAbility());
         }
 
-        // --- water ---
         boolean nautilus = e instanceof net.minecraft.world.entity.animal.nautilus.AbstractNautilus;
         boolean modded = !"minecraft".equals(id.getNamespace());
         net.minecraft.world.entity.MobCategory cat = e.getType().getCategory();
@@ -135,7 +128,6 @@ public final class MobProfiler
             traits.add(new MoistSkinTrait());
         }
 
-        // --- immunities ---
         if(e.fireImmune())
         {
             traits.add(new FireImmunityTrait());
@@ -158,7 +150,6 @@ public final class MobProfiler
             traits.add(new WaterSensitivityTrait());
         }
 
-        // --- mob nature ---
         if(e instanceof Enemy)
         {
             traits.add(new HostileTrait());
@@ -176,7 +167,6 @@ public final class MobProfiler
             traits.add(new SunburnTrait());
         }
 
-        // --- movement attributes ---
         AttributeInstance step = e.getAttribute(Attributes.STEP_HEIGHT);
         if(step != null && step.getBaseValue() > 0.61D)
         {
@@ -198,11 +188,10 @@ public final class MobProfiler
             traits.add(sf);
         }
 
-        // --- newer abilities ---
         net.minecraft.world.entity.EntityType<?> et = e.getType();
         if(BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath().equals("armadillo"))
         {
-            // armour plating: shrugs off fire and explosions
+
             if(traits.stream().noneMatch(tr -> tr instanceof FireImmunityTrait))
             {
                 traits.add(new FireImmunityTrait());
@@ -260,7 +249,6 @@ public final class MobProfiler
             traits.add(new SwallowBlocksTrait());
         }
 
-        // --- riding ---
         if(e instanceof net.minecraft.world.entity.animal.happyghast.HappyGhast)
         {
             RideableAbility ride = new RideableAbility();
@@ -277,7 +265,6 @@ public final class MobProfiler
             traits.add(ride);
         }
 
-        // --- boss / mini boss special move ---
         SpecialAbility<?> special = SpecialAbilities.defaultFor(e);
         if(special != null)
         {
@@ -294,7 +281,6 @@ public final class MobProfiler
         return isSaddleable(e) || e instanceof net.minecraft.world.entity.animal.happyghast.HappyGhast;
     }
 
-    /** Abilities that newer builds know about, added to a profile written by an older one. */
     private static boolean addMissing(MobProfile existing, LivingEntity sample)
     {
         boolean changed = addSpecialDefaults(existing, sample);
@@ -328,7 +314,7 @@ public final class MobProfiler
             changed |= addTraits(existing, fresh.traits);
             if(sample instanceof Dolphin)
             {
-                // dolphins now behave like fish: breathe water, see in it, suffocate on land
+
                 changed |= existing.traits.removeIf(tr -> tr instanceof MoistSkinTrait);
                 for(Trait<?> t : existing.traits)
                 {
@@ -342,7 +328,7 @@ public final class MobProfiler
             }
             if(sample instanceof net.minecraft.world.entity.animal.nautilus.AbstractNautilus)
             {
-                // older builds saved nautilus water breathing without the "suffocates on land" part
+
                 for(Trait<?> t : existing.traits)
                 {
                     if(t instanceof WaterBreatherTrait wb && (wb.suffocatesOnLand == null || !wb.suffocatesOnLand || wb.nightVisionInWater == null))
@@ -368,12 +354,11 @@ public final class MobProfiler
         return changed;
     }
 
-    /** Brings a profile written by an older build up to date (once; edit the file afterwards and Morph leaves it alone). @return true if the file needs saving */
     public static boolean migrate(MobProfile p, LivingEntity sample)
     {
         var id = BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType());
         boolean changed = false;
-        // profiles written by older builds may call mobs rideable that are not (e.g. the Warden)
+
         if(!isRideable(sample) && (p.autoDetected != null && p.autoDetected || "minecraft".equals(id.getNamespace())))
         {
             changed |= p.traits.removeIf(tr -> tr instanceof RideableAbility);
@@ -385,10 +370,10 @@ public final class MobProfiler
         }
         if(!"minecraft".equals(id.getNamespace()) && p.autoDetected != null && p.autoDetected)
         {
-            // profiles Morph wrote for modded mobs before it could read their flight / swimming / breathing logic
+
             if(p.defaultsVersion == null || p.defaultsVersion < 13)
             {
-                // older builds read hit immunities wrongly (modded mobs came out immune to everything); read them again
+
                 changed |= p.traits.removeIf(tr -> tr instanceof ExplosiveImmunityTrait || tr instanceof MagicImmunityTrait || tr instanceof DamageSourceImmunityTrait || tr instanceof FireImmunityTrait);
             }
             changed |= addTraits(p, detect(sample).traits);
@@ -417,7 +402,6 @@ public final class MobProfiler
         return changed;
     }
 
-    /** Newer vanilla mobs and special moves added after a profile was first written. */
     private static boolean addSpecialDefaults(MobProfile existing, LivingEntity sample)
     {
         var id = BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType());
@@ -458,14 +442,12 @@ public final class MobProfiler
         return Math.round(d * 100D) / 100D;
     }
 
-
     private static final java.util.List<java.util.function.Function<net.minecraft.world.damagesource.DamageSources, DamageSource>> PROBES = java.util.List.of(
             ds -> ds.fall(), ds -> ds.drown(), ds -> ds.cactus(), ds -> ds.lightningBolt(), ds -> ds.hotFloor(), ds -> ds.sweetBerryBush(), ds -> ds.inWall(),
             ds -> ds.dragonBreath(), ds -> ds.stalagmite(), ds -> ds.freeze(), ds -> ds.starve(), ds -> ds.flyIntoWall(), ds -> ds.wither());
 
     private static java.lang.reflect.Field invulnerableField;
 
-    /** A new, unspawned copy of this kind of mob, or null when one cannot be made. Every test hit gets its own, so a mod's own hit cooldowns cannot carry over. */
     private static LivingEntity fresh(LivingEntity e)
     {
         try
@@ -483,7 +465,6 @@ public final class MobProfiler
         }
     }
 
-    /** True if a small hit of this kind does nothing to a fresh copy of the mob (the mob itself is never touched). */
     private static boolean ignores(LivingEntity proto, java.util.function.Function<net.minecraft.world.damagesource.DamageSources, DamageSource> probe)
     {
         LivingEntity c = fresh(proto);
@@ -502,7 +483,6 @@ public final class MobProfiler
         }
     }
 
-    /** A plain hit lands on a fresh copy, so test hits of other kinds can be believed when they do nothing. */
     private static boolean readable(LivingEntity proto)
     {
         return !ignores(proto, ds -> ds.generic()) && fresh(proto) != null;
@@ -535,7 +515,6 @@ public final class MobProfiler
 
     private static java.lang.reflect.Field lastHurtField;
 
-    /** True if a small hit of this kind does nothing. Tried on the spare copy, so it also catches mods that ignore damage in their own code. */
     private static boolean shrugsOff(LivingEntity e, DamageSource source)
     {
         try
@@ -559,7 +538,6 @@ public final class MobProfiler
         }
     }
 
-    /** Reads what a mob is immune to: damage types, fire, status effects. Works on any mob, whatever mod it comes from. */
     private static void probeResistances(LivingEntity e, java.util.List<Trait<?>> traits)
     {
         if(!(e.level() instanceof net.minecraft.server.level.ServerLevel))
@@ -570,7 +548,7 @@ public final class MobProfiler
         e.setSilent(true);
         try
         {
-            // a control hit: a mob that shrugs that off cannot be read this way (invulnerable or not simulated)
+
             if(readable(e))
             {
                 java.util.List<DamageSourceImmunityTrait> found = new java.util.ArrayList<>();
@@ -593,7 +571,7 @@ public final class MobProfiler
                         found.add(imm);
                     }
                 }
-                // a mob that ignores most of everything is one the hits cannot be read on (custom hit cooldowns, phases...), not a mob that is immune to it all
+
                 if(found.size() <= 5)
                 {
                     traits.addAll(found);
@@ -621,7 +599,7 @@ public final class MobProfiler
             }
             catch(Throwable ignored) {}
         }
-        // status effects: every harmful one, including the ones other mods add
+
         java.util.List<String> blocked = new java.util.ArrayList<>();
         int harmful = 0;
         for(net.minecraft.world.effect.MobEffect eff : BuiltInRegistries.MOB_EFFECT)
@@ -657,7 +635,6 @@ public final class MobProfiler
         }
     }
 
-    /** Mods write their own "burns in daylight" logic, usually in a method with sun / daylight in its name. */
     private static boolean burnsInSunlight(LivingEntity e)
     {
         for(Class<?> c = e.getClass(); c != null && c != Mob.class && c != LivingEntity.class && c != Object.class; c = c.getSuperclass())
@@ -674,7 +651,6 @@ public final class MobProfiler
         return false;
     }
 
-    /** True only if a hit of that kind does nothing to a mob that does take plain damage (no claim when the mob cannot be read this way). */
     private static boolean immuneTo(LivingEntity e, DamageSource source)
     {
         return readable(e) && ignores(e, ds -> source);
@@ -692,7 +668,6 @@ public final class MobProfiler
         }
     }
 
-    /** Variant keys for mobs we have no hand-written data for: any primitive/string NBT key that smells like a variant. */
     private static java.util.List<String> detectVariantKeys(LivingEntity e)
     {
         Set<String> keys = new LinkedHashSet<>();
@@ -725,7 +700,6 @@ public final class MobProfiler
         return new ArrayList<>(keys);
     }
 
-    // ---- helpers for mods that don't use the vanilla movement / breathing hooks (Alex's Mobs, Naturalist, ...) ----
     private static boolean nameHas(Object o, String... parts)
     {
         if(o == null)
@@ -743,7 +717,6 @@ public final class MobProfiler
         return false;
     }
 
-    /** Mods can't override the final vanilla canBreatheUnderwater, so they add their own (Alex's Mobs: canBreatheUnderwaterAM). */
     private static boolean modBreathesUnderwater(LivingEntity e)
     {
         try
@@ -760,7 +733,6 @@ public final class MobProfiler
         return false;
     }
 
-    /** Body segments / tails / parts of multi-part mobs are LivingEntities too, but nobody should morph into one. */
     private static boolean isPart(LivingEntity e)
     {
         if("minecraft".equals(BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getNamespace()))

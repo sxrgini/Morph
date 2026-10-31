@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PistonMovingBlockEntity.class)
 public abstract class PistonMovingBlockEntityMixin
 {
-    /** A block a piston pushes into a morphed Sulfur Cube goes inside it instead of shoving it out of the way. */
+
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private static void morph$swallow(Level level, BlockPos pos, BlockState state, PistonMovingBlockEntity entity, CallbackInfo ci)
     {

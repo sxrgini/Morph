@@ -22,7 +22,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-/** Fabric entry point. All of the behaviour lives in the shared {@link Morph} class. */
 public class MorphFabric implements ModInitializer
 {
     @Override
@@ -60,6 +59,9 @@ public class MorphFabric implements ModInitializer
         {
             return Morph.onUseItem(player, hand) ? net.minecraft.world.InteractionResult.SUCCESS : net.minecraft.world.InteractionResult.PASS;
         });
+        net.fabricmc.fabric.api.event.player.UseBlockCallback.EVENT.register((player, level, hand, hit) -> com.iiampanda.morph.common.MorphRules.interactAllowed(player) ? net.minecraft.world.InteractionResult.PASS : net.minecraft.world.InteractionResult.FAIL);
+        net.fabricmc.fabric.api.event.player.AttackBlockCallback.EVENT.register((player, level, hand, pos, direction) -> com.iiampanda.morph.common.MorphRules.interactAllowed(player) ? net.minecraft.world.InteractionResult.PASS : net.minecraft.world.InteractionResult.FAIL);
+        net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.BEFORE.register((level, player, pos, state, blockEntity) -> com.iiampanda.morph.common.MorphRules.interactAllowed(player));
         ServerTickEvents.END_SERVER_TICK.register(Morph::onServerTick);
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> Morph.registerCommands(dispatcher));
     }

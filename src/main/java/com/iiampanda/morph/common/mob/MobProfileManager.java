@@ -22,9 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-/**
- * Owns config/morph/mobs/&lt;namespace&gt;/&lt;mob&gt;.json. Bundled defaults are copied in once, modded mobs get a file the first time they are met.
- */
 public final class MobProfileManager
 {
     private static final Map<Identifier, MobProfile> PROFILES = new HashMap<>();
@@ -42,7 +39,6 @@ public final class MobProfileManager
         return dir;
     }
 
-    /** Modded mobs whose client side textures include glow / emissive layers (reported by an operator's client), saved in config/morph/emissive_mobs.txt */
     private static final java.util.Set<String> EMISSIVE = new java.util.TreeSet<>();
 
     private static Path emissiveFile()
@@ -55,7 +51,6 @@ public final class MobProfileManager
         return EMISSIVE.contains(id.toString());
     }
 
-    /** Remembers the mobs and gives the Emissive trait to their profiles (files Morph generated itself; hand written ones are left alone). */
     public static synchronized void markEmissive(java.util.List<String> ids)
     {
         boolean changed = false;
@@ -115,7 +110,6 @@ public final class MobProfileManager
         reload();
     }
 
-    /** Copies bundled defaults (and the bundled biomass tree) to the config folder, never overwriting anything. */
     private static void copyDefaults() throws IOException
     {
         try(InputStream in = MobProfileManager.class.getResourceAsStream("/morph_defaults/index.txt"))
@@ -215,7 +209,7 @@ public final class MobProfileManager
                     boolean dirty = SpecialAbilities.upgrade(profile, SpecialAbilities.defaultForVanilla(id));
                     for(com.iiampanda.morph.api.mob.trait.Trait<?> t : profile.traits)
                     {
-                        // fish that suffocate on land also see in the water (added in 1.2.0); set "nightVisionInWater": false to opt out
+
                         if(t instanceof com.iiampanda.morph.api.mob.trait.WaterBreatherTrait wb && wb.suffocatesOnLand != null && wb.suffocatesOnLand && wb.nightVisionInWater == null)
                         {
                             wb.nightVisionInWater = true;
@@ -241,9 +235,6 @@ public final class MobProfileManager
         return PROFILES.get(BuiltInRegistries.ENTITY_TYPE.getKey(type));
     }
 
-    /**
-     * The profile for this mob. If there is none yet, and auto detection is on, the mob is inspected and its abilities are written to disk.
-     */
     public static synchronized MobProfile getOrCreate(LivingEntity sample)
     {
         Identifier id = BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType());
@@ -296,7 +287,6 @@ public final class MobProfileManager
         return profile;
     }
 
-    /** Rewrites a profile's file (used when Morph adds a default special move to an existing file). */
     private static void save(Identifier id, MobProfile profile)
     {
         if(Morph.configServer != null && !Morph.configServer.generateMobConfigFiles)
@@ -314,7 +304,6 @@ public final class MobProfileManager
         }
     }
 
-    /** Pre-generates a profile for every registered living entity type that has none (used by /morph scan). */
     public static int scanAll(net.minecraft.world.level.Level level)
     {
         int count = 0;

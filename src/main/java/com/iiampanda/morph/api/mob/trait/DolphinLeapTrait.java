@@ -5,12 +5,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.phys.Vec3;
 
-/** Sprint up to the surface and you leap out of the water, like a dolphin. */
 public class DolphinLeapTrait extends Trait<DolphinLeapTrait>
 {
-    public Double upward;     // vertical launch speed, default 0.9
-    public Double forward;    // speed added in the look direction, default 0.6
-    public Integer cooldown;  // ticks before the next leap, default 20
+    public Double upward;
+    public Double forward;
+    public Integer cooldown;
 
     private transient boolean wasUnder;
     private transient long lastLeap;
@@ -27,7 +26,7 @@ public class DolphinLeapTrait extends Trait<DolphinLeapTrait>
         {
             return;
         }
-        // head just broke the surface while sprinting upwards
+
         if(was && !under && player.isInWater() && player.isSprinting() && player.getDeltaMovement().y > 0.02D)
         {
             long now = player.level().getGameTime();

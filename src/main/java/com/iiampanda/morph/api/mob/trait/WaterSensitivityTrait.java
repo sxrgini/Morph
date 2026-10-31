@@ -1,6 +1,5 @@
 package com.iiampanda.morph.api.mob.trait;
 
-/** Hurt by water and rain. */
 public class WaterSensitivityTrait extends Trait<WaterSensitivityTrait>
 {
     public WaterSensitivityTrait() { type = "traitWaterSensitivity"; }

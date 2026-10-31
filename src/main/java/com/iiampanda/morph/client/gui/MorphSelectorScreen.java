@@ -57,7 +57,7 @@ public class MorphSelectorScreen extends Screen
     @Override
     public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float dt)
     {
-        super.extractRenderState(g, mx, my, dt); // draws blurred background + widgets once
+        super.extractRenderState(g, mx, my, dt);
         g.centeredText(font, title, width / 2, 6, 0xFFFFFFFF);
         grid.render(g, font, mx, my, dt);
         if(!ClientState.canMorph)

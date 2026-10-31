@@ -66,7 +66,7 @@ public final class HudOverlay
                 Identifier icon = a.texIcon();
                 if(icon != null)
                 {
-                    boolean eff18 = icon.getNamespace().equals("minecraft"); // sz18
+                    boolean eff18 = icon.getNamespace().equals("minecraft");
                     int sz = eff18 ? 18 : 16;
                     g.blit(net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED, icon, eff18 ? x - 1 : x, eff18 ? y - 1 : y, 0F, 0F, sz, sz, sz, sz);
                 }

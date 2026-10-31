@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.phys.Vec3;
 
-/** The Evoker's fangs: a line of fangs bursting out of the ground in front of you. */
 public class SpecialFangsAbility extends SpecialAbility<SpecialFangsAbility>
 {
     public Integer count;

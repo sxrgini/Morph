@@ -29,6 +29,7 @@ public class MorphFabricClient implements ClientModInitializer
         register(Packets.SyncSit.TYPE);
         register(Packets.SyncBucketed.TYPE);
         register(Packets.SyncSheared.TYPE);
+        register(Packets.SyncRules.TYPE);
         register(Packets.SyncSwallowed.TYPE);
 
         ClientTickEvents.END_CLIENT_TICK.register(MorphClient::tick);

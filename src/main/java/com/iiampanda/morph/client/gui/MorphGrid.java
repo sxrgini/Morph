@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
 
-/** Scrollable grid of the morphs a player owns. Shared by the selector and the Biomass menu. */
 public class MorphGrid
 {
     public static final int TILE_W = 48;
@@ -45,7 +44,6 @@ public class MorphGrid
         this.h = h;
     }
 
-    /** All the forms of one mob type, shown as a single tile. */
     public static final class Group
     {
         public final net.minecraft.resources.Identifier type;
@@ -74,7 +72,6 @@ public class MorphGrid
             return t == null ? Component.literal(type.toString()) : t.getDescription();
         }
 
-        /** The form drawn on the tile: your current one if it is in here, otherwise the first adult form. */
         MorphVariant representative(MorphVariant current)
         {
             if(current != null && variants.contains(current))
@@ -93,7 +90,7 @@ public class MorphGrid
     }
 
     private Group popup;
-    private int anchorX, anchorY, anchorW; // the tile the popup was opened from
+    private int anchorX, anchorY, anchorW;
     private int popScroll;
 
     private int columns()
@@ -153,7 +150,6 @@ public class MorphGrid
         return idx >= 0 && idx < entries.size() ? entries.get(idx) : null;
     }
 
-    //---------------- popup geometry ----------------
     private int popCols()
     {
         return Math.max(1, Math.min(popup.variants.size(), 6));
@@ -209,7 +205,6 @@ public class MorphGrid
         return mx >= r[0] && my >= r[1] && mx < r[0] + r[2] && my < r[1] + r[3];
     }
 
-    /** @return true if a popup was open and has been closed (for Escape handling) */
     public boolean closePopup()
     {
         if(popup != null)
@@ -220,19 +215,16 @@ public class MorphGrid
         return false;
     }
 
-    //---------------- rendering ----------------
     private static final int STAR = 11;
     private static final net.minecraft.resources.Identifier STAR_OFF = net.minecraft.resources.Identifier.fromNamespaceAndPath("morph", "textures/gui/star.png");
     private static final net.minecraft.resources.Identifier STAR_ON = net.minecraft.resources.Identifier.fromNamespaceAndPath("morph", "textures/gui/star_filled.png");
 
-    /** True if the point is on the favourite star in the top right corner of the tile at (tx, ty). */
     private static boolean overStar(int tx, int ty, int mx, int my)
     {
         int sx = tx + TILE_W - STAR - 4, sy = ty + 4;
         return mx >= sx - 1 && mx < sx + STAR + 1 && my >= sy - 1 && my < sy + STAR + 1;
     }
 
-    /** Stars a mob type (all of its forms) when none is a favourite, takes every favourite form off otherwise. */
     private void toggleGroup(Group gr)
     {
         boolean any = gr.anyFavourite();
@@ -280,7 +272,7 @@ public class MorphGrid
         List<Group> entries = groups();
         if(popup != null)
         {
-            // the group may have changed (forgotten morphs, filter)
+
             Group fresh = null;
             for(Group gr : entries)
             {
@@ -388,7 +380,7 @@ public class MorphGrid
 
     private void drawEntity(GuiGraphicsExtractor g, LivingEntity e, int cx, int centerY, boolean spin, Minecraft mc, float dt)
     {
-        // models (panda body, squid tentacles...) stick out past their hitbox, so leave some margin inside the tile
+
         float size = Math.max(e.getBbHeight(), e.getBbWidth()) * 1.3F;
         float scale = Math.max(3F, Math.min(28F, 32F / Math.max(0.3F, size)));
         float angle = spin ? (mc.level.getGameTime() + dt) * 4F : 20F;
@@ -421,7 +413,7 @@ public class MorphGrid
         }
         catch(Throwable t)
         {
-            // some modded renderers don't like being drawn in menus; skip them
+
             if(LOGGED_GUI_FAILURES.add(e.getType().toString()))
             {
                 com.iiampanda.morph.common.Morph.LOGGER.warn("Could not draw {} in the morph menu", e.getType(), t);
@@ -464,7 +456,7 @@ public class MorphGrid
                 }
                 return true;
             }
-            popup = null; // clicked elsewhere: close, and let the click act on whatever is underneath
+            popup = null;
         }
         List<Group> entries = groups();
         Group gr = hover(mx, my, entries);
@@ -498,7 +490,7 @@ public class MorphGrid
             }
             return true;
         }
-        // several forms: open the variant picker next to the tile
+
         int idx = entries.indexOf(gr);
         anchorX = gridLeft() + (idx % columns()) * TILE_W;
         anchorY = y + (idx / columns() - scrollRows) * TILE_H;

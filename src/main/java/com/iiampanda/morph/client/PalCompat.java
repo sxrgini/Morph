@@ -2,10 +2,6 @@ package com.iiampanda.morph.client;
 
 import java.lang.reflect.Method;
 
-/**
- * Player Animation Library (used by Better Combat) draws the player's own model in first person to show its swing animations.
- * When that happens the morph must not be drawn, so the animation's arms and weapon show instead of the mob. Reflection, because it is optional.
- */
 public final class PalCompat
 {
     private static boolean resolved;
@@ -29,7 +25,6 @@ public final class PalCompat
         catch(Throwable ignored) {}
     }
 
-    /** @param renderState the render state (26.x) or null (1.21.1, where the library keeps a global flag) */
     public static boolean isFirstPersonPass(Object renderState)
     {
         if(!resolved)
@@ -55,7 +50,6 @@ public final class PalCompat
     private static Method bcLayers;
     private static boolean bcResolved;
 
-    /** Better Combat plays its attack as a Player Animation Library animation and never makes the player swing, so this looks for that animation. */
     public static boolean betterCombatAttacking(Object player)
     {
         try

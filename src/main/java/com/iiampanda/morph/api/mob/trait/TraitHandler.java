@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Type;
 import java.util.*;
 
-/** Registry of trait types plus the Gson (de)serialiser used for mob profiles and for syncing traits to clients. */
 public final class TraitHandler
 {
     private static final Logger LOGGER = LoggerFactory.getLogger("Morph/Traits");
@@ -63,7 +62,6 @@ public final class TraitHandler
 
     private TraitHandler() {}
 
-    /** Other mods can register their own traits here. */
     public static void register(String type, Class<? extends Trait> clz)
     {
         if(TRAITS.containsKey(type))

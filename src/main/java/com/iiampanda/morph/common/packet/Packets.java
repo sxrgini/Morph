@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/** All of Morph's network payloads. */
 public final class Packets
 {
     private Packets() {}
@@ -33,8 +32,6 @@ public final class Packets
         return buf.readBoolean() ? Optional.ofNullable((CompoundTag)buf.readNbt()) : Optional.empty();
     }
 
-    //================ SERVER -> CLIENT ================
-    /** A player's morph state changed (or we started tracking them). */
     public record SyncMorph(UUID player, Optional<CompoundTag> variant, String traitsJson, int duration, boolean animate, List<String> enabledAbilities) implements CustomPacketPayload
     {
         public static final Type<SyncMorph> TYPE = typeOf("sync_morph");
@@ -66,7 +63,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** The receiving player's own morph list, biomass and upgrades, plus what the mode lets them do. */
     public record SyncData(CompoundTag data, String upgradesJson, String mode, boolean canSelect, boolean canMorph, boolean biomassUnlocked, boolean abilitiesUnlocked) implements CustomPacketPayload
     {
         public static final Type<SyncData> TYPE = typeOf("sync_data");
@@ -92,7 +88,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** Plays the "absorbing" effect from a dead mob to the player. */
     public record Acquire(double x, double y, double z, float width, float height, boolean morph, boolean biomass) implements CustomPacketPayload
     {
         public static final Type<Acquire> TYPE = typeOf("acquire");
@@ -110,8 +105,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    //================ CLIENT -> SERVER ================
-    /** Empty = demorph. */
     public record RequestMorph(Optional<CompoundTag> variant) implements CustomPacketPayload
     {
         public static final Type<RequestMorph> TYPE = typeOf("request_morph");
@@ -164,7 +157,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** The client found glow / emissive textures for these modded mobs (see EmissiveScanner). Only operators (or the singleplayer owner) are listened to. */
     public record ReportEmissive(List<String> entities) implements CustomPacketPayload
     {
         public static final Type<ReportEmissive> TYPE = typeOf("report_emissive");
@@ -186,7 +178,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** The player asks to sit down or stand up (only a morph that can sit does anything). */
     public record SetSit(boolean sitting) implements CustomPacketPayload
     {
         public static final Type<SetSit> TYPE = typeOf("set_sit");
@@ -195,7 +186,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** A morphed player sat down or stood up. */
     public record SyncSit(UUID player, boolean sitting) implements CustomPacketPayload
     {
         public static final Type<SyncSit> TYPE = typeOf("sync_sit");
@@ -232,6 +222,18 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
+    public record SyncRules(boolean inventory, boolean interact) implements CustomPacketPayload
+    {
+        public static final Type<SyncRules> TYPE = typeOf("sync_rules");
+        public static final StreamCodec<RegistryFriendlyByteBuf, SyncRules> CODEC = CustomPacketPayload.codec((v, buf) ->
+        {
+            buf.writeBoolean(v.inventory);
+            buf.writeBoolean(v.interact);
+        }, buf -> new SyncRules(buf.readBoolean(), buf.readBoolean()));
+
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
     public record SyncSwallowed(UUID player, String item) implements CustomPacketPayload
     {
         public static final Type<SyncSwallowed> TYPE = typeOf("sync_swallowed");
@@ -244,7 +246,6 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    /** The loader module implements this to register the payload types (and, for client bound ones, their handlers). */
     public interface Registrar
     {
         <T extends CustomPacketPayload> void s2c(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec);
@@ -252,7 +253,6 @@ public final class Packets
         <T extends CustomPacketPayload> void c2s(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> codec);
     }
 
-    /** Implemented on the client to receive the S2C payloads; the loader module forwards to it. */
     public interface ClientHandler
     {
         void handle(CustomPacketPayload payload);
@@ -277,6 +277,7 @@ public final class Packets
         r.s2c(SyncSit.TYPE, SyncSit.CODEC);
         r.s2c(SyncBucketed.TYPE, SyncBucketed.CODEC);
         r.s2c(SyncSheared.TYPE, SyncSheared.CODEC);
+        r.s2c(SyncRules.TYPE, SyncRules.CODEC);
         r.s2c(SyncSwallowed.TYPE, SyncSwallowed.CODEC);
     }
 }

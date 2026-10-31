@@ -8,15 +8,11 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 
-/**
- * A "special move" for bosses and mini bosses, used by right clicking while morphed into the mob.
- * Mod makers / modpack creators can add any of the special ability types to a mob's JSON file and tune the values.
- */
 public abstract class SpecialAbility<T extends SpecialAbility> extends Ability<T>
 {
-    /** Ticks before it can be used again. */
+
     public Integer cooldown;
-    /** Optional sound id played when it is used. */
+
     public String sound;
 
     public transient long readyAt;
@@ -34,7 +30,6 @@ public abstract class SpecialAbility<T extends SpecialAbility> extends Ability<T
         return cooldown == null ? defaultCooldown() : Math.max(0, cooldown);
     }
 
-    /** @return true if the move was used */
     public final boolean tryActivate(ServerPlayer sp)
     {
         if(!enabled)
@@ -64,7 +59,6 @@ public abstract class SpecialAbility<T extends SpecialAbility> extends Ability<T
 
     protected abstract boolean activate(ServerPlayer player);
 
-    /** "namespace:sound", "event:1016" (a vanilla level event, e.g. the ghast's warn / shoot sounds) or several of them separated by commas. */
     protected void playConfiguredSound(ServerPlayer sp)
     {
         if(sound == null || sound.isEmpty())

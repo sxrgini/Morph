@@ -17,10 +17,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.UUID;
 
-/**
- * One acquirable "form": an entity type, the NBT that makes it look/behave like that variant (cat type, sheep colour, horse markings...)
- * and whether it is the baby version. Two variants are equal when type, filtered NBT and baby flag are all equal.
- */
 public final class MorphVariant
 {
     public final Identifier type;
@@ -56,9 +52,6 @@ public final class MorphVariant
         return BuiltInRegistries.ENTITY_TYPE.getOptional(type).orElse(null);
     }
 
-    /**
-     * Builds the (never world-added) entity that stands in for the player: used for rendering, for sizing and for tick-driven things such as sounds.
-     */
     @Nullable
     private static final java.util.concurrent.atomic.AtomicInteger FAKE_IDS = new java.util.concurrent.atomic.AtomicInteger(-1000);
 
@@ -78,7 +71,7 @@ public final class MorphVariant
             }
             if(level.isClientSide())
             {
-                // client levels hand out no entity ids, and 26.x throws when an entity without one is asked for it (rendering, hashing, ticking)
+
                 living.setId(FAKE_IDS.getAndDecrement());
             }
             if(playerId != null)
@@ -118,7 +111,6 @@ public final class MorphVariant
         return name;
     }
 
-    /** Short text telling variants of one mob apart ("Tabby", "Baby", "Color 3"). */
     public String variantLabel()
     {
         java.util.List<String> parts = new java.util.ArrayList<>();

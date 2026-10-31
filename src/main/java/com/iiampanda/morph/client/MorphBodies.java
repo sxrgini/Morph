@@ -14,16 +14,13 @@ import net.minecraft.world.entity.player.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Keeps the stand-in mob entity of every morphed player in step with the player each tick. */
 public final class MorphBodies
 {
     private static final Set<String> TICK_FAILED = new HashSet<>();
     private static final java.util.Map<LivingEntity, Boolean> WAS_SWINGING = new java.util.IdentityHashMap<>();
 
-
     private static final java.util.Map<LivingEntity, float[]> TEMPO = new java.util.WeakHashMap<>();
 
-    /** Axolotl animations play at one fixed speed; this speeds them up to follow how fast the player really moves. */
     public static float tempo(LivingEntity e, float age)
     {
         float[] t = TEMPO.get(e);
@@ -98,7 +95,7 @@ public final class MorphBodies
                 sync(mc, player, info.getPrevEntity());
             }
         }
-        // players whose morph packet arrived before they were in the level
+
         if(!ClientState.PENDING.isEmpty())
         {
             var it = ClientState.PENDING.entrySet().iterator();
@@ -115,7 +112,6 @@ public final class MorphBodies
         }
     }
 
-    /** The dragon's own client tick depends on server side state, so its wing beat and neck trail are driven from the player instead. */
     private static void driveDragon(net.minecraft.world.entity.boss.enderdragon.EnderDragon d, AbstractClientPlayer p)
     {
         d.tickCount = p.tickCount;
@@ -192,7 +188,7 @@ public final class MorphBodies
         }
         if(e instanceof net.minecraft.world.entity.animal.armadillo.Armadillo armadillo)
         {
-            // the player's roll up shows as the armadillo curling into a ball and back out
+
             var state = armadillo.getState();
             if(com.iiampanda.morph.api.mob.trait.ability.SpecialRollUpAbility.isRolled(p))
             {
@@ -212,14 +208,14 @@ public final class MorphBodies
         }
         if(e instanceof net.minecraft.world.entity.animal.happyghast.HappyGhast)
         {
-            // the harness in your off hand shows on the ghast, in its own colour
+
             net.minecraft.world.item.ItemStack off = p.getOffhandItem();
             boolean harness = !off.isEmpty() && net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(off.getItem()).getPath().endsWith("_harness");
             e.setItemSlot(EquipmentSlot.BODY, harness ? off.copy() : net.minecraft.world.item.ItemStack.EMPTY);
         }
         if(e instanceof net.minecraft.world.entity.animal.golem.CopperGolem golem)
         {
-            // the golem's arms only move for its chest interactions, so those play when the player swings
+
             long now = p.tickCount;
             if((p.isSwinging() || PalCompat.betterCombatAttacking(p)) && !GOLEM_SWING.containsKey(golem))
             {
@@ -231,7 +227,7 @@ public final class MorphBodies
                 GOLEM_SWING.remove(golem);
                 start = null;
             }
-            // the stand-in has no AI, so its own tick never starts these: drive the animation states directly
+
             var drop = golem.getMainHandItem().isEmpty() ? golem.getInteractionDropNoItemAnimationState() : golem.getInteractionDropItemAnimationState();
             if(start == null)
             {
@@ -269,12 +265,11 @@ public final class MorphBodies
             e.tickCount = p.tickCount;
         }
 
-        // rotations and animation state are overwritten after the tick so the mob's own AI-less logic doesn't fight the player
         e.setPos(p.getX(), p.getY(), p.getZ());
         e.xo = p.xo;
         e.yo = p.yo;
         e.zo = p.zo;
-        // the dragon model faces the opposite way to every other mob
+
         float flip = e instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ? 180F : 0F;
         e.setYRot(p.getYRot() + flip);
         e.yRotO = p.yRotO + flip;
@@ -288,9 +283,9 @@ public final class MorphBodies
         {
             lockShulker(p, e);
         }
-        // models that animate while moving (dolphin tail, bats, ...) read the stand-in's velocity, taken from where the player actually moved
+
         e.setDeltaMovement(p.getX() - p.xo, p.getY() - p.yo, p.getZ() - p.zo);
-        // mobs with a dedicated attack animation (golems, ravagers, wardens, hoglins...) play it from entity event 4
+
         boolean bcSwing = PalCompat.betterCombatAttacking(p);
         boolean swingingNow = p.isSwinging() || bcSwing;
         boolean was = WAS_SWINGING.getOrDefault(e, false);

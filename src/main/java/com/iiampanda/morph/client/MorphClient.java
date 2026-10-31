@@ -22,7 +22,6 @@ public class MorphClient
 
     public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT;
 
-    /** All of the mod's keys, for the loader module to register. */
     public static List<KeyMapping> createKeys()
     {
         KEY_SELECTOR = new KeyMapping("key.morph.selector", InputConstants.Type.KEYBOARD, InputConstants.KEY_M, CATEGORY);
@@ -33,7 +32,6 @@ public class MorphClient
         return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT);
     }
 
-    /** Called by the loader module on the client, after the platform is set. */
     public static void init()
     {
         ClientPackets.register();
@@ -46,6 +44,8 @@ public class MorphClient
         cameraBeforeHold = null;
         com.iiampanda.morph.common.morph.BucketHold.VIEW.clear();
         ClientState.SHEARED.clear();
+        com.iiampanda.morph.common.MorphRules.clientInventory = true;
+        com.iiampanda.morph.common.MorphRules.clientInteract = true;
         com.iiampanda.morph.api.mob.trait.SwallowBlocksTrait.SYNCED.clear();
         emissiveReported = false;
         com.iiampanda.morph.client.render.HandInfos.reset();
@@ -63,6 +63,10 @@ public class MorphClient
         if(mc.player == null)
         {
             return;
+        }
+        if((mc.gui.screen() instanceof net.minecraft.client.gui.screens.inventory.InventoryScreen || mc.gui.screen() instanceof net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen) && !com.iiampanda.morph.common.MorphRules.inventoryAllowed(mc.player))
+        {
+            mc.gui.setScreen(null);
         }
         if(!emissiveReported && mc.level != null)
         {
@@ -146,7 +150,7 @@ public class MorphClient
             mc.options.setCameraType(cameraBeforeHold);
             cameraBeforeHold = null;
         }
-        // a sitting morph stands up when its player moves, jumps or sneaks
+
         if(ClientState.SITTING.contains(mc.player.getUUID()) && (mc.player.getDeltaMovement().horizontalDistanceSqr() > 0.0016D || mc.options.keyJump.isDown() || mc.player.isShiftKeyDown() || !mc.player.onGround()))
         {
             Platform.sendToServer(new Packets.SetSit(false));

@@ -8,11 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * The raw quads a renderer sent to the vertex buffer. Used for mobs whose models are not made of vanilla ModelParts
- * (GeckoLib and other custom renderers): the quads are turned into blocks for the morph animation, and the ones that
- * make up an arm are replayed in first person.
- */
 public final class MorphQuads
 {
     public static final class Quad
@@ -25,7 +20,6 @@ public final class MorphQuads
 
     public final List<Quad> quads = new ArrayList<>();
 
-    /** Records everything written to it as quads (4 vertices each). */
     public final class Rec implements VertexConsumer
     {
         private final Object type;
@@ -89,7 +83,6 @@ public final class MorphQuads
         public VertexConsumer setLineWidth(float w) { return this; }
     }
 
-    /** Turns every vertex around the Y axis (what a renderer does to face the mob the right way, undone). */
     public void rotateY(float degrees)
     {
         double r = Math.toRadians(degrees);
@@ -105,7 +98,6 @@ public final class MorphQuads
         }
     }
 
-    /** Swings the arm-like quads on one side forward about the shoulder (mob frame: front is -z, y up). */
     public void swingArm(boolean right, float radians)
     {
         MorphQuads arm = pickArm(right);
@@ -127,7 +119,6 @@ public final class MorphQuads
         }
     }
 
-    /** Render types that are not the mob's body (names, outlines, glint...) */
     public static boolean ignored(Object type)
     {
         String s = String.valueOf(type).toLowerCase(java.util.Locale.ROOT);
@@ -151,7 +142,6 @@ public final class MorphQuads
         return b;
     }
 
-    /** Turns the surface of the recorded quads into a shell of small blocks. */
     public void toBlocks(MorphBlocks out)
     {
         if(quads.isEmpty())
@@ -192,12 +182,6 @@ public final class MorphQuads
         }
     }
 
-    /**
-     * Picks the quads that look like the arm on one side and re-centres them as a limb hanging from the origin,
-     * in 1/16 block "model" units of a vanilla arm (y down, 12 tall at most).
-     * @param right the player's right arm (the mob's +x side in its own frame)
-     * @return null if nothing arm-like was found
-     */
     public MorphQuads pickArm(boolean right)
     {
         if(quads.isEmpty())
@@ -237,7 +221,7 @@ public final class MorphQuads
         }
         if(out == null)
         {
-            // nothing sticks out on that side (the model is all down the middle): use the lower part, or the whole mob, so there is always a hand
+
             out = new MorphQuads();
             for(Quad q : quads)
             {
@@ -260,7 +244,6 @@ public final class MorphQuads
         return out;
     }
 
-    /** Vertex positions of this limb moved so its top inner corner is at the origin, scaled to fit an arm, y down (model space). */
     public void place(boolean right, float x0, float y0, float z0)
     {
         float[] b = bounds();
@@ -280,7 +263,6 @@ public final class MorphQuads
         }
     }
 
-    /** Draws a quad into a consumer (position in the space the pose is in). */
     public static void emitQuad(Quad q, com.mojang.blaze3d.vertex.PoseStack.Pose pose, VertexConsumer vc, int light)
     {
         Vector3f a = new Vector3f(q.p[3] - q.p[0], q.p[4] - q.p[1], q.p[5] - q.p[2]);

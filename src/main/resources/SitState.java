@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/** Which morphed players are sitting down (the keybind asks, everyone tracking them is told). */
 public final class SitState
 {
     private static final Set<UUID> SITTING = new HashSet<>();
@@ -21,7 +20,6 @@ public final class SitState
         return SITTING.contains(player.getUUID());
     }
 
-    /** Sets whether the player sits. Only morphed players can; anything else stands. */
     public static void set(ServerPlayer player, boolean sit)
     {
         sit = sit && MorphApi.getMorphInfo(player).isMorphed();
@@ -33,13 +31,12 @@ public final class SitState
         {
             SITTING.remove(player.getUUID());
         }
-        // a request is always answered, so a client that lost track (a relog) catches up
+
         Packets.SyncSit payload = new Packets.SyncSit(player.getUUID(), sit);
         Platform.sendToPlayer(player, payload);
         Platform.sendToTracking(player, payload);
     }
 
-    /** Someone started tracking this player: tell them if they are sitting. */
     public static void resend(ServerPlayer player, ServerPlayer to)
     {
         if(SITTING.contains(player.getUUID()))

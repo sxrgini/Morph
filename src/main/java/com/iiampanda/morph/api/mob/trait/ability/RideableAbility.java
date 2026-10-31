@@ -10,13 +10,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 
-/** Other players can hop on your back. */
 public class RideableAbility extends Ability<RideableAbility> implements IEventBusRequired
 {
-    public Boolean requiresSaddle; // if true, the morphed player has to hold a saddle in the off hand
-    public Boolean requiresHarness; // if true, the morphed player has to hold a harness (any colour) in the off hand
-    public Integer maxPassengers; // default 1; the Happy Ghast carries 4
-    public Boolean solidPlatform; // other players can stand on you (needs the harness too when requiresHarness is set)
+    public Boolean requiresSaddle;
+    public Boolean requiresHarness;
+    public Integer maxPassengers;
+    public Boolean solidPlatform;
 
     public RideableAbility() { type = "abilityRideable"; }
 
@@ -31,7 +30,6 @@ public class RideableAbility extends Ability<RideableAbility> implements IEventB
         return !stack.isEmpty() && BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath().endsWith("_harness");
     }
 
-    /** True when the saddle / harness this ability asks for is in the morphed player's off hand. */
     public boolean gearReady()
     {
         if(requiresSaddle != null && requiresSaddle && !player.getOffhandItem().is(Items.SADDLE))
@@ -41,7 +39,6 @@ public class RideableAbility extends Ability<RideableAbility> implements IEventB
         return requiresHarness == null || !requiresHarness || isHarness(player.getOffhandItem());
     }
 
-    /** The rideable ability of a morphed player, if there is one and it is switched on. */
     public static RideableAbility of(Player p)
     {
         var info = ((MorphInfoHolder)p).morph$getMorphInfo();

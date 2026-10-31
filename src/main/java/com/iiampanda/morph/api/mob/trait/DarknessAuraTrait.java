@@ -5,12 +5,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
-/** The Warden's aura: players near you are plunged into Darkness (unless they carry the same aura). */
 public class DarknessAuraTrait extends Trait<DarknessAuraTrait>
 {
-    public Double radius;      // blocks, default 20
-    public Integer duration;   // ticks the effect is applied for, default 260
-    public Integer interval;   // ticks between applications, default 40
+    public Double radius;
+    public Integer duration;
+    public Integer interval;
 
     public DarknessAuraTrait() { type = "traitDarknessAura"; }
 

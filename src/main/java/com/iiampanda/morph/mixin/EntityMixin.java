@@ -72,7 +72,6 @@ public abstract class EntityMixin implements MorphEntityAccess
         return speed;
     }
 
-    /** A Happy Ghast morph wearing a harness can be stood on, like the real thing. */
     @Inject(method = "canBeCollidedWith", at = @At("RETURN"), cancellable = true)
     private void morph$platform(Entity other, CallbackInfoReturnable<Boolean> cir)
     {

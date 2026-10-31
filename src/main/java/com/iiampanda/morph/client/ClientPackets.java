@@ -19,7 +19,6 @@ public final class ClientPackets
 {
     private ClientPackets() {}
 
-    /** Installed as {@link Packets#clientHandler}; the loader module forwards every S2C payload here (on the client thread). */
     public static void register()
     {
         Packets.clientHandler = ClientPackets::handle;
@@ -62,6 +61,11 @@ public final class ClientPackets
         else if(packet instanceof Packets.SyncSwallowed payload)
         {
             com.iiampanda.morph.api.mob.trait.SwallowBlocksTrait.SYNCED.put(payload.player(), payload.item());
+        }
+        else if(packet instanceof Packets.SyncRules payload)
+        {
+            com.iiampanda.morph.common.MorphRules.clientInventory = payload.inventory();
+            com.iiampanda.morph.common.MorphRules.clientInteract = payload.interact();
         }
         else if(packet instanceof Packets.SyncSheared payload)
         {

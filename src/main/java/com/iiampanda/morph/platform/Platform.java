@@ -6,20 +6,16 @@ import net.minecraft.world.entity.Entity;
 
 import java.nio.file.Path;
 
-/** Everything the shared code needs from the mod loader. Each loader module installs one implementation at start up. */
 public final class Platform
 {
     public interface Impl
     {
         Path configDir();
 
-        /** Sends a payload to one player. */
         void sendToPlayer(ServerPlayer player, CustomPacketPayload payload);
 
-        /** Sends a payload to every player currently tracking (seeing) the entity, not to the entity itself. */
         void sendToTracking(Entity entity, CustomPacketPayload payload);
 
-        /** Client to server. */
         void sendToServer(CustomPacketPayload payload);
     }
 

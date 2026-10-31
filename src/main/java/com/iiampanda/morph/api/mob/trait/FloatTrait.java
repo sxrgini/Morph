@@ -2,7 +2,6 @@ package com.iiampanda.morph.api.mob.trait;
 
 import net.minecraft.world.phys.Vec3;
 
-/** Bobs up to the surface when in water, unless sneaking. */
 public class FloatTrait extends Trait<FloatTrait>
 {
     public FloatTrait() { type = "traitFloat"; }

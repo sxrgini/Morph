@@ -5,11 +5,10 @@ import com.iiampanda.morph.api.mob.trait.Trait;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 
-/** Frog Hop: hold the jump key to charge a bigger jump, let go to leap (like a horse). */
 public class SpecialFrogHopAbility extends Ability<SpecialFrogHopAbility>
 {
-    public Double maxHeight;    // blocks cleared by a fully charged hop, default 2
-    public Integer chargeTicks; // ticks of holding jump for a full charge, default 20
+    public Double maxHeight;
+    public Integer chargeTicks;
 
     public SpecialFrogHopAbility() { type = "abilitySpecialFrogHop"; }
 
@@ -43,7 +42,6 @@ public class SpecialFrogHopAbility extends Ability<SpecialFrogHopAbility>
         }
     }
 
-    /** The frog hop of a morphed player, if switched on. */
     public static SpecialFrogHopAbility of(Player p)
     {
         var info = ((MorphInfoHolder)p).morph$getMorphInfo();
@@ -61,7 +59,6 @@ public class SpecialFrogHopAbility extends Ability<SpecialFrogHopAbility>
         return null;
     }
 
-    /** True when the normal jump has to be held back so the charge can build up (client side, on the ground). */
     public static boolean holdsJump(Player p)
     {
         return p.level().isClientSide() && p.onGround() && !p.isInWater() && !p.isPassenger() && of(p) != null

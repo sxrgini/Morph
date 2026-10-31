@@ -12,16 +12,6 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
-/**
- * Plays a mob's own attack animation when the player who is morphed into it swings. Vanilla style attack animations are started
- * by the swing and entity event already; this is for the mods that start theirs from their AI instead:
- * <ul>
- * <li>Citadel / LLibrary / LionfishAPI style <code>IAnimatedEntity</code> (Alex's Mobs, Mowzie's Mobs, Cataclysm and others): an animation is
- * chosen from the entity's static Animation fields by name and set on the stand-in,</li>
- * <li>GeckoLib entities that register triggerable animations: the attack-like one is triggered.</li>
- * </ul>
- * Everything is found by reflection so none of those mods is needed to compile.
- */
 public final class ModAnimations
 {
     private static final Pattern TIER1 = Pattern.compile("(^|_)(ATTACK|MELEE|STRIKE)(_|$)");
@@ -68,7 +58,6 @@ public final class ModAnimations
         return null;
     }
 
-    /** Names that look like an attack, best first (tier 1 names, then tier 2), with the nasty ones left out. */
     private static List<String> attackish(List<String> names)
     {
         List<String> one = new ArrayList<>();
@@ -93,7 +82,6 @@ public final class ModAnimations
         return one;
     }
 
-    /** Call when the player begins a swing (or a Better Combat attack). */
     public static void attack(LivingEntity e)
     {
         try
@@ -155,7 +143,7 @@ public final class ModAnimations
         }
         if(anims.isEmpty())
         {
-            return true; // an animated entity with nothing that looks like an attack: leave it be
+            return true;
         }
         Object cur = get.invoke(e);
         if(cur != null)
@@ -164,10 +152,10 @@ public final class ModAnimations
             Method tick = find(c, "getAnimationTick");
             if(dur != null && tick != null && ((Number)dur.invoke(cur)).intValue() > 0 && ((Number)tick.invoke(e)).intValue() < ((Number)dur.invoke(cur)).intValue())
             {
-                return true; // already busy with one
+                return true;
             }
         }
-        // the first tier is the plain attack, so cycle only through animations of the same kind as the best one
+
         int best = tier(anims.get(0)[0].toString());
         List<Object[]> pool = new ArrayList<>();
         for(Object[] a : anims)

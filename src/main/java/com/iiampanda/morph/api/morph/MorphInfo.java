@@ -12,15 +12,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The morph state of one player. Exists on both the client (for every tracked player) and the server.
- */
 public class MorphInfo
 {
     public final Player player;
 
     @Nullable public MorphVariant variant;
-    @Nullable public MorphVariant prevVariant; // what we are transitioning away from. null = the player's own body
+    @Nullable public MorphVariant prevVariant;
 
     public int transition = 1;
     public int transitionMax = 1;
@@ -46,7 +43,6 @@ public class MorphInfo
         return transition < transitionMax;
     }
 
-    /** 0 - 1 */
     public float getProgress(float partialTick)
     {
         if(transition >= transitionMax)
@@ -79,7 +75,7 @@ public class MorphInfo
         }
         if(!animate || newVariant != null || variant == null)
         {
-            // keep the previous entity only while it is being replaced or removed
+
         }
         variant = newVariant;
         entity = null;
@@ -110,7 +106,6 @@ public class MorphInfo
         player.refreshDimensions();
     }
 
-    /** The player entity is going away: stop listening for events but keep the state. */
     public void detach()
     {
         for(Trait<?> trait : traits)
@@ -177,7 +172,6 @@ public class MorphInfo
         return prevEntity;
     }
 
-    /** Size of the morph in the given pose, or null if the player should use its own. */
     @Nullable
     public EntityDimensions getDimensions(Pose pose)
     {

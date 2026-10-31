@@ -25,6 +25,8 @@ public final class BucketHold
 
     private static final Map<UUID, Hold> HELD = new HashMap<>();
 
+    private static final Map<UUID, java.util.List<Integer>> PASSENGERS = new HashMap<>();
+
     private BucketHold() {}
 
     private static String key(UUID bucketed)
@@ -165,6 +167,27 @@ public final class BucketHold
                 hide(bucketed);
             }
         }
+        for(ServerPlayer v : server.getPlayerList().getPlayers())
+        {
+            java.util.List<Integer> ids = new java.util.ArrayList<>();
+            for(net.minecraft.world.entity.Entity passenger : v.getPassengers())
+            {
+                ids.add(passenger.getId());
+            }
+            java.util.List<Integer> before = PASSENGERS.getOrDefault(v.getUUID(), java.util.List.of());
+            if(!ids.equals(before))
+            {
+                resend(v);
+                if(ids.isEmpty())
+                {
+                    PASSENGERS.remove(v.getUUID());
+                }
+                else
+                {
+                    PASSENGERS.put(v.getUUID(), ids);
+                }
+            }
+        }
         for(ServerPlayer p : server.getPlayerList().getPlayers())
         {
             if(p.getVehicle() instanceof ServerPlayer vehicle)
@@ -192,5 +215,6 @@ public final class BucketHold
     {
         HELD.clear();
         VIEW.clear();
+        PASSENGERS.clear();
     }
 }

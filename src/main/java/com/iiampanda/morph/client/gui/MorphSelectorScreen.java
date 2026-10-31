@@ -57,7 +57,7 @@ public class MorphSelectorScreen extends Screen
     @Override
     public void render(GuiGraphics g, int mx, int my, float dt)
     {
-        super.render(g, mx, my, dt); // draws blurred background + widgets once
+        super.render(g, mx, my, dt);
         g.drawCenteredString(font, title, width / 2, 6, 0xFFFFFF);
         grid.render(g, font, mx, my, dt);
         if(!ClientState.canMorph)

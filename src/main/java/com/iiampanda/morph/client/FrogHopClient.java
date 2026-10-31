@@ -5,11 +5,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
-/** Charging and releasing the Frog Hop for the local player. */
 public final class FrogHopClient
 {
     private static int held;
-    /** 0..1, what the charge bar shows */
+
     public static float charge;
 
     private FrogHopClient() {}
@@ -28,7 +27,6 @@ public final class FrogHopClient
         }
     }
 
-    /** Jump speed (blocks per tick) that reaches roughly the given height. */
     static double speedFor(double height)
     {
         double lo = 0.42D, hi = 1.2D;

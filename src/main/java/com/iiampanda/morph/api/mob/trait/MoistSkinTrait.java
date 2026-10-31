@@ -2,7 +2,6 @@ package com.iiampanda.morph.api.mob.trait;
 
 import net.minecraft.nbt.CompoundTag;
 
-/** Needs to stay wet, like a dolphin. */
 public class MoistSkinTrait extends Trait<MoistSkinTrait>
 {
     public Integer maxMoistness;

@@ -17,7 +17,6 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Draws a morphed player as the mob they are, and the shrink/grow transition between forms. */
 public final class MorphRenderer
 {
     private static boolean reentry;
@@ -25,7 +24,6 @@ public final class MorphRenderer
 
     private MorphRenderer() {}
 
-    /** @return true if we drew the player (cancel the vanilla render) */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static boolean render(PlayerRenderer vanilla, AbstractClientPlayer player, float yaw, float partial, PoseStack ps, MultiBufferSource buffers, int light)
     {
@@ -44,7 +42,6 @@ public final class MorphRenderer
             return drawEntity(vanilla, info.getEntity(), player, yaw, partial, ps, buffers, light, 1F);
         }
 
-        // 1/8 the real old mob freezing over to the static skin, 3/4 blocks sliding from one shape to the other, 1/8 the new mob thawing out
         LivingEntity oldE = info.prevVariant == null ? null : info.getPrevEntity();
         LivingEntity newE = info.isMorphed() ? info.getEntity() : null;
         float middle = Math.max(0F, Math.min(1F, (t - 0.125F) / 0.75F));
@@ -77,7 +74,6 @@ public final class MorphRenderer
         }
     }
 
-    /** Runs a mob's renderer without drawing anything, and records the cubes it would have drawn. */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static MorphBlocks capture(PlayerRenderer vanilla, LivingEntity entity, AbstractClientPlayer player, float yaw, float partial, int light)
     {
@@ -103,7 +99,7 @@ public final class MorphRenderer
         }
         catch(Throwable t)
         {
-            // an incomplete capture only makes the animation a little rougher
+
         }
         finally
         {
@@ -131,10 +127,6 @@ public final class MorphRenderer
         return r != null ? r : SINK;
     };
 
-    /**
-     * Mobs from other mods animate their own arms in ways Morph can't drive, so while the player swings, the mob is drawn
-     * from its recorded quads with the arm on the main hand side swung forward.
-     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static boolean replaySwing(EntityRenderer renderer, LivingEntity entity, AbstractClientPlayer player, float yaw, float partial, PoseStack ps, MultiBufferSource buffers, int light)
     {
@@ -169,7 +161,6 @@ public final class MorphRenderer
         return true;
     }
 
-    /** @param entity null = the player's own body */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static boolean drawEntity(PlayerRenderer vanilla, LivingEntity entity, AbstractClientPlayer player, float yaw, float partial, PoseStack ps, MultiBufferSource buffers, int light, float scale)
     {

@@ -34,7 +34,6 @@ public final class VariantFactory
         return profile.canMorph();
     }
 
-    /** The variant a given living entity represents (type + variant NBT + baby flag), or null if it can't be morphed into. */
     @Nullable
     public static MorphVariant create(LivingEntity living)
     {
@@ -61,7 +60,6 @@ public final class VariantFactory
         return new MorphVariant(BuiltInRegistries.ENTITY_TYPE.getKey(living.getType()), nbt, baby);
     }
 
-    /** The plain adult default-looking form of a variant's mob; used when variants/baby forms are not available to a player. */
     public static MorphVariant basic(MorphVariant v)
     {
         return new MorphVariant(v.type, new CompoundTag(), false);

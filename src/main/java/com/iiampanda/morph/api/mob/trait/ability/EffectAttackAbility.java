@@ -9,11 +9,10 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
-/** Hits apply a status effect (spiders poison, wither skeletons wither...). */
 public class EffectAttackAbility extends Ability<EffectAttackAbility> implements IEventBusRequired
 {
     public String effectId;
-    public Integer duration; // ticks
+    public Integer duration;
     public Integer amplifier;
 
     public EffectAttackAbility() { type = "abilityEffectAttack"; }

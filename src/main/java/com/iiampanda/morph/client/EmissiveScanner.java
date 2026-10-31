@@ -13,10 +13,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-/**
- * Looks through the resource packs for glow / emissive entity textures of modded mobs ("firefly_glow", "alligator_glowmask",
- * "tiger_eyes", "void_worm_head_glow" ...) and tells the server which mobs have them, so those mobs get the Emissive trait.
- */
 public final class EmissiveScanner
 {
     private static final Set<String> MARKERS = Set.of("glow", "glowmask", "glowing", "emissive", "emission", "fullbright", "luminous", "eyes", "glowy");
@@ -33,7 +29,7 @@ public final class EmissiveScanner
             {
                 return true;
             }
-            // "firefly_glow_e": an optifine style "_e" mask
+
             if(t.equals("e") && i == tokens.length - 1 && tokens.length > 1)
             {
                 return true;

@@ -1,6 +1,5 @@
 package com.iiampanda.morph.api.mob.trait;
 
-/** Hurt while standing in a biome where snow golems melt. */
 public class SnowMeltTrait extends Trait<SnowMeltTrait>
 {
     public SnowMeltTrait() { type = "traitSnowMelt"; }

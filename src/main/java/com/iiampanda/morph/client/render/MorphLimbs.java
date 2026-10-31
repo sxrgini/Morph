@@ -9,15 +9,10 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Picks the part of a mob's model that stands in for the player's arm in first person. Mobs without arms lend a
- * front leg (or wing, or fin) instead, like the original mod did, so the player always has a visible arm.
- */
 public final class MorphLimbs
 {
     private MorphLimbs() {}
 
-    /** @return the limb on the given side (right = negative x in model space), or null if the model has nothing usable */
     public static ModelPart pick(Collection<ModelPart> roots, boolean right)
     {
         Map<ModelPart, Boolean> seen = new IdentityHashMap<>();
@@ -57,7 +52,7 @@ public final class MorphLimbs
                 h = Math.max(h, c.maxY - c.minY);
                 w = Math.max(w, Math.max(c.maxX - c.minX, c.maxZ - c.minZ));
             }
-            // the front-most one wins, and of those the one hanging lowest
+
             float score = p.z * 4F - p.y * 0.01F;
             if(h >= w && h <= 16F && score < limbScore)
             {
@@ -72,7 +67,7 @@ public final class MorphLimbs
         }
         if(limb == null && any == null)
         {
-            // nothing hangs off that side (fish, slimes, ghasts, snakes...): borrow the front-most, lowest part so there is always a hand
+
             float best = Float.MAX_VALUE;
             for(ModelPart p : all)
             {

@@ -6,7 +6,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
-/** Blocks a status effect by id, or "*" for every harmful effect. */
 public class EffectResistanceTrait extends Trait<EffectResistanceTrait> implements IEventBusRequired
 {
     public String effectId;

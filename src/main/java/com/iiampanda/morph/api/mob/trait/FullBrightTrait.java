@@ -3,7 +3,6 @@ package com.iiampanda.morph.api.mob.trait;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
-/** Sees in the dark (night vision, without the potion particles). */
 public class FullBrightTrait extends Trait<FullBrightTrait>
 {
     public Boolean showIcon;

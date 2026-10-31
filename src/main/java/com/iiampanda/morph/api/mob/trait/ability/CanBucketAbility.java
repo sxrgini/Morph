@@ -12,11 +12,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-/** Use a water bucket on a morphed player to scoop up a bucket of their mob (fish, axolotl, tadpole...). The player is not harmed. */
 public class CanBucketAbility extends Ability<CanBucketAbility> implements IEventBusRequired
 {
-    public String bucketItem;  // e.g. minecraft:cod_bucket
-    public Integer cooldown;   // ticks, default 1200
+    public String bucketItem;
+    public Integer cooldown;
 
     public transient long lastBucketed = -999999L;
 

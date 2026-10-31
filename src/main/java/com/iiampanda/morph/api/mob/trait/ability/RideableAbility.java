@@ -7,10 +7,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 
-/** Other players can hop on your back. */
 public class RideableAbility extends Ability<RideableAbility> implements IEventBusRequired
 {
-    public Boolean requiresSaddle; // if true, the morphed player has to hold a saddle in the off hand
+    public Boolean requiresSaddle;
 
     public RideableAbility() { type = "abilityRideable"; }
 

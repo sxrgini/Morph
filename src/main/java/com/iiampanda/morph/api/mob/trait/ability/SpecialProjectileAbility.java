@@ -12,19 +12,18 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.WitherSkull;
 import net.minecraft.world.phys.Vec3;
 
-/** Shoots any entity as a projectile: dragon fireballs, wither skulls, fireballs, or anything a mod adds. */
 public class SpecialProjectileAbility extends SpecialAbility<SpecialProjectileAbility>
 {
-    /** Entity type id to shoot. */
+
     public String entity;
     public Double speed;
     public Integer count;
-    /** Spread: degrees between projectiles when count > 1, and random inaccuracy. */
+
     public Double spreadDegrees;
     public Double inaccuracy;
-    /** Optional SNBT merged into the projectile, e.g. {ExplosionPower:3}. */
+
     public String nbt;
-    /** Wither skulls only: the blue, block-breaking kind. */
+
     public Boolean dangerous;
 
     public SpecialProjectileAbility() { type = "abilitySpecialProjectile"; }
@@ -63,7 +62,7 @@ public class SpecialProjectileAbility extends SpecialAbility<SpecialProjectileAb
                 }
                 catch(Exception ex)
                 {
-                    // bad SNBT in the config: ignore it and shoot the plain projectile
+
                 }
             }
             Vec3 pos = p.getEyePosition().add(dir.scale(1.2D)).add(0D, -0.2D, 0D);

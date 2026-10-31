@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 
-/** Killing a mob turns you into it. Nothing is stored. */
 public class DisguiseMode extends BaseMode
 {
     @Override public String name() { return "disguise"; }

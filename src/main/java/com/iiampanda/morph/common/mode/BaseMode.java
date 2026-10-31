@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 abstract class BaseMode implements MorphMode
 {
-    /** Config-disabled traits are skipped; upgrade traits replace what they upgrade only if {@code useUpgrades}. */
+
     protected ArrayList<Trait<?>> profileTraits(Player player, MorphVariant variant, boolean useUpgrades)
     {
         ArrayList<Trait<?>> traits = new ArrayList<>();

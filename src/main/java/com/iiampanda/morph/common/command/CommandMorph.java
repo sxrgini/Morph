@@ -28,7 +28,6 @@ import net.minecraft.world.entity.LivingEntity;
 
 import java.util.Collection;
 
-/** /morph ... (operators only) */
 public final class CommandMorph
 {
     private CommandMorph() {}

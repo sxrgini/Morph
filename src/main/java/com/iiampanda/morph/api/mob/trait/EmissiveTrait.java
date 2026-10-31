@@ -7,10 +7,9 @@ import net.minecraft.world.level.block.LightBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-/** Gives off light like a blaze or glow squid, using an invisible light block that follows you. */
 public class EmissiveTrait extends Trait<EmissiveTrait>
 {
-    public Integer lightLevel; // 1 - 15, default 10
+    public Integer lightLevel;
 
     private transient BlockPos lightPos;
     private transient Level lightLevelWorld;

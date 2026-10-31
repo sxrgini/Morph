@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/** The client's copy of what the server told it about the local player. */
 public final class ClientState
 {
     public static final PlayerData DATA = new PlayerData();
@@ -20,9 +19,8 @@ public final class ClientState
     public static boolean biomassUnlocked;
     public static boolean abilitiesUnlocked;
 
-    /** Morph syncs that arrived before the player entity did. */
     public static final Map<UUID, Packets.SyncMorph> PENDING = new HashMap<>();
-    /** Morphed players currently sitting down. */
+
     public static final java.util.Set<UUID> SITTING = new java.util.HashSet<>();
     public static final java.util.Set<UUID> SHEARED = new java.util.HashSet<>();
 
@@ -45,7 +43,6 @@ public final class ClientState
         return mode.equals("default");
     }
 
-    /** A dummy entity of this variant for drawing in menus. */
     public static LivingEntity guiEntity(MorphVariant variant)
     {
         Minecraft mc = Minecraft.getInstance();

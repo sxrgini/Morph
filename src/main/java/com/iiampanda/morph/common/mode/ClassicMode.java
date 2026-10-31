@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 
-/** Kill a mob, acquire it. */
 public class ClassicMode extends BaseMode
 {
     @Override public String name() { return "classic"; }

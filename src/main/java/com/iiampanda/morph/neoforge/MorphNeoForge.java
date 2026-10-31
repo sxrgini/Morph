@@ -112,6 +112,28 @@ public class MorphNeoForge
                 event.setCanceled(true);
             }
         });
+        bus.addListener(PlayerInteractEvent.RightClickBlock.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getEntity()))
+            {
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+            }
+        });
+        bus.addListener(PlayerInteractEvent.LeftClickBlock.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getEntity()))
+            {
+                event.setCanceled(true);
+            }
+        });
+        bus.addListener(net.neoforged.neoforge.event.level.block.BreakBlockEvent.class, event ->
+        {
+            if(!com.iiampanda.morph.common.MorphRules.interactAllowed(event.getPlayer()))
+            {
+                event.setCanceled(true);
+            }
+        });
         bus.addListener(ServerTickEvent.Post.class, event -> Morph.onServerTick(event.getServer()));
         bus.addListener(RegisterCommandsEvent.class, event -> Morph.registerCommands(event.getDispatcher()));
     }

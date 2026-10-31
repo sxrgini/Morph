@@ -2,7 +2,6 @@ package com.iiampanda.morph.api.mob.trait;
 
 import net.minecraft.world.phys.Vec3;
 
-/** Sinks like a rock in water unless the jump key is held. */
 public class SinkTrait extends Trait<SinkTrait>
 {
     public SinkTrait() { type = "traitSink"; }

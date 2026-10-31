@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-/** Upgrade tree registry + level maths. The server loads it from disk; clients receive it with the sync packet. */
 public final class Upgrades
 {
     public static final String ID_BIOMASS_CAPACITY = "biomass_capacity";
@@ -28,7 +27,6 @@ public final class Upgrades
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    /** In load order; what the GUI draws. */
     public static final Map<String, BiomassUpgradeInfo> TREE = new LinkedHashMap<>();
 
     private Upgrades() {}
@@ -133,7 +131,6 @@ public final class Upgrades
         return info == null || (info.maxLevel != null && level(data, id) >= info.maxLevel);
     }
 
-    /** Biomass price of the next level, or -1 if not buyable. */
     public static double nextCost(PlayerData data, String id)
     {
         BiomassUpgradeInfo info = TREE.get(id);
@@ -141,7 +138,7 @@ public final class Upgrades
         {
             return -1D;
         }
-        // safety net: a price above the biomass cap could never be paid, so it is capped at "a full bar"
+
         return Math.min(Math.round(info.cost.get(level(data, id) + 1)), Math.floor(maxBiomass(data)));
     }
 

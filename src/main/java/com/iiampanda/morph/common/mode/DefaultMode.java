@@ -17,9 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-/**
- * Biomass mode. Kills feed a biomass pool; biomass buys upgrades (including the morph ability itself) and fuels active abilities.
- */
 public class DefaultMode extends BaseMode
 {
     @Override public String name() { return "default"; }
@@ -82,7 +79,6 @@ public class DefaultMode extends BaseMode
         return true;
     }
 
-    /** Roughly 1000kg per cubic metre of mob, scaled by the configured biomass value. */
     public double mass(LivingEntity living)
     {
         double volume = living.getBbWidth() * living.getBbWidth() * living.getBbHeight();
@@ -95,7 +91,6 @@ public class DefaultMode extends BaseMode
         return weight;
     }
 
-    /** A kill is worth a fraction (default half) of the mob's max health: a Warden (500) gives 250, a Strider (20) gives 10. */
     public double biomassAmount(PlayerData data, LivingEntity living)
     {
         double amount = living.getMaxHealth() * Morph.configServer.biomassHealthFraction;

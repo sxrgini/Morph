@@ -30,7 +30,6 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
-/** Server side morph logic. */
 public final class MorphManager
 {
     private static final Set<UUID> BIOMASS_DIRTY = new HashSet<>();
@@ -61,7 +60,6 @@ public final class MorphManager
         return type == ConfigServer.FilterType.ALLOW ? listed : !listed;
     }
 
-    //============== PERMISSIONS ==============
     public static boolean hasMorphAbility(Player player)
     {
         return !mode().usesBiomass() || (player instanceof ServerPlayer sp && Upgrades.has(data(sp), Upgrades.ID_MORPH_ABILITY));
@@ -86,7 +84,6 @@ public final class MorphManager
         return mode().usesBiomass() && Upgrades.has(data(player), Upgrades.ID_BIOMASS_ABILITIES);
     }
 
-    /** Applies the config and (in biomass mode) upgrade restrictions to baby forms and variants. */
     public static MorphVariant restrictVariant(ServerPlayer player, MorphVariant variant)
     {
         boolean baby = variant.baby;
@@ -101,7 +98,6 @@ public final class MorphManager
         return new MorphVariant(variant.type, allowVariants || !variants ? variant.nbt : new net.minecraft.nbt.CompoundTag(), baby && allowBaby);
     }
 
-    //============== ACQUIRING / MORPHING ==============
     public static boolean acquire(ServerPlayer player, MorphVariant variant)
     {
         PlayerData data = data(player);
@@ -130,9 +126,6 @@ public final class MorphManager
         return removed;
     }
 
-    /**
-     * @param force skip mode checks and the "must have acquired it" check (commands and Disguise mode)
-     */
     public static boolean morph(ServerPlayer player, @Nullable MorphVariant variant, boolean force)
     {
         SitState.set(player, false);
@@ -166,7 +159,6 @@ public final class MorphManager
         return true;
     }
 
-    /** Puts the morph on the server's player object and tells everyone. */
     public static void applyMorph(ServerPlayer player, @Nullable MorphVariant variant, boolean animate)
     {
         MorphInfo info = MorphApi.getMorphInfo(player);
@@ -219,7 +211,6 @@ public final class MorphManager
         sendData(player);
     }
 
-    //============== BIOMASS ==============
     public static void addBiomass(ServerPlayer player, double amount)
     {
         PlayerData data = data(player);
@@ -255,7 +246,7 @@ public final class MorphManager
         {
             if(mode().usesBiomass())
             {
-                // upgrades can change which traits we get
+
                 MorphInfo info = MorphApi.getMorphInfo(player);
                 if(info.isMorphed() && info.variant != null)
                 {
@@ -283,7 +274,6 @@ public final class MorphManager
         BIOMASS_DIRTY.clear();
     }
 
-    //============== ATTRIBUTES ==============
     private static Identifier modId(Identifier attr)
     {
         return Identifier.fromNamespaceAndPath("morph", "attr_" + attr.getNamespace() + "_" + attr.getPath().replace('.', '_'));
@@ -336,7 +326,6 @@ public final class MorphManager
         player.setHealth(Math.max(1F, Math.min(player.getMaxHealth(), player.getMaxHealth() * healthRatio)));
     }
 
-    //============== SYNC ==============
     public static void syncMorph(ServerPlayer player, @Nullable ServerPlayer onlyTo, int duration, boolean animate)
     {
         MorphInfo info = MorphApi.getMorphInfo(player);
@@ -373,7 +362,6 @@ public final class MorphManager
         Platform.sendToPlayer(player, new Packets.Acquire(killed.getX(), killed.getY(), killed.getZ(), killed.getBbWidth(), killed.getBbHeight(), morph, biomass));
     }
 
-    //============== EVENTS ==============
     public static void onJoin(ServerPlayer player)
     {
         PlayerData data = data(player);

@@ -8,13 +8,9 @@ import net.minecraft.world.entity.player.Player;
 public class WaterBreatherTrait extends Trait<WaterBreatherTrait>
 {
     public Boolean suffocatesOnLand;
-    /** See clearly while your eyes are underwater (fish, squids, guardians). */
+
     public Boolean nightVisionInWater;
 
-    /**
-     * Fish and other water-only mobs go blind while out of the water, which is the trade-off for seeing so well in it.
-     * Left out it follows suffocatesOnLand (so mobs that live on land too, like the turtle, are never blinded); set it to false to opt out or true to force it.
-     */
     public Boolean blindnessOnLand;
 
     private transient boolean gaveNightVision;
@@ -22,7 +18,6 @@ public class WaterBreatherTrait extends Trait<WaterBreatherTrait>
 
     public WaterBreatherTrait() { type = "traitWaterBreather"; }
 
-    /** True while this morph is out of the water and is meant to run out of air (used to stop vanilla refilling the air bar). */
     public static boolean blocksAirRegen(Player player)
     {
         if(player.isInWaterOrRain())

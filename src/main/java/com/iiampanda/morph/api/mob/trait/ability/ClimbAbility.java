@@ -4,7 +4,6 @@ import com.iiampanda.morph.api.MorphApi;
 import com.iiampanda.morph.api.mob.trait.Trait;
 import net.minecraft.world.entity.player.Player;
 
-/** Climb walls like a spider. The actual climbing is done by a mixin on LivingEntity.onClimbable. */
 public class ClimbAbility extends Ability<ClimbAbility>
 {
     public ClimbAbility() { type = "abilityClimb"; }

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Camera.class)
 public abstract class CameraMixin
 {
-    /** Tiny morphs sit so close to the ground that the camera's collision check hits the floor and pulls the camera into the model. */
+
     @Inject(method = "getMaxZoom", at = @At("HEAD"), cancellable = true)
     private void morph$tinyZoom(float dist, CallbackInfoReturnable<Float> cir)
     {

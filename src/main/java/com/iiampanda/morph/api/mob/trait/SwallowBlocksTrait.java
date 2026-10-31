@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-/** Sulfur Cube: blocks can be put inside you (right click with one, a dispenser or a piston) and sheared back out, like the mob. */
 public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEventBusRequired
 {
     public SwallowBlocksTrait() { type = "traitSwallowBlocks"; }
@@ -182,7 +181,6 @@ public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEv
         return !stack.isEmpty() && stack.is(ItemTags.SULFUR_CUBE_SWALLOWABLE);
     }
 
-    /** The trait of a morphed player, if they are a sulfur cube. */
     public static SwallowBlocksTrait of(Player p)
     {
         var info = ((com.iiampanda.morph.api.MorphInfoHolder)p).morph$getMorphInfo();
@@ -200,7 +198,6 @@ public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEv
         return null;
     }
 
-    /** Puts one of the item inside the player (a block already inside is spat out). @return false if nothing happened */
     public boolean swallow(ServerPlayer sp, ItemStack item)
     {
         ItemStack current = sp.getItemBySlot(EquipmentSlot.BODY);
@@ -244,7 +241,6 @@ public class SwallowBlocksTrait extends Trait<SwallowBlocksTrait> implements IEv
         return InteractionResult.PASS;
     }
 
-    /** Whatever was inside comes out when you change shape. */
     @Override
     public void onUnmorph()
     {

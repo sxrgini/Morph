@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 
-/** Morphs are only handed out and applied by commands. */
 public class CommandMode extends BaseMode
 {
     private final boolean allowSelection;

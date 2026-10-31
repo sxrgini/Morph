@@ -19,8 +19,8 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
 {
     @NotNull
     public String type;
-    public String upgradeFor; //the trait type this trait is a direct upgrade of
-    public Double purchaseCost; //biomass cost in the default mode to unlock this trait
+    public String upgradeFor;
+    public Double purchaseCost;
     public Boolean hidden;
 
     public transient Player player;
@@ -28,7 +28,6 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
     @Nullable
     public transient LivingEntity livingInstance;
 
-    //also used to set default values if not set in the JSON
     public void addHooks()
     {
         if(this instanceof IEventBusRequired)
@@ -37,7 +36,6 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         }
     }
 
-    /** The player is no longer morphed into this (called once, on the server and the client, when the morph changes; not when the player merely leaves the world). */
     public void onUnmorph() {}
 
     public void removeHooks()
@@ -48,11 +46,11 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         }
     }
 
-    public abstract void tick(float strength); //Strength ranges 0 - 1F
+    public abstract void tick(float strength);
 
     public void transitionalTick(T prevTrait, float transitionProgress)
     {
-        this.tick(1F); // by default, no transitional state, just tick at max strength
+        this.tick(1F);
     }
 
     public void doTick(float strength)
@@ -76,13 +74,11 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         return (T)TraitHandler.copy(this);
     }
 
-    //EVENT HOOKS. Only called if the trait implements IEventBusRequired and is currently applied.
     public boolean allowDamage(LivingEntity victim, DamageSource source, float amount)
     {
         return true;
     }
 
-    /** Scales damage the victim is about to take (return the new amount). */
     public float modifyDamage(LivingEntity victim, DamageSource source, float amount)
     {
         return amount;
@@ -103,7 +99,6 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         return InteractionResult.PASS;
     }
 
-    //MOVEMENT / RENDER MODIFIERS. Always queried for the active trait list of the morphed player, no IEventBusRequired needed.
     public double getSwimSpeedMultiplier()
     {
         return 1D;
@@ -134,7 +129,6 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         return false;
     }
 
-    //IN-GAME INFO
     public String getTranslationKeyRoot()
     {
         return "morph.trait." + type;
@@ -173,7 +167,6 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
         }
         return Identifier.fromNamespaceAndPath("morph", "textures/icon/" + icon + ".png");
     }
-    //END IN-GAME INFO
 
     public boolean isAbility()
     {
@@ -185,12 +178,12 @@ public abstract class Trait<T extends Trait> implements Comparable<T>
     {
         if(!this.isAbility() && o.isAbility())
         {
-            //we're before
+
             return -1;
         }
         else if(this.isAbility() && !o.isAbility())
         {
-            //we're after
+
             return 1;
         }
         return Language.getInstance().getOrDefault(getTranslationKeyRoot() + ".name").compareTo(Language.getInstance().getOrDefault(o.getTranslationKeyRoot() + ".name"));

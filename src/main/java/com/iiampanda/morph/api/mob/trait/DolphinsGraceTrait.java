@@ -8,16 +8,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
-/** Swimming near a dolphin makes you swim faster: players nearby get Dolphin's Grace, then it recharges. */
 public class DolphinsGraceTrait extends Trait<DolphinsGraceTrait>
 {
-    public Double radius;        // blocks, default 10
-    public Integer duration;     // ticks of Dolphin's Grace given, default 600
-    public Integer cooldown;     // ticks until it can be given again, default 12000 (10 minutes)
-    public Boolean includeSelf;  // also give it to the dolphin player, default false
-    public Boolean onlyInWater;  // only players who are in water, default true
+    public Double radius;
+    public Integer duration;
+    public Integer cooldown;
+    public Boolean includeSelf;
+    public Boolean onlyInWater;
 
-    /** per player: game time at which the grace is ready again (kept here so changing form can't reset it) */
     private static final Map<UUID, Long> READY = new HashMap<>();
 
     public DolphinsGraceTrait() { type = "traitDolphinsGrace"; }

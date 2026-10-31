@@ -4,7 +4,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
 
-/** Hostile mobs leave you alone. */
 public class HostileTrait extends Trait<HostileTrait> implements IEventBusRequired
 {
     public HostileTrait() { type = "traitHostile"; }

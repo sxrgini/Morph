@@ -3,7 +3,6 @@ package com.iiampanda.morph.api.mob.trait;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 
-/** Immune to a named damage type, e.g. "drown", "cactus", "minecraft:freeze". */
 public class DamageSourceImmunityTrait extends Trait<DamageSourceImmunityTrait> implements IEventBusRequired
 {
     public String damageType;

@@ -2,16 +2,15 @@ package com.iiampanda.morph.common.biomass;
 
 import org.jetbrains.annotations.Nullable;
 
-/** One node of the biomass upgrade tree (config/morph/biomass/*.json). */
 public class BiomassUpgradeInfo
 {
-    /** Bumped when the bundled defaults change; older files in the config folder are replaced (the old one is kept as .old). */
+
     @Nullable public Integer schema;
     public String id;
     @Nullable public String parentId;
-    @Nullable public Integer maxLevel;   // null = unlimited
-    @Nullable public Integer freeLevels; // levels everyone starts with
-    @Nullable public Multiplier value;   // null = one off unlock, no numeric value
+    @Nullable public Integer maxLevel;
+    @Nullable public Integer freeLevels;
+    @Nullable public Multiplier value;
     @Nullable public Multiplier cost;
 
     public int free()

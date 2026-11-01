@@ -457,7 +457,7 @@ public final class MobProfiler
                 return null;
             }
             net.minecraft.world.entity.EntityType<?> type = e.getType();
-            return type.create(sl, net.minecraft.world.entity.EntitySpawnReason.COMMAND) instanceof LivingEntity spare ? spare : null;
+            return type.create(sl, new net.minecraft.world.entity.EntitySpawnRequest(net.minecraft.world.entity.EntitySpawnReason.COMMAND, true)) instanceof LivingEntity spare ? spare : null;
         }
         catch(Throwable t)
         {

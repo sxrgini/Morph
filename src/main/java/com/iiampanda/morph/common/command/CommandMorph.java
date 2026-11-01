@@ -108,7 +108,7 @@ public final class CommandMorph
         int done = 0;
         for(ServerPlayer p : players)
         {
-            Entity e = type.create(p.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+            Entity e = type.create(p.level(), new net.minecraft.world.entity.EntitySpawnRequest(net.minecraft.world.entity.EntitySpawnReason.COMMAND, true));
             if(!(e instanceof LivingEntity living))
             {
                 throw error("command.morph.error.notLiving").create();

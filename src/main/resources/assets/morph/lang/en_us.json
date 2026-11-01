@@ -203,5 +203,21 @@
   "morph.trait.traitImmunityDamageSource.wither.desc": "Immune to the wither effect.",
   "key.morph.sit": "Sit Down / Stand Up",
   "morph.message.bucketed": "You are in a bucket. Sneak to climb out.",
-  "morph.message.cannotSit": "This form has no sitting animation."
+  "morph.message.cannotSit": "This form has no sitting animation.",
+  "key.morph.last": "Last Morph Used",
+  "morph.message.noLastMorph": "You have not used a morph yet",
+  "morph.hud.oneMorphReturn": "Returning to Morph in %s",
+  "morph.message.oneMorphCooldown": "You can return to normal in %s",
+  "morph.message.guiDisabledOneMorph": "Morph menus are disabled in One Morph mode",
+  "morph.message.oneMorphAssigned": "You have become %s",
+  "gamerule.minecraft.morph_can_use_crafting_grid": "Morph can use Crafting Grid",
+  "gamerule.minecraft.morph_can_use_crafting_grid.description": "Allows or disallows a morph to use the crafting grid in the inventory screen",
+  "gamerule.minecraft.morph_hotbar_only": "Morph hotbar only",
+  "gamerule.minecraft.morph_hotbar_only.description": "Restricts a morph to as many hotbar slots as it has hands",
+  "gamerule.morphCanUseCraftingGrid": "Morph can use Crafting Grid",
+  "gamerule.morphCanUseCraftingGrid.description": "Allows or disallows a morph to use the crafting grid in the inventory screen",
+  "gamerule.morphHotbarOnly": "Morph hotbar only",
+  "gamerule.morphHotbarOnly.description": "Restricts a morph to as many hotbar slots as it has hands",
+  "gamerule.morph_can_use_crafting_grid": "Morph can use Crafting Grid",
+  "gamerule.morph_hotbar_only": "Morph hotbar only"
 }

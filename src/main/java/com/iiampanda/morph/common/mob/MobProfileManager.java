@@ -245,10 +245,14 @@ public final class MobProfileManager
             {
                 save(id, existing);
             }
-            if((existing.defaultsVersion == null || existing.defaultsVersion < 15))
+            if((existing.defaultsVersion == null || existing.defaultsVersion < 16))
             {
                 MobProfiler.migrate(existing, sample);
-                existing.defaultsVersion = 15;
+                if(existing.hotbarSlots == null)
+                {
+                    existing.hotbarSlots = defaultHotbarSlots(id.toString());
+                }
+                existing.defaultsVersion = 16;
                 save(id, existing);
             }
             return existing;
@@ -264,6 +268,7 @@ public final class MobProfileManager
             profile = new MobProfile();
             profile.forEntity = id.toString();
         }
+        profile.hotbarSlots = defaultHotbarSlots(id.toString());
         PROFILES.put(id, profile);
         if(Morph.configServer == null || Morph.configServer.generateMobConfigFiles)
         {
@@ -285,6 +290,27 @@ public final class MobProfileManager
             }
         }
         return profile;
+    }
+
+    private static final java.util.Set<String> ARMED = java.util.Set.of("minecraft:zombie", "minecraft:husk", "minecraft:drowned", "minecraft:zombie_villager", "minecraft:zombified_piglin",
+            "minecraft:skeleton", "minecraft:stray", "minecraft:bogged", "minecraft:wither_skeleton", "minecraft:villager", "minecraft:wandering_trader", "minecraft:pillager",
+            "minecraft:vindicator", "minecraft:evoker", "minecraft:illusioner", "minecraft:witch", "minecraft:piglin", "minecraft:piglin_brute", "minecraft:vex", "minecraft:allay",
+            "minecraft:iron_golem", "minecraft:snow_golem", "minecraft:copper_golem", "minecraft:enderman", "minecraft:giant", "minecraft:warden", "minecraft:creaking", "minecraft:armor_stand");
+
+    public static int defaultHotbarSlots(String id)
+    {
+        return ARMED.contains(id) ? 2 : 1;
+    }
+
+    public static int hotbarSlots(LivingEntity sample)
+    {
+        MobProfile profile = getOrCreate(sample);
+        Integer n = profile.hotbarSlots;
+        if(n == null)
+        {
+            n = defaultHotbarSlots(BuiltInRegistries.ENTITY_TYPE.getKey(sample.getType()).toString());
+        }
+        return Math.max(1, Math.min(9, n));
     }
 
     private static void save(Identifier id, MobProfile profile)
@@ -316,7 +342,7 @@ public final class MobProfileManager
             }
             try
             {
-                net.minecraft.world.entity.Entity e = type.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+                net.minecraft.world.entity.Entity e = type.create(level, new net.minecraft.world.entity.EntitySpawnRequest(net.minecraft.world.entity.EntitySpawnReason.COMMAND, true));
                 if(e instanceof LivingEntity living && !(e instanceof net.minecraft.world.entity.player.Player))
                 {
                     getOrCreate(living);

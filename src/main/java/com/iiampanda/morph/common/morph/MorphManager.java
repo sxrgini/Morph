@@ -136,7 +136,7 @@ public final class MorphManager
             {
                 return false;
             }
-            if(variant != null && !data.contains(variant))
+            if(variant != null && !mode().owns(player, variant))
             {
                 return false;
             }
@@ -146,12 +146,21 @@ public final class MorphManager
         {
             return false;
         }
+        if(!force && variant == null && !mode().canDemorph(player))
+        {
+            return false;
+        }
         if(variant != null && info.isMorphed() && variant.equals(info.variant))
         {
             return false;
         }
         data.current = variant;
+        if(variant != null)
+        {
+            data.last = variant;
+        }
         applyMorph(player, variant, true);
+        mode().onMorphed(player, variant);
         if(!Morph.configServer.silentMorphs && Morph.MORPH_SOUND != null)
         {
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), Morph.MORPH_SOUND, SoundSource.PLAYERS, 1F, 1F);
@@ -168,6 +177,7 @@ public final class MorphManager
         refreshAbilityFlags(player);
         updateAttributes(player);
         syncMorph(player, null, duration, animate);
+        com.iiampanda.morph.common.MorphRules.sync(player);
     }
 
     public static void refreshAbilityFlags(ServerPlayer player)
@@ -364,6 +374,7 @@ public final class MorphManager
 
     public static void onJoin(ServerPlayer player)
     {
+        mode().onJoin(player);
         PlayerData data = data(player);
         if(data.current != null && mode() != null)
         {
@@ -379,6 +390,7 @@ public final class MorphManager
         {
             data.current = null;
         }
+        mode().onRespawn(newPlayer, alive);
         if(data.current != null)
         {
             applyMorph(newPlayer, data.current, false);

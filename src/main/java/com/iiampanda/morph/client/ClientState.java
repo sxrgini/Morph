@@ -38,6 +38,11 @@ public final class ClientState
         GUI_ENTITIES.clear();
     }
 
+    public static boolean oneMorph()
+    {
+        return mode.equals("one_morph");
+    }
+
     public static boolean usesBiomass()
     {
         return mode.equals("default");

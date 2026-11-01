@@ -24,6 +24,8 @@ public class MobProfile
 
     public Double biomassMultiplier;
 
+    public Integer hotbarSlots;
+
     public Boolean specialsHandled;
 
     public Integer defaultsVersion;

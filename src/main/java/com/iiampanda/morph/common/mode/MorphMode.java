@@ -27,4 +27,14 @@ public interface MorphMode
     default boolean abilitiesNeedActivation() { return false; }
 
     default boolean usesBiomass() { return false; }
+
+    default boolean owns(ServerPlayer player, MorphVariant variant) { return com.iiampanda.morph.common.morph.MorphManager.data(player).contains(variant); }
+
+    default void onJoin(ServerPlayer player) {}
+
+    default boolean canDemorph(ServerPlayer player) { return true; }
+
+    default void onMorphed(ServerPlayer player, MorphVariant variant) {}
+
+    default void onRespawn(ServerPlayer player, boolean alive) {}
 }

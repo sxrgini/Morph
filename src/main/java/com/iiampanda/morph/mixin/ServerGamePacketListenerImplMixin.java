@@ -24,9 +24,27 @@ public abstract class ServerGamePacketListenerImplMixin
     @Inject(method = "handleContainerClick", at = @At("HEAD"), cancellable = true)
     private void morph$click(ServerboundContainerClickPacket packet, CallbackInfo ci)
     {
-        if(packet.containerId() == 0 && player.level().getServer() != null && player.level().getServer().isSameThread() && !com.iiampanda.morph.common.MorphRules.inventoryAllowed(player))
+        if(player.level().getServer() != null && player.level().getServer().isSameThread() && com.iiampanda.morph.common.MorphRules.blockClick(player, packet.containerId(), packet.slotNum(), packet.containerInput().name(), packet.buttonNum()))
         {
             player.inventoryMenu.sendAllDataToRemote();
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "handlePlayerAction", at = @At("HEAD"), cancellable = true)
+    private void morph$action(net.minecraft.network.protocol.game.ServerboundPlayerActionPacket packet, CallbackInfo ci)
+    {
+        if(packet.getAction() == net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action.SWAP_ITEM_WITH_OFFHAND && player.level().getServer() != null && player.level().getServer().isSameThread() && !com.iiampanda.morph.common.MorphRules.slotAllowed(player, 45))
+        {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "handlePlaceRecipe", at = @At("HEAD"), cancellable = true)
+    private void morph$recipe(net.minecraft.network.protocol.game.ServerboundPlaceRecipePacket packet, CallbackInfo ci)
+    {
+        if(packet.containerId() == 0 && player.level().getServer() != null && player.level().getServer().isSameThread() && !com.iiampanda.morph.common.MorphRules.recipeAllowed(player))
+        {
             ci.cancel();
         }
     }

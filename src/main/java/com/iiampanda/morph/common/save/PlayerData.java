@@ -18,6 +18,13 @@ public class PlayerData
     public final Set<String> enabledAbilities = new HashSet<>();
     public double biomass;
     @Nullable public MorphVariant current;
+    @Nullable public MorphVariant last;
+    @Nullable public MorphVariant oneMorph;
+    public String spawnDim = "";
+    public long spawnPos;
+    public boolean hasSpawn;
+    public long oneNormalUntil;
+    public long oneCooldownUntil;
 
     public boolean contains(MorphVariant v)
     {
@@ -68,6 +75,27 @@ public class PlayerData
         {
             tag.put("current", current.write());
         }
+        if(last != null)
+        {
+            tag.put("last", last.write());
+        }
+        if(oneMorph != null)
+        {
+            tag.put("oneMorph", oneMorph.write());
+        }
+        if(oneNormalUntil != 0L)
+        {
+            tag.putLong("oneNormalUntil", oneNormalUntil);
+        }
+        if(oneCooldownUntil != 0L)
+        {
+            tag.putLong("oneCooldownUntil", oneCooldownUntil);
+        }
+        if(hasSpawn)
+        {
+            tag.putString("spawnDim", spawnDim);
+            tag.putLong("spawnPos", spawnPos);
+        }
         return tag;
     }
 
@@ -78,6 +106,13 @@ public class PlayerData
         purchased.clear();
         enabledAbilities.clear();
         current = null;
+        last = null;
+        oneMorph = null;
+        hasSpawn = false;
+        spawnDim = "";
+        spawnPos = 0L;
+        oneNormalUntil = 0L;
+        oneCooldownUntil = 0L;
         for(Tag t : tag.getListOrEmpty("morphs"))
         {
             if(!(t instanceof CompoundTag ct)) continue;
@@ -105,5 +140,21 @@ public class PlayerData
         {
             current = MorphVariant.read(tag.getCompoundOrEmpty("current"));
         }
+        if(tag.contains("last"))
+        {
+            last = MorphVariant.read(tag.getCompoundOrEmpty("last"));
+        }
+        if(tag.contains("oneMorph"))
+        {
+            oneMorph = MorphVariant.read(tag.getCompoundOrEmpty("oneMorph"));
+        }
+        if(tag.contains("spawnDim"))
+        {
+            spawnDim = tag.getStringOr("spawnDim", "");
+            spawnPos = tag.getLongOr("spawnPos", 0L);
+            hasSpawn = !spawnDim.isEmpty();
+        }
+        oneNormalUntil = tag.getLongOr("oneNormalUntil", 0L);
+        oneCooldownUntil = tag.getLongOr("oneCooldownUntil", 0L);
     }
 }

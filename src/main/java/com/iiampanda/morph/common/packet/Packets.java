@@ -222,14 +222,19 @@ public final class Packets
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
-    public record SyncRules(boolean inventory, boolean interact) implements CustomPacketPayload
+    public record SyncRules(boolean inventory, boolean interact, boolean crafting, boolean hotbarOnly, int slots, int normalTicks, int cooldownTicks) implements CustomPacketPayload
     {
         public static final Type<SyncRules> TYPE = typeOf("sync_rules");
         public static final StreamCodec<RegistryFriendlyByteBuf, SyncRules> CODEC = CustomPacketPayload.codec((v, buf) ->
         {
             buf.writeBoolean(v.inventory);
             buf.writeBoolean(v.interact);
-        }, buf -> new SyncRules(buf.readBoolean(), buf.readBoolean()));
+            buf.writeBoolean(v.crafting);
+            buf.writeBoolean(v.hotbarOnly);
+            buf.writeVarInt(v.slots);
+            buf.writeVarInt(v.normalTicks);
+            buf.writeVarInt(v.cooldownTicks);
+        }, buf -> new SyncRules(buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readVarInt(), buf.readVarInt(), buf.readVarInt()));
 
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }

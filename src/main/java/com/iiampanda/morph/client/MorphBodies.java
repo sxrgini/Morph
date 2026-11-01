@@ -251,6 +251,11 @@ public final class MorphBodies
         e.yo = p.yo;
         e.zo = p.zo;
 
+        if(e instanceof net.minecraft.world.entity.animal.Squid squid && squid.tentacleMovement >= 6.2831855F)
+        {
+            squid.handleEntityEvent((byte)19);
+        }
+
         float flip = e instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon ? 180F : 0F;
         e.setYRot(p.getYRot() + flip);
         e.yRotO = p.yRotO + flip;

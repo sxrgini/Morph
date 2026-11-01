@@ -19,7 +19,7 @@ public class ConfigServer
 {
     public enum FilterType { ALLOW, DENY }
 
-    public enum ModeType { CLASSIC, DEFAULT, COMMAND_ONLY, COMMAND_ALLOW_SELECTION, DISGUISE }
+    public enum ModeType { CLASSIC, DEFAULT, COMMAND_ONLY, COMMAND_ALLOW_SELECTION, DISGUISE, ONE_MORPH }
 
     public Integer configVersion = 2;
 
@@ -45,6 +45,9 @@ public class ConfigServer
     public boolean specialRequiresEmptyHand = true;
 
     public double biomassValue = 0.3D;
+
+    public boolean oneMorphMoveToHabitat = true;
+    public List<String> oneMorphExcludedMobs = new ArrayList<>(List.of("minecraft:ender_dragon", "minecraft:wither", "minecraft:giant", "minecraft:warden"));
 
     public double biomassHealthFraction = 0.5D;
     public boolean biomassBypassAdvancement = true;

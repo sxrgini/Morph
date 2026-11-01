@@ -21,7 +21,7 @@ public class MorphClient
 {
     private static final String CATEGORY = "key.categories.morph";
 
-    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT;
+    public static KeyMapping KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT, KEY_LAST;
 
     public static List<KeyMapping> createKeys()
     {
@@ -30,7 +30,8 @@ public class MorphClient
         KEY_ABILITIES = new KeyMapping("key.morph.abilities", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, CATEGORY);
         KEY_DEMORPH = new KeyMapping("key.morph.demorph", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, CATEGORY);
         KEY_SIT = new KeyMapping("key.morph.sit", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Z, CATEGORY);
-        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT);
+        KEY_LAST = new KeyMapping("key.morph.last", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, CATEGORY);
+        return List.of(KEY_SELECTOR, KEY_BIOMASS, KEY_ABILITIES, KEY_DEMORPH, KEY_SIT, KEY_LAST);
     }
 
     public static void init()
@@ -47,6 +48,11 @@ public class MorphClient
         ClientState.SHEARED.clear();
         com.iiampanda.morph.common.MorphRules.clientInventory = true;
         com.iiampanda.morph.common.MorphRules.clientInteract = true;
+        com.iiampanda.morph.common.MorphRules.clientCrafting = true;
+        com.iiampanda.morph.common.MorphRules.clientHotbarOnly = false;
+        com.iiampanda.morph.common.MorphRules.clientSlots = 9;
+        com.iiampanda.morph.common.MorphRules.clientNormalTicks = 0;
+        com.iiampanda.morph.common.MorphRules.clientCooldownTicks = 0;
         emissiveReported = false;
         com.iiampanda.morph.client.render.HandInfos.reset();
         ClientState.reset();
@@ -73,12 +79,21 @@ public class MorphClient
             emissiveReported = true;
             EmissiveScanner.scanAndReport(mc);
         }
+        com.iiampanda.morph.common.MorphRules.clampClient(mc.player);
+        com.iiampanda.morph.common.MorphRules.clientTimers();
         boolean use = mc.options.keyUse.isDown();
         if(use && !prevUse && mc.screen == null && !mc.player.isSpectator() && hasSpecial(mc))
         {
             Platform.sendToServer(new Packets.UseSpecial());
         }
         prevUse = use;
+        if(ClientState.oneMorph())
+        {
+            while(KEY_SELECTOR.consumeClick() | KEY_BIOMASS.consumeClick() | KEY_ABILITIES.consumeClick())
+            {
+                mc.player.displayClientMessage(Component.translatable("morph.message.guiDisabledOneMorph"), true);
+            }
+        }
         while(KEY_SELECTOR.consumeClick())
         {
             if(mc.screen == null)
@@ -119,6 +134,22 @@ public class MorphClient
             if(mc.screen == null && MorphApi.getMorphInfo(mc.player).isMorphed())
             {
                 Platform.sendToServer(new Packets.RequestMorph(Optional.empty()));
+            }
+        }
+        while(KEY_LAST.consumeClick())
+        {
+            if(mc.screen == null)
+            {
+                MorphVariant last = ClientState.DATA.last;
+                MorphVariant now = MorphApi.getMorphInfo(mc.player).variant;
+                if(last == null)
+                {
+                    mc.player.displayClientMessage(Component.translatable("morph.message.noLastMorph"), true);
+                }
+                else if(now == null || !now.equals(last))
+                {
+                    Platform.sendToServer(new Packets.RequestMorph(Optional.of(last.write())));
+                }
             }
         }
         while(KEY_SIT.consumeClick())

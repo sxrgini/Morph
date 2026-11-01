@@ -49,6 +49,11 @@ public final class HudOverlay
         }
 
         MorphInfo info = MorphApi.getMorphInfo(mc.player);
+        if(ClientState.oneMorph() && com.iiampanda.morph.common.MorphRules.clientNormalTicks > 0 && !info.isMorphed())
+        {
+            Component txt = Component.translatable("morph.hud.oneMorphReturn", com.iiampanda.morph.common.morph.OneMorph.format(com.iiampanda.morph.common.MorphRules.clientNormalTicks));
+            g.drawString(mc.font, txt, w / 2 - mc.font.width(txt) / 2, h - 52, 0xFFFFFF, true);
+        }
         if(info.isMorphed() && info.variant != null)
         {
             int yy = ClientState.usesBiomass() && ClientState.biomassUnlocked ? 28 : 6;

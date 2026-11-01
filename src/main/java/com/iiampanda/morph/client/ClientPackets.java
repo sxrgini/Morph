@@ -62,6 +62,11 @@ public final class ClientPackets
         {
             com.iiampanda.morph.common.MorphRules.clientInventory = payload.inventory();
             com.iiampanda.morph.common.MorphRules.clientInteract = payload.interact();
+            com.iiampanda.morph.common.MorphRules.clientCrafting = payload.crafting();
+            com.iiampanda.morph.common.MorphRules.clientHotbarOnly = payload.hotbarOnly();
+            com.iiampanda.morph.common.MorphRules.clientSlots = payload.slots();
+            com.iiampanda.morph.common.MorphRules.clientNormalTicks = payload.normalTicks();
+            com.iiampanda.morph.common.MorphRules.clientCooldownTicks = payload.cooldownTicks();
         }
         else if(packet instanceof Packets.SyncSheared payload)
         {

@@ -8,7 +8,12 @@
     "ModelPartCaptureMixin",
     "PlayerRendererMixin",
     "CameraMixin",
-    "AxolotlModelMixin"
+    "AxolotlModelMixin",
+    "SlotMixin",
+    "AbstractContainerScreenAccessor",
+    "InventoryScreenMixin",
+    "HotbarMixin",
+    "FoodMixin"
   ],
   "injectors": {
     "defaultRequire": 1

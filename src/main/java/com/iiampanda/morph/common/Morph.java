@@ -77,6 +77,7 @@ public class Morph
     public static void onServerStopped()
     {
         com.iiampanda.morph.common.morph.BucketHold.clear();
+        com.iiampanda.morph.common.morph.OneMorph.clear();
         TraitHooks.active().clear();
     }
 
@@ -151,6 +152,11 @@ public class Morph
     {
         com.iiampanda.morph.common.morph.BucketHold.tick(server);
         MorphRules.tick(server);
+        if(server.getTickCount() % 5 == 0)
+        {
+            com.iiampanda.morph.common.morph.OneMorph.timers(server);
+        }
+        com.iiampanda.morph.common.morph.OneMorph.tick();
         if(server.getTickCount() % 10 == 0)
         {
             MorphManager.tickDirtyBiomass(server);
@@ -170,6 +176,7 @@ public class Morph
             case COMMAND_ONLY -> mode = new CommandMode(false);
             case COMMAND_ALLOW_SELECTION -> mode = new CommandMode(true);
             case DISGUISE -> mode = new DisguiseMode();
+            case ONE_MORPH -> mode = new OneMorphMode();
             default -> mode = new ClassicMode();
         }
     }

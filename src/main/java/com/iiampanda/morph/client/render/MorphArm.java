@@ -80,6 +80,8 @@ public final class MorphArm
         }
     }
 
+    private static final java.util.Set<String> HAND_LOGGED = new java.util.HashSet<>();
+
     public static boolean render(PlayerRenderer vanilla, PoseStack ps, MultiBufferSource buffers, int light, AbstractClientPlayer player, HumanoidArm side)
     {
         after = null;
@@ -92,6 +94,10 @@ public final class MorphArm
         {
             LivingEntity entity = info.getEntity();
             Limb limb = entity == null ? null : limbOf(vanilla, entity, side);
+            if(HAND_LOGGED.add(String.valueOf(entity == null ? null : entity.getType()) + side))
+            {
+                com.iiampanda.morph.common.Morph.LOGGER.info("[MorphHud] hand {} {} -> {}", entity == null ? null : entity.getType(), side, limb == null ? "nothing to draw" : (limb.part() != null ? "model part" : "quads"));
+            }
             if(limb != null)
             {
                 draw(limb, ps, buffers, light);
@@ -355,7 +361,7 @@ public final class MorphArm
         float w = Math.max(b[3] - b[0], b[5] - b[2]);
         float cx = (b[0] + b[3]) / 2F;
         float cz = (b[2] + b[5]) / 2F;
-        if(!(h < 4F || h > 18F || w > 9F || Math.abs(cx) > 6F || Math.abs(cz) > 6F || b[1] < -6F || b[1] > 6F))
+        if(!(h < 4F || Math.max(h, w) < 8F || w < 3F || h > 18F || w > 9F || Math.abs(cx) > 6F || Math.abs(cz) > 6F || b[1] < -6F || b[1] > 6F))
         {
             return;
         }
@@ -364,15 +370,16 @@ public final class MorphArm
         {
             s = Math.min(16F / Math.max(h, 0.01F), 8F / Math.max(w, 0.01F));
         }
-        else if(Math.max(h, w) < 4F)
+        else if(Math.max(h, w) < 8F)
         {
-            s = Math.min(2.5F, 4F / Math.max(Math.max(h, w), 0.01F));
+            s = Math.min(6F, 8F / Math.max(Math.max(h, w), 0.01F));
         }
-        arm.xScale = s;
+        float t = w * s < 3F ? Math.min(4F, 3F / Math.max(w * s, 0.01F)) : 1F;
+        arm.xScale = s * t;
         arm.yScale = s;
-        arm.zScale = s;
-        arm.x += -cx * s;
-        arm.z += -cz * s;
+        arm.zScale = s * t;
+        arm.x += -cx * s * t;
+        arm.z += -cz * s * t;
         arm.y += -2F - b[1] * s;
     }
 
@@ -399,7 +406,7 @@ public final class MorphArm
             {
                 com.iiampanda.morph.common.Morph.LOGGER.info("First person arm of {}: x {} to {}, y {} to {}, z {} to {}", what, minX, maxX, minY, maxY, minZ, maxZ);
             }
-            boolean sane = sideOk && Math.abs(cz) <= 5F && minY >= -5F && minY <= 6F && h <= 20F && w <= 11F;
+            boolean sane = sideOk && Math.abs(cz) <= 5F && minY >= -5F && minY <= 6F && h <= 20F && w <= 11F && Math.max(h, w) >= 8F;
             if(sane)
             {
                 return arm;
@@ -408,6 +415,10 @@ public final class MorphArm
             if(h > 16F || w > 8F)
             {
                 s = Math.min(16F / Math.max(h, 0.01F), 8F / Math.max(w, 0.01F));
+            }
+            else if(Math.max(h, w) < 8F)
+            {
+                s = Math.min(6F, 8F / Math.max(Math.max(h, w), 0.01F));
             }
             arm.xScale = sx * s;
             arm.yScale = sy * s;

@@ -33,6 +33,8 @@ public class MorphNeoForge
         Platform.set(new NeoForgePlatform());
         com.iiampanda.morph.common.MorphRules.INVENTORY = net.minecraft.world.level.GameRules.register("morphCanUseInventory", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(true));
         com.iiampanda.morph.common.MorphRules.INTERACT = net.minecraft.world.level.GameRules.register("morphCanInteract", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(true));
+        com.iiampanda.morph.common.MorphRules.CRAFTING = net.minecraft.world.level.GameRules.register("morphCanUseCraftingGrid", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(true));
+        com.iiampanda.morph.common.MorphRules.HOTBAR = net.minecraft.world.level.GameRules.register("morphHotbarOnly", net.minecraft.world.level.GameRules.Category.PLAYER, net.minecraft.world.level.GameRules.BooleanValue.create(false));
         Morph.init("NeoForge 1.21.1");
 
         modBus.addListener(RegisterEvent.class, event -> event.register(Registries.SOUND_EVENT, helper -> helper.register(Morph.SOUND_ID, Morph.MORPH_SOUND)));

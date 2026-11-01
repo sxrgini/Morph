@@ -47,7 +47,7 @@ public class SpecialProjectileAbility extends SpecialAbility<SpecialProjectileAb
         for(int i = 0; i < n; i++)
         {
             Vec3 dir = look.yRot((float)((i - (n - 1) / 2D) * step));
-            Entity e = et.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+            Entity e = et.create(level, new net.minecraft.world.entity.EntitySpawnRequest(net.minecraft.world.entity.EntitySpawnReason.COMMAND, true));
             if(e == null)
             {
                 continue;

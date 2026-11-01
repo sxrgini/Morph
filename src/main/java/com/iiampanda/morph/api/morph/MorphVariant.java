@@ -64,7 +64,7 @@ public final class MorphVariant
         }
         try
         {
-            Entity entity = entityType.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+            Entity entity = entityType.create(level, new net.minecraft.world.entity.EntitySpawnRequest(net.minecraft.world.entity.EntitySpawnReason.COMMAND, true));
             if(!(entity instanceof LivingEntity living))
             {
                 return null;
